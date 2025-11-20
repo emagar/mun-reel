@@ -1,0 +1,209 @@
+Title: Reelection as antidote to the incumbency curse: Evidence from Mexico's electoral reform in municipal races 1997-2023
+
+Author: Eric Magar (ITAM)
+
+Abstract: Recent research uncovered systematic evidence of an incumbency curse in Mexican elections similar to that found in Brazil, India, Romania, and Zambia. A study of marginal municipal races between 1997 and 2010 revealed a discontinuity in the probability of the party winning the next election, estimating a .20 drop in the probability of reelecting in time t+1 the party that barely won in time t relative to the party that barely lost. I replicate the analysis extending data to also cover the following decade, when Mexico removed single-term limits for municipal governments. I find that the incumbency curse holds for races with an open seat. But when the incumbent mayor was on the ballot, the discontinuity is systematically reversed for every party. An incumbent mayor with static ambition therefore shields municipal parties from highly likely defeat. 
+
+Brief overview: Analysis of marginal Mexican municipal races before and after single-term limits for municipal governments were removed, reveals that the incumbency curse of open seats systematically disappeared when an incumbent mayor was on the ballot 
+
+Keywords: Municipal elections, Incumbency effects, Mexico, Regression discontinuity
+
+-------------
+/La reelección consecutiva puso fin a la maldición del ocupante. Los partidos sufrirán si la quitan./
+
+Cuando un partido asume las riendas del gobierno ¿puede esperarse que mejoren sus fortunas electorales futuras? ¿O podrían, paradójicamente, empeorar sistemáticamente?
+
+# Cuando un partido obtiene la victoria en las urnas, deja la oposición y asume el gobierno, ¿debe esperarse que mejoren sus fortunas electorales futuras? ¿o que empeoren?
+
+Las asignaciones presupuestales, los nombramientos administrativos y la regulación mediante bandos municipales son algunos de los recursos para, desde el gobierno, recompensar a tu coalición electoral. Canalizando beneficios sustantivos hacia los grupos que la conforman, abonas en mantener su lealtad al partido en elecciones futuras (Cox y McCubbins 1986). Aunque también es concebible que dichos grupos hayan tejido vínculos no con el partido sino con una facción o camarilla del mismo, e incluso que la relación sea de naturaleza personal (Cain et al. 1978). En tales casos, cualquier cambio al equilibrio de las facciones podría dejar en entredicho su lealtad futura al partido.
+
+Lucardi y Rosas (2016) investigaron esta cuestión para México, inspirados en los casos de Brasil, India, Rumanía y Zambia. Ahí la ciencia social documenta un /empeoramiento/ sistemático de la probabilidad de victorias futuras del partido gobernante,[fn:1] particularmente en el nivel subnacional. Su análisis de elecciones municipales entre 1997 y 2010 corroboró que nuestro país sigue el mismo patrón: gobiernas hoy en perjuicio de ganar nuevamente mañana.
+
+* Las elecciones marginales
+
+A esta literatura le interesan las contiendas marginales, aquellas que se deciden por un margen de votos pequeño. A pesar de celebrarse en plazas, fechas y circunstancias muy diferentes, las elecciones marginales comparten una característica que las hace comparables: al ganador lo decide el azar.
+
+Para verlo, considere dos candidatos que llegan a los comicios en igualdad de fuerzas --- proyectan confianza a grupos numéricamente parejos de votantes, sus aciertos y errores de campaña se anulan mutuamente, tienen el mismo músculo movilizador en la jornada electoral, etc. Lo que se anticipa en las urnas es un empate, y lo romperán eventos fortuitos: el banquete que intoxicó a los invitados de una boda y no salieron a votar, la casilla anulada por irregularidades o los votantes confundidos por el diseño de boleta.[fn:2]
+
+El análisis de municipios marginales se aproxima a un experimento controlado. En el caso presente, un diseño cuasi-experimental para medir el efecto de gobernar o ser oposición, como tratamiento aleatorizado, en la fortuna electoral futura del partido. Que la probabilidad de ganar municipios marginales sea sistemáticamente mayor donde el partido antes perdió que donde antes ganó evidenciaría una /desventaja del ocupante municipal/.
+
+* La maldición del ocupante
+
+Lucardi y Rosas descubren un patrón de esta índole para los partidos municipales mexicanos, sin excepción. El mosaico siguiente lo retrata (es una foto de su Fig. 1, p. 70). El eje X mide margen$_t$, el margen de la elección municipal del año $t$. El eje Y mide $p_{t+1}$, la probabilidad de ganar la elección siguiente. Un partido a la vez, clasifican las elecciones municipales del periodo 1997--2010 en tres grupos: a) las que el partido ganó marginalmente,[fn:3] que aparecen en el costado derecho de los diagramas, a partir de la raya vertical central; b) las que perdió marginalmente aparecen en el izquierdo, con márgenes negativos; y c) todas las que no fueron marginales, que descartan de su análisis.
+
+#+CAPTION: La probabilidad de reelegir al partido tras una elección marginal
+#+NAME:   fig:1
+file:../assets/img/luro-plots.png 
+
+Estiman $p_{t+1}$, condicionada a margen$_t$, para las muestras izquierda y derecha por separado. Destaca la brecha en las ordenadas al origen de las líneas de regresión discontinuas. La probabilidad estimada de reelegir al PRD y al PAN en /t/+1 fue del orden de .2 cuando ganaron por un pelín en $t$; pero de .4 cuando perdieron por un pelín. La brecha del PRI es aún más amplia, con probabilidades de .3 y .6, respectivamente.
+
+Una paradoja de la democracia electoral mexicana: como si les cayera una maldición en el gobierno, los tres partidos de la era de la partidocracia duplicaron sus expectativas de triunfo en la urnas con tan solo permanecer en la oposición. 
+
+* Un modelo con reelección consecutiva
+
+Poco después del periodo analizado advino una reforma con potencial para cimbrar las elecciones municipales de México. A partir de los comicios de 2018 quedó progresivamente eliminada la prohibición de reelección consecutiva de alcaldes y otros cargos de elección (vea [[https://emagar.github.io/reeleccion-munic-6-jun/][esto]], Merino et al. 2013, y Motolinia 2021).
+
+Si, como se dijo arriba, el obstáculo del partido municipal ha radicado en convencer a la coalición electoral que otro mandato suyo "bajo nueva administración" mantendría la redistribución pasada, entonces los reformadores habrán incidido directa y frontalmente en el problema. Porque, por la vía del /voto personal/ (Cain et al. 1987), la repostulación del alcalde debería mitigar la desconfianza. Y, quizás, ponerle fin a la maldición del ocupante.
+
+# (Si le saca ronchas la metodología, salte a la sección [[hallazgos][próxima]], tiene resultados.)
+
+# $I\kern-0.15em P(\text{gana}_{t+1})$
+
+Para dilucidar esta hipótesis repliqué el modelo Lucardi-Rosas pero controlando la ambición estática. Para analizar la probabilidad $p_{t+1}$ estimo el modelo de régimen cambiante siguiente:
+
+\begin{equation*}
+\begin{split}
+\text{logit}\bigl(p_{t+1}\bigr) =~ & ~~~~~~~~~\text{neg}_t & \times (\alpha_0 + \alpha_1 \text{ocup}_{t+1} + \alpha_2 \text{margen}_t + \alpha_3 \text{ocup}_{t+1} \times \text{margen}_t) \\
+                                   & +~ (1 - \text{neg}_t) & \times (\beta_0 + \beta_1 \text{ocup}_{t+1} + \beta_2 \text{margen}_t + \beta_3 \text{ocup}_{t+1} \times \text{margen}_t)  \\
+ & +~ \text{error}_{t+1}
+\end{split}
+\end{equation*}
+
+donde margen$_t$ es la variable independiente que ya vimos. La acompañan del lado derecho dos indicadores dicotómicos y un disturbio aleatorio. La variable neg$_t$ adopta el valor uno cuando margen$_t$ < 0 y el cero cuando margen$_t$ > 0. En la especificación, neg$_t$ indica el cambio de régimen de estimación (la discontinuidad): los parámetros $\alpha$ capturan efectos cuando el partido entró al gobierno en /t/, los $\beta$ cuando quedó fuera en ese año.
+
+# Al restringir los casos de estudio a las elecciones marginales solamente ($-.10 < \text{margen}_t < .10$), el cambio de régimen se interpreta como un tratamiento aleatorizado: un empate resuelto por la diosa fortuna.
+
+Y ocup$_{t+1}$ es uno cuando el alcalde ocupante compite por reelegirse en $t+$1, cero cuando no. Permite un cambio de ordenada al origen para elecciones con/sin ocupante en la boleta. Su interacción multiplicativa con el margen estima también un posible cambio de pendiente.
+
+* <<hallazgos>>Hallazgos post-reforma
+
+Las elecciones municipales marginales ($\pm$10%) del periodo 1997--2023 son reveladoras.[fn:4] Las líneas color marrón en los diagramas corresponden a sillas vacías (esto es, ocup$_t =$ 0), las color verde a elecciones con ocupante para reelección (ocup$_t =$ 1). La columna izquierda reporta el periodo completo, la derecha 2018-2023. 
+
+# #+CAPTION: Elecciones marginales 1997-2023
+# #+NAME:   tab:1
+# | <l>             |             <r> |             <r> |   <r> |   <r> |
+# | Partido         | Terminó segundo | Terminó primero | Total |     N |
+# |-----------------+-----------------+-----------------+-------+-------|
+# | PAN             |              51 |              49 |   100 | 4,758 |
+# | PRI             |              47 |              53 |   100 | 7,289 |
+# | Izquierda       |              52 |              48 |   100 | 2,887 |
+# | Morena 2018--23 |              50 |              50 |   100 |   393 |
+# |-----------------+-----------------+-----------------+-------+-------|
+
+# | <l>             |                     <r> |          <r> |         <r> |   <r> |   <r> |
+# | Partido         | Compite contra ocupante | con ocupante | silla vacía | Total |     N |
+# |-----------------+-------------------------+--------------+-------------+-------+-------|
+# | PAN             |                     3.9 |          3.0 |        93.1 |   100 | 4,758 |
+# | PRI             |                     3.4 |          2.7 |        93.9 |   100 | 7,289 |
+# | Izquierda       |                     2.3 |          2.6 |        95.1 |   100 | 2,887 |
+# | Morena 2018--23 |                    17.0 |         18.8 |        64.1 |   100 |   393 |
+# |-----------------+-------------------------+--------------+-------------+-------+-------|
+
+# SINTESIS SERIA
+# | <l>     |                      <c>            |                      <c>             |   <r> | <r> |
+# |         |               Terminó segundo_t     |               Terminó primero_t      | Total |   N |
+# |         | ----------------------------------- | ----------------------------------- |       |     |
+# | Partido | contra ocupante_{t+1} | silla vacía | contra ocupante_{t+1} | silla vacía |       |     |
+# |---------+-----------------------+-------------+-----------------------+-------------+-------+-----|
+
+#+CAPTION: Fortunas del partido municipal en elecciones marginales con/sin ocupante en la boleta
+#+NAME:   fig:2
+| file:../assets/img/left-97-23-mcmc.png | file:../assets/img/left-18-23-mcmc.png |
+| file:../assets/img/pan-97-23-mcmc.png  | file:../assets/img/pan-18-23-mcmc.png  |
+| file:../assets/img/pri-97-23-mcmc.png  | file:../assets/img/pri-18-23-mcmc.png  |
+
+Como en Lucardi y Rosas, la maldición aparece en el marrón del PAN, del PRI y de la izquierda. La `izquerda' en el análisis la conforman el PRD hasta 2012, Morena desde 2018, y ambos en 2015. Consciente de que esto oculta su conflicto abierto en el /interim/, estimé también un modelo para Morena exclusivamente desde 2018 (en la columna deracha, arriba). Destaca la amplitud de su brecha de ordenadas al origen marrón, de alrededor de 40 en vez de 20 puntos, así como las pendientes más pronunciadas. La erosión del partido presidencial en elecciones intermedias, en especial después de una elección crítica como fue 2018, dejó especialmente vulnerables los triunfos de Morena en municipios que AMLO arrastró a una victoria muy marginal. Un margen de +1 punto porcentual en vez de +5 redujo la probabilidad de reelección del Morena de 0.4 a 0.2; un margen de --1, en cambio, la elevó hasta 0.6.
+
+Respecto de las líneas verdes, destacan tres patrones. 
+
+1. Es notable como la brecha en ordenadas al origen, o sea la maldición del partido ocupante, se invierte. En términos estadísticos, más bien se diluye: si estimaramos una sola línea de regresión verde para los márgenes negativo y positivo, daría resultados casi idénticos a los reportados.[fn:5] 
+
+2. En el cuadrante derecho de los diagramas se distingue, a pesar del ruido en la nube de puntos verdes, que la ambición estática duplica la probabilidad de que el PAN y la izquierda ganen en $t+$1, y la mejora sustancialmente para Morena con márgendes debajo de .05. En cambio para el PRI, que pasada la reforma perdió también su estatus de partido municipal dominante, las nubes se confunden.
+
+3. Los cuadrantes izquierdos son la contraparte de la estabilidad relativa que aporta la reelección consecutiva. A todo partido le resulta más difícil derrotar a un alcalde opositor en la boleta. 
+
+# Y en todos los casos se invierte el sentido de la brecha antiocupante, aunque con evidencia mixta. Con silla vacía, \beta_0 < \alpha_0 en la totalidad de 1,500 muestras posteriores, la maldición del partido ocupante. En cambio, cuando el presidente municipal buscó reelegirse, (\beta_0 + \beta_1) < (\alpha_0 + \alpha_1) en sólo la quinta parte o menos de la muestra posterior. O lo equivalente: la brecha se invierte cuatro de cinco veces, o más. No es poca cosa. Un alcalde en la boleta es una póliza de seguro contra swings partidistas negativos.
+
+# #+CAPTION: Pruebas de hipótesis. Las celdas reportan la proporción de la muestra posterior que cumple la hipótesis
+# #+NAME:   tab:2
+# |                   |          <c>          |                     <c>                     |       |
+# |                   |      brecha sin       |                 brecha con                  |       |
+# |                   | ocupante en la boleta |            ocupante en la boleta            |       |
+# | Partido y periodo |  \beta_0 < \alpha_0   | (\beta_0 + \beta_1) < (\alpha_0 + \alpha_1) | N     |
+# |-------------------+-----------------------+---------------------------------------------+-------|
+# | PAN 1997-2023     |         1.000         |                    0.197                    | 4,758 |
+# | PRI 1997-2023     |         1.000         |                    0.146                    | 7,293 |
+# | Left 1997-2023    |         1.000         |                    0.199                    | 2,889 |
+# | Morena 2018-2023  |         1.000         |                    0.203                    | 394   |
+
+
+* El búmeran
+# * Pegarse un tiro en el pie
+
+#+CAPTION: Desde /xkcd/
+#+NAME:   fig:3
+file:../assets/img/xkcd-boomerang-one.png 
+
+Claudia Sheinbaum quiere cancelar el corto experimento reeleccionista del siglo XXI.[fn:6] Hay evidencia sistemática de los resultados de la reelección consecutiva en la cantidad de bienes públicos, su calidad y financiación en los municipios de México (López Videla 2021, [[https://redaccion.nexos.com.mx/reeleccion-legislativa-y-municipal-en-mexico-que-nos-dice-la-evidencia][Garfias 2024]]). La que presento aquí es evidencia de otra clase de resultados, para los partidos municipales. Apunta a que se estarían pegando un tiro al pie si eliminaran la reelección, Morena de mucho mayor calibre que otros. 
+
+La reelección ha conseguido infundirle una dosis de estabilidad a la política municipal, ausente antes de 2015--2018. Cuando la silla del presidente municipal queda vacía, el partido gobernante parecería atacar desde una posición inferior en la búsqueda del refrendo popular. Así lo sugiere el patrón de alternancia probable, /la maldición del ocupante/. En cambio, cuando un buen alcalde busca reelegirse consecutivamente, perecería atacar desde la posición elevada en el terreno.
+
+Una maldición de esta naturaleza es consistente con el patrón de erosión de la hegemonía priista, que fue más /desalineación/ que /realineación/ electoral (Moreno 2009). Al priato le sucedieron dos décadas de democracia electoral marcadas por una paradójica destrucción trienal de las coaliciones de votantes oportunistas del municipio, y su reconstrucción desde cero (Díaz Cayeros et al. 2016).
+
+¿Habrá vuelta de la maldición del ocupante tras una reforma antirreeleccionista? Quizás no. Si Morena se consolidara como nuevo partido hegemónico, la inviabilidad electoral opositora podría bastar para retener a los grupos con el partido gobernante, como ocurría en el priato clásico (Díaz Cayeros et al. 2003). Ahora bien si, en cambio, el sistema partidista se fragmentara --- y esto no es improbable ante el ocaso político de AMLO, amalgamador de su movimiento personalista --- entonces la maldición del ocupante volvería por sus fueros con zaña.
+
+Cualquiera con un mínimo de aversión al riesgo valorará la estabilidad y la predecibilidad que aporta la reelección consecutiva. Si ha de reabrirse el debate reeleccionista, que sea para ampliarla a más de dos periodos consecutivos en la presidencia municipal, no para eliminarla.
+
+# * Lo que ganas y lo que pierdes
+
+# La reelección consecutiva hace más difícil desbancar a un ocupante rival. Pero también es menos fácil que desbanquen a los tuyos. Dos tercios de las 995 elecciones marginales entre 2021 y 2023 fueron sillas vacías. El partido mayoritario puede acumular más ocupantes con ambición estática.
+
+# Cualquiera con un mínimo de aversión al riesgo valorará la estabilidad y la predecibilidad que aporta la reelección consecutiva. Mejor no tocarlo por ahora.
+
+# Pero si ha de reabrirse el debate reeleccionista, que sea para ampliarla a más de dos periodos consecutivos en la presidencia municipal, y no para eliminarla.
+
+# * otra
+
+# Mantiene vivas las relaciones del gobernante con grupos nucleares de representados, en vez de tener que recomponer la coalición a cada ronda. Bien le haría a nuestros partidos tejer relaciones más estables con algunos grupos de interés que se venden al mejor postor. Los partidos tendrían bases sociales de apoyo más amplias, dejarían de ser cascarones, a menudo, huecos y dependientes de la financiación pública.
+
+* Referencias
+
+Brambor, T. y R. Ceneviva (2012). Reelei\,c\~ao e continu\'ismo nos munic\'ipios brasileiros. /Novos Estudios/, 93, 9--21.
+
+Cain, B., J. Ferejohn y M. Fiorina (1987). The Personal Vote: Constituency Service and Electoral Independence. Harvard U.P.
+
+Cox, G. y M. McCubbins (1986). Electoral Politics as a Redistributive Game. /JoP/ 48(2), 370--89.
+
+Díaz Cayeros, A., F. Estévez y B. Magaloni (2016). The Political Logic of Poverty Relief: Electoral Strategies and Social Policy in Mexico. Nueva York, Cambridge University Press. 
+
+Díaz Cayeros, A., B. Magaloni y B. Weingast (2003). Tragic Brilliance: Equilibrium Party Hegemony in Mexico, https://papers.ssrn.com/sol3/papers.cfm?abstract_id=1153510. 
+
+Garfias, F. (2024). Reelección legislativa y municipal en México: ¿qué nos dice la evidencia? Nexos blog de la redacción, 5 de junio.
+
+Klasnja, M. y R. Titiunik (2023). The Incumbency Curse: Weak Parties, Term Limits, and Unfulfilled Accountability. /APSR/, 111(1), 129--48.
+
+Lopez Videla, B. (2021). Political Time Horizons and Government Investments: Evidence from Mexico. Tesis doctoral, UCSD.
+
+Lucardi, A. y G. Rosas (2016). Is the Incumbent Curse the Incumbent's Fault? Strategic Behavior and Negative Incumbency Effects in Young Democracies. /ES/ 44(1), 66--75.
+
+Macdonald, B. (2014). Incumbency Disadvantages in African Politics? Regression Discontinuity Evidence from Zambian Elections.
+Disponible en SSRN: \url{https://papers.ssrn.com/sol3/papers.cfm?abstract_id=2325674}.
+
+Mayhew, D. (1974). Congressional elections: The case of the vanishing marginals. /Polity/, 295--317.
+
+Magar, E. (2021). Reelección en los municipios. En este blog: \url{https://emagar.github.io/reeleccion-munic-6-jun/}.
+
+Merino, J., E. Fierro y J. Zarkin (2013). Por que la reelecci\'on sirve y por qué no servirá en México. /Animal político/. Disponible en \url{http://www.animalpolitico.com/blogueros-salir-de-dudas/2013/12/05/por-que-la-reeleccion-sirve-y-por-que-servira-en-mexico/}.
+
+Moreno, A. (2009). La decisión electoral: votantes, partidos y democracia en México. México DF, Porrúa. 
+
+Motolinia, L. (2021). Electoral Accountability and Particularistic Legislation: Evidence from an Electoral Reform in Mexico. /APSR/ 115(1), 97--113.
+
+Uppal, Y. (2009). The Disadvantaged Incumbents: Estimating Incumbency Effects in Indian State Legislatures. /PubCho/
+138(1--2), 9--27.
+
+
+
+[fn:1] Brambor y Ceneviva 2012; Klasnja y Titiunik 2023, Macdonald 2014, Uppal 2009.
+
+[fn:2] Un caso memorable fue el condado de Palm Beach, Florida en la elección presidencial de 2000 (vea este reportaje del [[https://www.nytimes.com/2024/03/30/upshot/florida-2000-gore-ballot.html][NY Times]]). La boleta fue mal diseñada y de tal suerte el votante Gore distraído o con mala visión era fácil presa de sufragar, involuntariamente, por el tercer candidato Buchanan. A Gore bien pudo costarle la presidencia. En México, las coaliciones `parciales' abren margen para errores asimétricos de misma naturaleza: votantes que, sin quererlo, anulan su voto apoyando a la coalición donde no la hubo.  
+
+[fn:3] Lucardi y Rosas consideran un rango de $\pm 15\%$. Más común desde Mayhew (1974) es considerar como marginales aquellas contiendas que se deciden por margen de votación de un solo dígito, $\pm 10\%$. Retomo aquí este criterio.
+
+# [fn:4] El control es imperfecto. Un experimento controlado requeriría que, además de marginal en $t$, los partidos compitiesen en $t+1$ con los mismos candidatos en el municipio. Ni Lucardi y Rosas, ni los demás estudios, controlan lo segundo. En su defensa, puede argumentarse lo siguiente: si la victoria del rival en $t$ disuadiera o alentara a buenos candidatos en $t+1$, eso contribuiría, respectivamente, a mejorar o empeorar las fortunas del partido del alcalde en $t+1$. Aclarar esto.  
+
+[fn:4] Los detalles técnicos del modelo y su estimación bayesiana aparecerán en un paper que ando escribiendo.
+
+[fn:5] En 100 por ciento de las muestras posteriores hay una brecha maldita para el partido del alcalde sin ocupante en la boleta ($\beta_0 < \alpha_0$). En cambio, hay una brecha invertida con ocupante en la boleta ($\beta_0 + \beta_1 > \alpha_0 + \alpha_1$) en entre 15 y 20 por ciento de la muestra posterior.
+
+[fn:6] ``Sheinbaum matiza propuesta para eliminar la reelección legislativa; lo vamos a consultar con el pueblo'', [[https://animalpolitico.com/elecciones-2024/presidencia/sheinbaum-eliminar-reeleccion-legislativa-consulta-pueblo][Animal político]], 8 de marzo 2024. 
