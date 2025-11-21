@@ -1,0 +1,44 @@
+Hola Eric,
+
+Me pareció muy interesante tu análisis de la inversión del incumbency curse entre candidatos buscando reelección. Me quedé pensando en las implicaciones, y quería mandarte una reacción y sugerencia, en caso de que tengas planeado seguir trabajando el tema.
+
+Como dejas claro en el post, algo importante que se desprende del análisis es que habría un trade-off no solo entre la concentración del poder para asignar candidaturas en el liderazgo de Morena y los beneficios para los votantes de la reelección, sino también otro dentro del propio Morena, entre el objetivo de maximizar victorias y la concentración de autoridad en el liderazgo.
+    
+Para hacer este argumento general, sin embargo, hay un problema, porque los partidos parecen nominar desproporcionadamente a candidatos fuertes para buscar la reelección. Es decir, entrar a la categoría de "ocup" en tu análisis es probablemente endógeno; entran candidatos más propensos a ganar la reelección. 
+
+Pensé que una manera de resolver este problema sería combinar el diseño del JMP de Bruno (aprovechando el staggered rollout de la reelección) con el RD que ya usas (que compara municipios casi idénticos con y sin incumbent) y estimar algo como un difference in discontinuities. Así, el tratamiento de incumbent es cuasi aleatorio via el RD y el tratamiento de reelección lo es por el staggered rollout. Una diferencia importante con tu análisis actual sería poder estimar el efecto de la posibilidad de reelección, no condicionada a que los partidos de hecho den luz verde a las candidaturas y que los incumbents mismos decidan buscar la reelección. Aún así, creo que esto es lo que querríamos medir para evaluar a la reelección como institución. De paso, sospecho que un análisis así daría para un artículo académico en un buen journal.
+
+En fin, aún con este (posible) problema, el patrón que describes salta inmediatamente y es claramente importante que se conozca, especialmente en esta temporada de reformas.
+
+¡Ojalá estés muy bien!
+
+Saludos,
+Francisco
+
+emm Debo buscar Bruno
+Algunas posibilidades
+- Francesca Bruno, Fedele Greco & Massimo Ventrucci, Non-parametric regression on compositional covariates using Bayesian P-splines (2016) SMA vol 25:75-88.
+-  https://doi.org/10.1111/j.2006.0030-1299.14927.x
+
+
+Eric Magar <emagar@gmail.com>
+Wed, Jul 10, 2024, 5:25 AM
+to Francisco
+
+Muchas gracias por los comentarios Francisco, me vienen de maravilla. Empecé este proyecto y me pareció importante circular resultados preliminares. Voy a revisar seriamente el trabajo de Bruno para ver cómo adopto tus sugerencias.
+
+Por otro lado, hay que intentar identificar quiénes en el equipo de Claudia son receptivos a la defensa de la reelección. Quizás Pepe Merino, aunque en su momento fue muy crítico de la reforma de 2014. O por lo menos alguna de su gente. Deberían sonar algunas voces de alarma en el partido, habría que montarnos en ellas para amplificar la señal. 
+
+Te mando un fuerte abrazo, saludos a Zaira. 
+
+-e
+
+Francisco Garfias <fgarfias@gmail.com>
+Wed, Jul 10, 2024, 10:09 PM
+to me
+
+Estaré al pendiente de cómo avanza el proyecto. Si te sirve platicar con Bruno, yo sigo en contacto con él. Aunque se nos fue a Amazon, sigue con la aspiración de publicar su paper por amor al arte y seguro que estaría dispuesto a ayudar.
+
+De acuerdo sobre la necesidad de al menos hacer llegar estos resultados a gente afín dentro del equipo de transición. Vi que Viridiana Ríos (a quien no conozco) mencionó el trabajo de Bruno en una columna reciente, por lo que me imagino que está al pendiente del tema. No es parte del equipo de Claudia, pero supongo que es alguien a quien leerán. Hace un buen rato que no estoy en contacto con Pepe, pero quizá valdría la pena al menos ponerle enfrente la evidencia. Te cuento si se me ocurren más opciones.
+
+¡Saludos de vuelta!
