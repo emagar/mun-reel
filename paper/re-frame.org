@@ -1,0 +1,57 @@
+Hola Francisco:
+
+Espero que la familia vaya bien. 
+
+Dejé esto pendiente mucho más tiempo del prudente. Ahora trato de reconstruir tu sugerencia, pero ya no me queda claro si entiendo la cosa como creí hace meses. 
+
+Para hacer el replanteamiento, estoy mirando la sobredeterminación del problema de medición. Se confunden tres efectos distintos: la reforma reeleccionista, la auto-selección de candidatos, y el colapso del sistema de partidos. Todo el combo se manifestó alrededor de 2018. Si suponemos efectos aditivos, sería en principio posible separarlos:
+
+Total effect = reform + self-selection + amlo effects
+
+La idea sería estimar la discontinuidad de cuasi-empates de Lucardi-Rosas para distintos subconjuntos de observaciones. Los cruces siguientes identifican los subconjuntos, para antes de 2018, y para después:
+
+Post-2018
+| staggered        | incumbent |     |
+| reform kicked in | ran       | out |
+|------------------+-----------+-----|
+| no               | a2        | b2  |
+|                  | (empty)   |     |
+|------------------+-----------+-----|
+| yes              | c2        | d2  |
+|                  |           |     |
+
+Pre-2018
+|                  | incumbent |         |
+| reform kicked in | ran       | out     |
+|------------------+-----------+---------|
+| no               | a1        | b1      |
+|                  | (empty)   |         |
+|------------------+-----------+---------|
+| yes              | c1        | d1      |
+|                  | (empty)   | (empty) |
+
+La censura representa un obstáculo. P.ej. la ambición estática post-2018 es inobservable en estados con kick-in más tardío (el conjunto a2; lo mismo con los a1, c1 y d1). 
+
+Ahora bien, los conjuntos observables ofrecen algo de palanca para estimar efectos diferenciados.
+
+b1 = Lucardi-Rosas subset                       <- verif       = LURO       yr>1996 & yr<2018
+
+b2 = Lucardi-Rosas extension                    <- control     = LUROext    yr>2017 & dkickin==0
+                                                      |
+b2 - b1 = amlo effect only                      <- control
+
+c2 - (b2 + d2 + b1) = total effect              <- my blog txt = TOTAL      yr>1996
+
+c2 - (b2 + d2) = total effect minus amlo
+
+c2 - d2 = self-sel effect only                                 = SELF       yr>2017 & dkickin==1
+
+c2 - b2 = reform effect only??                  <- Garfias sug = DIF-IN-DIS yr>2017 & (dincballot==1 | dkickin==0)
+
+No sé si estoy siendo claro en esta exposición, ni mucho menos si entendí correctamente tu sugerencia. ¿Te parece que va por aquí la cosa o ando perdido?
+
+Agradezco de antemano tu consejo. Les deseo felices fiestas.
+
+
+a2 - a1 & c2 - c1 & d2 - d1 =  amlo effect only but CENSORED
+

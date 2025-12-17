@@ -1,7 +1,7 @@
 #########################################
 ## Code for ayuntamiento vote analysis ##
 ## Date started: 26nov2023             ##
-## Revised/updated: 24nov2025          ##
+## Revised/updated: 12dic2025          ##
 ## By emagar at itam dot mx            ##
 #########################################
 
@@ -64,7 +64,7 @@ mylm <- function(dv, predictors, data, subset = NULL){
     ## subset <- "ord>2005"
     ## predictors <- c("di", "diballno", "diball", "dgov", "dpres", "vhat.", "popshincab")
     ##
-    dv2 <- sub("^[Dl]o?g?[(]?([a-z.]+)[)]?", "\\1", dv) ## drop log if any
+    dv2 <- sub("^[Dl]o?g?[(]?([a-z.]+)[)]?", "\\1", dv) ## drop log from name, if any
     if (dv2 %notin% c("pan","pri","morena","left","oth","turn.ln")) stop("Wrong party")
     data <- data[order(data$ord),] # sort
     ids  <- ids [order(ids $ord),] # sort
@@ -93,7 +93,7 @@ mylm <- function(dv, predictors, data, subset = NULL){
     return(model)
 }
 
-## models
+## models of voting
 tmpp <- c("dincballot * dinc", "dgov", "dpres", "vhat.", "popshincab", "wsdalt", "lats", "p5lish", "lumwpop20", "as.factor(trienio)"); tmp <- mylm(dv="pan", data=lnr, subset="yr>1999", predictors = tmpp); summary(tmp)
 ##
 tmpp <- c("di", "diballno", "diball", "dgov", "dpres", "vhat.", "popshincab", "wsdalt", "lats", "p5lish", "lumwpop20", "as.factor(trienio)"); tmp <- mylm(dv="pan", data=lnr, subset="yr>1999", predictors = tmpp); summary(tmp)
@@ -124,6 +124,8 @@ tmpp <- c("dconcgo", "dconcpr", "dconcdf", "dincballot", "mg", "wsdalt", "as.fac
 ## tmpp <- c("dconcgo", "dconcdf", "dincballot", "mg", "as.factor(trienio)"); tmp <- mylm(dv="Dturn.ln", data=lnrecm, subset="yr>1999", predictors = tmpp); summary(tmp)
 
 ## replicate lucardi rosas
+luro[1,]
+x
 ##
 ## rename prd/morena as left. left is prd pre-2015, morena since 2018, or either in between
 luro$win       <- sub("morena", "left", luro$win)
@@ -138,6 +140,8 @@ ltmp$run.prior <- sub("prd", "left", ltmp$run.prior)
 ltmp -> luro[luro$yr < 2015,]
 rm(ltmp)
 ## DVs
+## OJO 1: tengo que romper las major-pty coalitions para dársela al partido importante. Do otro modo codifica triunfos múltiples... table(luro$win)
+## OJO 2: tengo también que analizar pvem y mc
 luro$dpanwin  <- 0; luro$dpanwin [grep("pan" , luro$win)] <- 1
 luro$dpriwin  <- 0; luro$dpriwin [grep("pri" , luro$win)] <- 1
 luro$dleftwin <- 0; luro$dleftwin[grep("left", luro$win)] <- 1
@@ -185,6 +189,7 @@ luro$mgleft[luro$dselleft==0] <- NA
 ##
 ## left=prd|morena in 2015:17 generates no 1st/2nd left overlap
 intersect(grep("left", luro$win), grep("left", luro$part2nd)) # check it is empty
+
 ## ##
 ## ## all prior incumbents version pending --- ojo: coalitions inflate party reelection rates
 ## ## Pending. No sé si lo entiendo cabalmente: selecciono solamente partidos que participaron en t-2, para de ellos tomar los que quedaron en 1o o 2do lugares en t-1, y estimar prob elección en t ---> needs t-2 lags
@@ -238,7 +243,6 @@ x
 ## ######### ##
 ###############
 ##
-ls()
 tmp <- luro[luro$dselpan==1,] # subset
 ##########################
 ## restrict time period ##
@@ -248,7 +252,7 @@ tmp <- tmp[sel.r,]
 dim(tmp)
 ## generalize party-specific variables
 tmp$dwin <- tmp$dpanwin
-tmp$mg   <- tmp$mgpan ## magpan is lagged +/- mg conditional of incumbency status
+tmp$mg   <- tmp$mgpan ## magpan is lagged +/- mg conditional on incumbency status
 ##tmp$mg   <- tmp$mg.panor ## get lagged margin
 ##tmp$dincballot <- tmp$dincballotpan
 tmp <- within(tmp, {
@@ -273,7 +277,7 @@ rdpan.lr <- lm(dwin ~ dneg + dpos + dnegxmg + dposxmg - 1, data = tmp) ## luc+ro
 summary.lm(rdpan.lr)
 ## ##
 ## ##
-rdpan <- lm(dwin ~ dneg + dnegxincball + dnegxmg + dnegxmgxincball + dpos + dposxincball + dposxmg + dposxmgxincball - 1,
+rdpan    <- lm(dwin ~ dneg + dnegxincball + dnegxmg + dnegxmgxincball + dpos + dposxincball + dposxmg + dposxmgxincball - 1,
            data = tmp) ## controlando reforma
 summary.lm(rdpan)
 ##
@@ -372,12 +376,12 @@ fit1jags <- jags (data=dl.data, inits=dl.inits, dl.parameters,
                   model.file=logitModel, n.chains=3,
                   n.iter=100000, n.thin=100,
                   )
-#
-tmp.bak <- fit1jags
+fit1jags
 tmp.bak -> fit1jags
 fit1jags <- update(fit1jags, 10000) # continue updating to produce 10000 new draws per chain
 traceplot(fit1jags) # visually check posterior parameter convergence
-#
+
+##
 fit1jags$var.labels <- var.labels # add object to interpret coefficients
 summary(fit1jags$BUGSoutput$summary)
 ##

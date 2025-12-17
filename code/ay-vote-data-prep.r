@@ -1305,7 +1305,7 @@ vot <- merge(x = vot, y = elhis[, c("emm","vhat.pan","vhat.pri","vhat.left")], b
 
 ## Save data
 getwd()
-save.image(file = "tmp.RData")
+save.image(file = "tmp2.RData")
 
 ######################
 ## read saved image ##
@@ -1316,7 +1316,7 @@ rm(list = ls())
 dd <- "/home/eric/Desktop/MXelsCalendGovt/elecReturns/data/"
 wd <- "/home/eric/Desktop/MXelsCalendGovt/reelec/data"
 setwd(wd)
-load(file = "tmp.RData")
+load(file = "tmp2.RData")
 
 ## turnout
 p18 <- read.csv(file = paste0(dd, "../../censos/data/pob18/p18mu-from-se-level-projection-aggregates.csv"))
