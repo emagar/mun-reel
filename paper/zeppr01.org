@@ -1,0 +1,35 @@
+Year the reform kicked in. Column N reports the number of units electing municipal authorities per cycle (i.e., excluding /usos y costumbres/ municipalities). 
+|    | edo |   yr |        N |
+|----+-----+------+----------|
+|  1 | ags | 2019 |       11 |
+|  2 | bc  | 2019 |     5--7 |
+|  3 | bcs | 2018 |        5 |
+|  4 | cam | 2018 |       13 |
+|  5 | coa | 2018 |       38 |
+|  6 | col | 2018 |       10 |
+|  7 | cps | 2018 | 124--125 |
+|  8 | cua | 2018 |       67 |
+|  9 | df  | 2021 |       16 |
+| 10 | dgo | 2019 |       39 |
+| 11 | gua | 2018 |       46 |
+| 12 | gue | 2018 |   80--83 |
+| 13 | hgo |    0 |       84 |
+| 14 | jal | 2018 |      125 |
+| 15 | mex | 2018 |      125 |
+| 16 | mic | 2018 |      112 |
+| 17 | mor | 2018 |       33 |
+| 18 | nay | 2024 |       20 |
+| 19 | nl  | 2018 |       51 |
+| 20 | oax | 2018 |      152 |
+| 21 | pue | 2021 |      217 |
+| 22 | que | 2018 |       18 |
+| 23 | qui | 2018 |       11 |
+| 24 | san | 2018 |       58 |
+| 25 | sin | 2018 |   18--20 |
+| 26 | son | 2018 |       72 |
+| 27 | tab | 2018 |       17 |
+| 28 | tam | 2018 |       43 |
+| 29 | tla | 2024 |       60 |
+| 30 | ver |    0 |      212 |
+| 31 | yuc | 2018 |      106 |
+| 32 | zac | 2018 |       58 |
