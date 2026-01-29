@@ -1,4 +1,4 @@
-#########################################
+########################################
 ## Code for ayuntamiento vote analysis ##
 ## Date started: 26nov2023             ##
 ## Revised/updated: 12dic2025          ##
@@ -122,6 +122,218 @@ tmpp <- c("dconcgo", "dconcpr", "dconcdf", "dincballot", "mg", "wsdalt", "as.fac
 ## ############################
 ## colnames(lnrecm)
 ## tmpp <- c("dconcgo", "dconcdf", "dincballot", "mg", "as.factor(trienio)"); tmp <- mylm(dv="Dturn.ln", data=lnrecm, subset="yr>1999", predictors = tmpp); summary(tmp)
+
+#############################################
+## assign coalition vote to one party only ##
+#############################################
+luro[1,]
+luro$win.simple       <- luro$win
+luro$part2nd.simple   <- luro$part2nd
+luro$win.prior.simple <- luro$win.prior
+## pan-prd 2018 and post to pan
+funfun <- function(variab=luro$win.simple , yr=2018){
+    sel.1 <- grep("pan"    , variab)
+    sel.2 <- grep("prd"    , variab)
+    sel.3 <- which(luro$yr>=yr)
+    sel.4 <- intersect(sel.1, sel.2)
+    sel.5 <- intersect(sel.4, sel.3)
+    print(paste("N manip:", length(sel.5)))
+    variab[sel.5] <- gsub("prd-|-prd", "", luro$win.simple[sel.5])
+    return(variab)
+}
+luro$win.simple       <- funfun(luro$win.simple       , 2018)
+luro$part2nd.simple   <- funfun(luro$part2nd.simple   , 2018)
+luro$win.prior.simple <- funfun(luro$win.prior.simple , 2021)
+table(luro$win.prior.simple[luro$yr>=2018])
+## pan-pri dgo 2022 and post to pri
+funfun <- function(variab=luro$win.simple , yr=2022){
+    sel.1 <- grep("pan"    , variab)
+    sel.2 <- grep("pri"    , variab)
+    sel.3 <- which(luro$yr>=yr)
+    sel.4 <- intersect(sel.1, sel.2)
+    sel.5 <- intersect(sel.4, sel.3)
+    print(paste("N manip:", length(grep("^dgo", luro$emm[sel.5]))))
+    tmp <- variab[sel.5] ## subset for manip state by state
+    tmp[grep("^dgo", luro$emm[sel.5])] <- gsub("pan-|-pan", "", tmp[grep("^dgo", luro$emm[sel.5])])  ## to pri
+    tmp -> variab[sel.5]  ## return after manip
+    return(variab)
+}
+luro$win.simple       <- funfun(luro$win.simple       , 2022)
+luro$part2nd.simple   <- funfun(luro$part2nd.simple   , 2022)
+luro$win.prior.simple <- funfun(luro$win.prior.simple , 2025)
+
+## pan-pri post 2018 (none in 2018)
+funfun <- function(variab=luro$win.simple , yr=2018){
+    sel.1 <- grep("pan"    , variab)
+    sel.2 <- grep("pri"    , variab)
+    sel.3 <- which(luro$yr>yr)
+    sel.4 <- intersect(sel.1, sel.2)
+    sel.5 <- intersect(sel.4, sel.3)
+    print(paste("N manip:", length(sel.5)))
+    tmp <- variab[sel.5] ## subset for manip state by state
+    tmp[grep("^ags", luro$emm[sel.5])] <- gsub("pri-|-pri", "", tmp[grep("^ags", luro$emm[sel.5])])  ## to pan
+    tmp[grep("^bc" , luro$emm[sel.5])] <- gsub("pri-|-pri", "", tmp[grep("^bc" , luro$emm[sel.5])])  ## to pan
+    tmp[grep("^bcs", luro$emm[sel.5])] <- gsub("pri-|-pri", "", tmp[grep("^bcs", luro$emm[sel.5])])  ## to pan
+    tmp[grep("^cam", luro$emm[sel.5])] <- gsub("pan-|-pan", "", tmp[grep("^cam", luro$emm[sel.5])])  ## to pri
+    tmp[grep("^coa", luro$emm[sel.5])] <- gsub("pan-|-pan", "", tmp[grep("^coa", luro$emm[sel.5])])  ## to pri
+    tmp[grep("^col", luro$emm[sel.5])] <- gsub("pan-|-pan", "", tmp[grep("^col", luro$emm[sel.5])])  ## to pri
+    tmp[grep("^cps", luro$emm[sel.5])] <- gsub("pan-|-pan", "", tmp[grep("^cps", luro$emm[sel.5])])  ## to pri
+    tmp[grep("^cua", luro$emm[sel.5])] <- gsub("pri-|-pri", "", tmp[grep("^cua", luro$emm[sel.5])])  ## to pan
+    tmp[grep("^df" , luro$emm[sel.5])] <- gsub("pri-|-pri", "", tmp[grep("^df" , luro$emm[sel.5])])  ## to pan
+    tmp[grep("^dgo", luro$emm[sel.5])] <- gsub("pri-|-pri", "", tmp[grep("^dgo", luro$emm[sel.5])])  ## to pan (has exception above))
+    tmp[grep("^gua", luro$emm[sel.5])] <- gsub("pri-|-pri", "", tmp[grep("^gua", luro$emm[sel.5])])  ## to pan
+    tmp[grep("^gue", luro$emm[sel.5])] <- gsub("pan-|-pan", "", tmp[grep("^gue", luro$emm[sel.5])])  ## to pri
+    tmp[grep("^hgo", luro$emm[sel.5])] <- gsub("pan-|-pan", "", tmp[grep("^hgo", luro$emm[sel.5])])  ## to pri
+    tmp[grep("^jal", luro$emm[sel.5])] <- gsub("pan-|-pan", "", tmp[grep("^jal", luro$emm[sel.5])])  ## to pri
+    tmp[grep("^mex", luro$emm[sel.5])] <- gsub("pan-|-pan", "", tmp[grep("^mex", luro$emm[sel.5])])  ## to pri
+    tmp[grep("^mic", luro$emm[sel.5])] <- gsub("pan-|-pan", "", tmp[grep("^mic", luro$emm[sel.5])])  ## to pri
+    tmp[grep("^mor", luro$emm[sel.5])] <- gsub("pri-|-pri", "", tmp[grep("^mor", luro$emm[sel.5])])  ## to pan
+    tmp[grep("^nay", luro$emm[sel.5])] <- gsub("pri-|-pri", "", tmp[grep("^nay", luro$emm[sel.5])])  ## to pan
+    tmp[grep("^nl" , luro$emm[sel.5])] <- gsub("pan-|-pan", "", tmp[grep("^nl" , luro$emm[sel.5])])  ## to pri
+    tmp[grep("^oax", luro$emm[sel.5])] <- gsub("pan-|-pan", "", tmp[grep("^oax", luro$emm[sel.5])])  ## to pri
+    tmp[grep("^pue", luro$emm[sel.5])] <- gsub("pri-|-pri", "", tmp[grep("^pue", luro$emm[sel.5])])  ## to pan
+    tmp[grep("^que", luro$emm[sel.5])] <- gsub("pri-|-pri", "", tmp[grep("^que", luro$emm[sel.5])])  ## to pan
+    tmp[grep("^qui", luro$emm[sel.5])] <- gsub("pan-|-pan", "", tmp[grep("^qui", luro$emm[sel.5])])  ## to pri
+    tmp[grep("^san", luro$emm[sel.5])] <- gsub("pan-|-pan", "", tmp[grep("^san", luro$emm[sel.5])])  ## to pri
+    tmp[grep("^sin", luro$emm[sel.5])] <- gsub("pan-|-pan", "", tmp[grep("^sin", luro$emm[sel.5])])  ## to pri
+    tmp[grep("^son", luro$emm[sel.5])] <- gsub("pan-|-pan", "", tmp[grep("^son", luro$emm[sel.5])])  ## to pri
+    tmp[grep("^tab", luro$emm[sel.5])] <- gsub("pan-|-pan", "", tmp[grep("^tab", luro$emm[sel.5])])  ## to pri
+    tmp[grep("^tam", luro$emm[sel.5])] <- gsub("pri-|-pri", "", tmp[grep("^tam", luro$emm[sel.5])])  ## to pan
+    tmp[grep("^tla", luro$emm[sel.5])] <- gsub("pan-|-pan", "", tmp[grep("^tla", luro$emm[sel.5])])  ## to pri
+    tmp[grep("^ver", luro$emm[sel.5])] <- gsub("pri-|-pri", "", tmp[grep("^ver", luro$emm[sel.5])])  ## to pan
+    tmp[grep("^yuc", luro$emm[sel.5])] <- gsub("pri-|-pri", "", tmp[grep("^yuc", luro$emm[sel.5])])  ## to pan
+    tmp[grep("^zac", luro$emm[sel.5])] <- gsub("pan-|-pan", "", tmp[grep("^zac", luro$emm[sel.5])])  ## to pri
+    tmp -> variab[sel.5]  ## return after manip
+    return(variab)
+}
+luro$win.simple       <- funfun(luro$win.simple       , 2018)
+luro$part2nd.simple   <- funfun(luro$part2nd.simple   , 2018)
+luro$win.prior.simple <- funfun(luro$win.prior.simple , 2021)
+## pri-pvem in 2018
+funfun <- function(variab=luro$win.simple , yr=2018){
+    sel.1 <- grep("pri"    , variab)
+    sel.2 <- grep("pvem"   , variab)
+    sel.3 <- which(luro$yr==yr)
+    sel.4 <- intersect(sel.1, sel.2)
+    sel.5 <- intersect(sel.4, sel.3)
+    tmp <- variab[sel.5] ## subset for manip state by state
+    tmp[grep("^cps", luro$emm[sel.5])] <- gsub("pri-|-pri", "", tmp[grep("^cps", luro$emm[sel.5])])  ## to pvem
+    tmp -> variab[sel.5]  ## return after manip
+    return(variab)
+}
+luro$win.simple       <- funfun(luro$win.simple       , 2018)
+luro$part2nd.simple   <- funfun(luro$part2nd.simple   , 2018)
+luro$win.prior.simple <- funfun(luro$win.prior.simple , 2021)
+## ## check
+## sel.1 <- grep("pri"    , luro$win.simple)
+## sel.2 <- grep("pvem"   , luro$win.simple)
+## sel.3 <- which(luro$yr==2018)
+## sel.4 <- intersect(sel.1, sel.2)
+## sel.5 <- intersect(sel.4, sel.3)
+## table(luro$win.simple[sel.5])
+## table(luro$emm[sel.5])
+## table(luro$yr[sel.5])
+##
+## Before 2018
+## pan-prd pre 2018
+funfun <- function(variab=luro$win.simple , yr=2018){
+    sel.1 <- grep("pan"    , variab)
+    sel.2 <- grep("prd"    , variab)
+    sel.3 <- which(luro$yr<yr)
+    sel.4 <- intersect(sel.1, sel.2)
+    sel.5 <- intersect(sel.4, sel.3)
+    tmp <- variab[sel.5] ## subset for manip state by state
+    tmp[grep("^bc" , luro$emm[sel.5])] <- gsub("prd-|-prd" , "" , tmp[grep("^bc" , luro$emm[sel.5])])  ## to pan
+    tmp[grep("^coa", luro$emm[sel.5])] <- gsub("prd-|-prd" , "" , tmp[grep("^coa", luro$emm[sel.5])])  ## to pan
+    tmp[grep("^col", luro$emm[sel.5])] <- gsub("prd-|-prd" , "" , tmp[grep("^col", luro$emm[sel.5])])  ## to pan
+    tmp[grep("^cps", luro$emm[sel.5])] <- gsub("pan-|-pan" , "" , tmp[grep("^cps", luro$emm[sel.5])])  ## to     prd
+    tmp[grep("^cua", luro$emm[sel.5])] <- gsub("prd-|-prd" , "" , tmp[grep("^cua", luro$emm[sel.5])])  ## to pan
+    tmp[grep("^dgo", luro$emm[sel.5])] <- gsub("prd-|-prd" , "" , tmp[grep("^dgo", luro$emm[sel.5])])  ## to pan
+    tmp[grep("^gue", luro$emm[sel.5])] <- gsub("pan-|-pan" , "" , tmp[grep("^gue", luro$emm[sel.5])])  ## to     prd
+    tmp[grep("^hgo", luro$emm[sel.5])] <- gsub("prd-|-prd" , "" , tmp[grep("^hgo", luro$emm[sel.5])])  ## to pan --- Xóchitl to pan
+    tmp[grep("^jal", luro$emm[sel.5])] <- gsub("prd-|-prd" , "" , tmp[grep("^jal", luro$emm[sel.5])])  ## to pan
+    tmp[grep("^mex", luro$emm[sel.5])] <- gsub("prd-|-prd" , "" , tmp[grep("^mex", luro$emm[sel.5])])  ## to pan --- few cases all 2015
+    tmp[grep("^mic", luro$emm[sel.5])] <- gsub("pan-|-pan" , "" , tmp[grep("^mic", luro$emm[sel.5])])  ## to     prd
+    tmp[grep("^jal", luro$emm[sel.5])] <- gsub("prd-|-prd" , "" , tmp[grep("^jal", luro$emm[sel.5])])  ## to pan
+    tmp[grep("^oax", luro$emm[sel.5])] <- gsub("pan-|-pan" , "" , tmp[grep("^oax", luro$emm[sel.5])])  ## to     prd
+    tmp[grep("^pue", luro$emm[sel.5])] <- gsub("prd-|-prd" , "" , tmp[grep("^pue", luro$emm[sel.5])])  ## to pan
+    tmp[grep("^qui", luro$emm[sel.5])] <- gsub("pan-|-pan" , "" , tmp[grep("^qui", luro$emm[sel.5])])  ## to     prd
+    tmp[grep("^san", luro$emm[sel.5])] <- gsub("prd-|-prd" , "" , tmp[grep("^san", luro$emm[sel.5])])  ## to pan
+    tmp[grep("^sin", luro$emm[sel.5])] <- gsub("prd-|-prd" , "" , tmp[grep("^sin", luro$emm[sel.5])])  ## to pan
+    tmp[grep("^son", luro$emm[sel.5])] <- gsub("prd-|-prd" , "" , tmp[grep("^son", luro$emm[sel.5])])  ## to pan
+    tmp[grep("^tam", luro$emm[sel.5])] <- gsub("prd-|-prd" , "" , tmp[grep("^tam", luro$emm[sel.5])])  ## to pan
+    tmp[grep("^ver", luro$emm[sel.5])] <- gsub("prd-|-prd" , "" , tmp[grep("^ver", luro$emm[sel.5])])  ## to pan --- some 2000, rest 2017
+    tmp[grep("^yuc", luro$emm[sel.5])] <- gsub("prd-|-prd" , "" , tmp[grep("^yuc", luro$emm[sel.5])])  ## to pan
+    tmp[grep("^zac", luro$emm[sel.5])] <- gsub("pan-|-pan" , "" , tmp[grep("^zac", luro$emm[sel.5])])  ## to     prd
+    tmp -> variab[sel.5]  ## return after manip
+    return(variab)
+}
+luro$win.simple       <- funfun(luro$win.simple       , 2018)
+luro$part2nd.simple   <- funfun(luro$part2nd.simple   , 2018)
+luro$win.prior.simple <- funfun(luro$win.prior.simple , 2021)
+##
+## pan-pri pre 2018 all in mic
+funfun <- function(variab=luro$win.simple , yr=2018){
+    sel.1 <- grep("pan"    , variab)
+    sel.2 <- grep("pri"    , variab)
+    sel.3 <- which(luro$yr<yr)
+    sel.4 <- intersect(sel.1, sel.2)
+    sel.5 <- intersect(sel.4, sel.3)
+    tmp <- variab[sel.5] ## subset for manip state by state
+    tmp[grep("^mic", luro$emm[sel.5])] <- gsub("pan-|-pan" , "" , tmp[grep("^mic", luro$emm[sel.5])])  ## to     pri
+    tmp -> variab[sel.5]  ## return after manip
+    return(variab)
+}
+luro$win.simple       <- funfun(luro$win.simple       , 2018)
+luro$part2nd.simple   <- funfun(luro$part2nd.simple   , 2018)
+luro$win.prior.simple <- funfun(luro$win.prior.simple , 2018)
+## clean
+rm(funfun)
+
+## check and manip major-minor
+sel.1 <- grep("pan"    , luro$win.simple)
+table(luro$win.simple[sel.1])
+luro$win.simple[sel.1] <- "pan" ## all to pan
+##
+## pri-pvem pre 2018 al pri OJO: en cps 2012-2017 solo hubo coal en tapachula 2015 y el cand era priista Neftalí del Toro
+sel.1 <- grep("pri"    , luro$win.simple)
+sel.2 <- grep("pvem"   , luro$win.simple)
+sel.3 <- which(luro$yr<2018)
+sel.4 <- intersect(sel.1, sel.2)
+sel.5 <- intersect(sel.4, sel.3)
+table(luro$win.simple[sel.5])
+luro$win.simple[sel.5] <- "pri"
+
+
+
+## clean
+rm(sel.1)
+##
+## check
+table(luro$win.simple)
+##
+#########################
+## DO SAME FOR PART2ND ##
+#########################
+##
+###############################################################################
+## OJO: cuando incluya a pvem y mc en el análisis tendré que tejer más fino. ##
+## Habrá que sacar mc de su eterna coalición con prd-pt (difícil) y sacar    ##
+## pvem de sus coaliciones en cps y en san. Afecta solo a la izquierda.      ##
+###############################################################################
+##
+## Respalda win, análisis continúa con win.simple
+luro$win.premanip <- luro$win
+luro$win          <- luro$win.simple
+luro$win.simple   <- NULL
+
+AQUI ME QUEDE, FALTA MANIP part2nd IGUAL
+## inspect prd and morena towards left recoding
+sel.1 <- grep("prd"    , luro$win)
+sel.2 <- grep("morena" , luro$part2nd)
+sel.3 <- intersect(sel.1, sel.2)
+luro[sel.3[1],]
+x
 
 ## replicate lucardi rosas
 luro[1,]
@@ -260,31 +472,35 @@ tmp <- luro[luro$dselleft==1,] # subset
 sel.r <- which(tmp$yr > 1996)
 tmp <- tmp[sel.r,]
 ## SUBSET FOR BLOG ESTIMATION, EXTENDING LUC-ROSAS = FILTERS 1+2
-tmpBLOG <- tmp ## checar: esto debería intersectar por completo b1 + b2 + c2 + d2
+tmpTODO <- tmp ## checar: esto debería intersectar por completo b1 + b2 + c2 + d2
 ##
 ## FILTER 3.1: TIME PERIOD BEFORE AMLO
 sel.r <- which(tmp$yr < 2018)
 ## SUBSET TO REPLICATE LUCARDI-ROSAS = FILTERS 1+2+3A
-setb1 <- tmp[sel.r,]
-tmpORIG <- tmp[sel.r,]
+seta1 <- tmp[sel.r,]
+tmpREPLICA <- seta1
 ##
 ## FILTERS 3.2, 3.3, and 3.4: TIME PERIOD SINCE AMLO WITH EXTRA CONDITIONS
 ## IN PRE-REFORM STATES ONLY 
 sel.r <- which(tmp$yr > 2017 & tmp$dprekick==1)
-setb2 <- tmp[sel.r,]
+seta2 <- tmp[sel.r,]
 ## IN POST-REFORM STATES ONLY WHERE INCUMBENT RAN
 sel.r <- which(tmp$yr > 2017 & tmp$dprekick==0 & tmp$dincballot==1)
-setc2 <- tmp[sel.r,]
+setd2 <- tmp[sel.r,]
 ## IN POST-REFORM STATES ONLY WHERE INCUMBENT DID NOT RUN
 sel.r <- which(tmp$yr > 2017 & tmp$dprekick==0 & tmp$dincballot==0)
-setd2 <- tmp[sel.r,]
+setc2 <- tmp[sel.r,]
 ##
-## SUBSET TO PROJECT LUCARDI-ROSAS SINCE AMLO ONLY
-tmpAMLO <- setb2
-## SUBSET TO ESTIMATE SELF-SELECTION ONLY
-tmpSELF <- rbind(setc2, setd2)
+## SUBSET TO EXTEND LUCARDI-ROSAS
+tmpEXTENSION <- rbind(seta1, seta2)
+## SUBSET TO REPLICATE LUCARDI-ROSAS SINCE AMLO ONLY
+tmpPREKICK <- seta2
 ## SUBSET TO ESTIMATE DIFF-IN-DISC MODEL
-tmpDND <- rbind(setc2, setb2)
+tmpPOSTKICK <- rbind(setc2, setd2)
+##
+## SUBSET TO EXTEND LUCARDI-ROSAS IN HGO VER ONLY
+sel.r <- which(tmp$edon==13 | tmp$edon==30)
+tmpNONREF <- tmp[sel.r,]
 ##
 ## function generalizing party-specific variables and generating interactions for analysis
 genx <- function(x){ ## x is the dataset to manipulate
@@ -309,26 +525,32 @@ genx <- function(x){ ## x is the dataset to manipulate
     })
     return(tmp)
 }
-tmpORIG <- genx(tmpORIG)
-tmpAMLO <- genx(tmpAMLO)
-tmpBLOG <- genx(tmpBLOG)
-tmpSELF <- genx(tmpSELF)
-tmpDND  <- genx(tmpDND)
+tmpREPLICA   <- genx(tmpREPLICA  )
+tmpEXTENSION <- genx(tmpEXTENSION)
+tmpPREKICK   <- genx(tmpPREKICK  )
+tmpPOSTKICK  <- genx(tmpPOSTKICK )
+tmpTODO      <- genx(tmpTODO     )
+tmpNONREF    <- genx(tmpNONREF   )
 rm(genx)
 
 ## check N
-nrow(tmpORIG)
-nrow(tmpAMLO)
-nrow(tmpBLOG)
-nrow(tmpSELF)
-nrow(tmpDND)
+nrow(tmpREPLICA  )
+nrow(tmpEXTENSION)
+nrow(tmpPREKICK  )
+nrow(tmpPOSTKICK )
+nrow(tmpTODO     )
+nrow(tmpNONREF   )
 
 ## headers for plots
-headORIG <- "Pre-AMLO"
-headAMLO <- "Pre-ref & post-AMLO"
-headBLOG <- "All 1997-2025"
-headSELF <- "Post-ref & post-AMLO"
-headDND  <- "(Post-ref & incRan | Pre-ref) & post-AMLO"
+encab <- c(
+    "Réplica LuRo 1997-2017"
+  , "LuRo Extensión LuRo 1997-2025"
+  , "Pre-reforma 2018-2025"
+  , "Post-reforma 2018-2025"
+  , "Todo 1997-2025"
+  , "Non-reformers 1997-2025"
+)
+
 
 #######################################
 ## Select a data subset for analysis ##

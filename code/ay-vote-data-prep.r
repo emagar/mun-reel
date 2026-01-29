@@ -574,6 +574,11 @@ inc <- slide(inc, Var = "part2nd",    NewVar = "run.prior",  TimeVar = "cycle", 
 inc <- slide(inc, Var = "mg",         NewVar = "mg.prior",   TimeVar = "cycle", GroupVar = "inegi", slideBy = -1)
 str(inc)
 
+#########################################################################################################################
+## OJO: 29ene2025 aquí tendré que manipular al partido del incumbent que ganó en coalición, así como el del runner-up. ##
+## Esto será posible cuando termine aymu1970-on.coalition-candidacies.                                                 ##
+#########################################################################################################################
+
 ##
 ## merge inc into dat
 #sel <- which(inc$emm %notin% vot$emm)

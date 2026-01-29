@@ -211,3 +211,16 @@ legend("topright", legend = c("incumbent running","open seat"), lty = c(2,1))
 ## luro <- addGubYr(luro)
 ## rm(addGubYr)
 
+
+
+
+
+
+
+## lag to create race-prior variables ##
+inc <- slide(inc, Var = "race.after", NewVar = "race.prior", TimeVar = "cycle", GroupVar = "inegi", slideBy = -1)
+inc <- slide(inc, Var = "part",       NewVar = "win.prior",  TimeVar = "cycle", GroupVar = "inegi", slideBy = -1)
+inc <- slide(inc, Var = "part2nd",    NewVar = "run.prior",  TimeVar = "cycle", GroupVar = "inegi", slideBy = -1)
+inc <- slide(inc, Var = "mg",         NewVar = "mg.prior",   TimeVar = "cycle", GroupVar = "inegi", slideBy = -1)
+str(inc)
+

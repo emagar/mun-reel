@@ -11,37 +11,38 @@ Total effect = reform + self-selection + amlo effects
 La idea sería estimar la discontinuidad de cuasi-empates de Lucardi-Rosas para distintos subconjuntos de observaciones. Los cruces siguientes identifican los subconjuntos, para antes de 2018, y para después:
 
 Pre-2018                                          Post-2018                             
-| staggered        | incumbent |         |        | staggered        | incumbent |     |
-| reform kicked in | ran       | out     |        | reform kicked in | ran       | out |
-|------------------+-----------+---------|        |------------------+-----------+-----|
-| no               | a1        | b1      |        | no               | a2        | b2  |
-|                  | (empty)   |         |        |                  | (empty)   |     |
-|------------------+-----------+---------|        |------------------+-----------+-----|
-| yes              | c1        | d1      |        | yes              | c2        | d2  |
-|                  | (empty)   | (empty) |        |                  |           |     |
+| staggered        | incumbent |         |        | staggered        | incumbent |         |
+| reform kicked in | out       | ran     |        | reform kicked in | out       | ran     |
+|------------------+-----------|---------+        |------------------+-----------|---------+
+| no               | a1        | b1      |        | no               | a2        | b2      |
+|                  |           | (empty) |        |                  |           | (empty) |
+|------------------+-----------|---------+        |------------------+-----------|---------+
+| yes              | c1        | d1      |        | yes              | c2        | d2      |
+|                  | (empty)   | (empty) |        |                  |           |         |
 
-La censura representa un obstáculo. P.ej. la ambición estática post-2018 es inobservable en estados con kick-in más tardío (el conjunto a2; lo mismo con los a1, c1 y d1). 
+La censura representa un obstáculo. P.ej. la ambición estática post-2018 es inobservable en estados con kick-in más tardío (el conjunto b2; lo mismo con los b1, d1 y c1). 
 
 Ahora bien, los conjuntos observables ofrecen algo de palanca para estimar efectos diferenciados.
 
-b1 = Lucardi-Rosas subset                       <- verif       = LURO       yr>1996 & yr<2018                       tmpORIG
+a1 = Lucardi-Rosas subset                       <- verif       = LURO       yr>1996 & yr<2018                       tmpORIG
 
-b2 = Lucardi-Rosas proj post amlo               <- control     = LUROpost   yr>2017 & dkickin==0                    tmpAMLO
+a2 = Lucardi-Rosas proj post amlo               <- control     = LUROpost   yr>2017 & dkickin==0                    tmpAMLO
                                                       |
-b2 - b1 = amlo effect only                      <- control
+a2 - a1 = amlo effect only                      <- control
+(a2+c2) - a1 = lo q 1ero entendí de garfias     <- garfias?
 
-c2 - (b2 + d2 + b1) = total effect              <- my blog txt = TOTAL      yr>1996                                 tmpBLOG
+d2 - (a2 + c2 + a1) = total effect              <- my blog txt = TOTAL      yr>1996                                 tmpBLOG
 
-c2 - (b2 + d2) = total effect minus amlo
+d2 - (a2 + c2) = total effect minus amlo
 
-c2 - d2 = self-sel effect only                                 = SELF       yr>2017 & dkickin==1                    tmpSELF
+d2 - c2 = self-sel effect only                                 = SELF       yr>2017 & dkickin==1                    tmpSELF
 
-c2 - b2 = reform effect only??                  <- Garfias sug = DIF-IN-DIS yr>2017 & (dincballot==1 | dkickin==0)  tmpDND
+d2 - a2 = reform effect only??                  <- Garfias sug = DIF-IN-DIS yr>2017 & (dincballot==1 | dkickin==0)  tmpDND
 
 No sé si estoy siendo claro en esta exposición, ni mucho menos si entendí correctamente tu sugerencia. ¿Te parece que va por aquí la cosa o ando perdido?
 
 Agradezco de antemano tu consejo. Les deseo felices fiestas.
 
 
-a2 - a1 & c2 - c1 & d2 - d1 =  amlo effect only but CENSORED
+b2 - b1 & d2 - d1 & c2 - c1 =  amlo effect only but CENSORED
 
