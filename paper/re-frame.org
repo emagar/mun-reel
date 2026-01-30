@@ -1,3 +1,36 @@
+SEGUNDO INTENTO DE CONCEPTUALIZAR 29-ENE-2026
+|             | static ambition |              |
+|             | 0               | 1            |
+|-------------+-----------------+--------------|
+| nominated 0 | a retired       | b pushed out |
+|           1 | c (empty)       | d reran      |
+
+An incumbent can have static ambition or not, and can be renominated or not. In the resulting 2x2 matrix, cell c is always empty---the assumption is that an incumbent will not be renominated against her will. Cells a, b, and d distinguish, respectively, incumbents who retired, incumbents who were pushed out of the race (somehow prevented from running again), and incumbents who reran for another term in office.
+
+One obstacle in the analysis is that, in most cases in the data, incumbents in cells a and b are confounded. We know that the did not run again, but whether they were forced out or chose to retire remains, unfortunately, unknown. Subsets a and b come in a joint ab category.
+
+I distinguish periods 1, 2, and 3, each adding a subindex to these categories. Period 1 is pre-2018: before the reform and also before the party system collapsed. Observations in period 1 all belong in the ab_1 category. Period 2 is post-2018, after the party system collapse, but in states before the reform kicked in. Again, all observations in period 2 belong in the ab_2 category. Period 3 is post-2018 in states after the reform kicked in. Observation here belong in categories ab_3 and d_3.
+
+Four incumbency curse models are estimated, each on different subsets of observations:
+
+model 1: REPLICA on ab_1
+
+model 2: PREKICK (POST-AMLO REPLICA) on ab_2
+
+model 3: POSTKICK ab_3 and d_3
+
+model 4: ALL (BLOG all obs) ab_1 ab_2 ab_3 and d_3
+
+# model 5: ALLAMLO (POST-AMLO all obs) ab_2 ab_3 and d_3
+
+# model 6: NONREF ab_1 and ab_2 in hgo and ver only
+
+Garfias' suggestion involves verifying that model 4 results hold in model 3 and that model 1 results hold in model 2. If so, then the with/out incumbent contrast in models 3 and 4 becomes more convincing. 
+
+-----------------------
+
+ESTO LO MANDE A GARFIAS EN DIC 2025, SIN RESPUESTA
+
 Hola Francisco:
 
 Espero que la familia vaya bien. 
