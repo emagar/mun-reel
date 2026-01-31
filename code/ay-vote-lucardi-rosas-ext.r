@@ -456,126 +456,127 @@ for (i in 1:32){
 }
 head(luro)
 
-##############################
-## SUBSET SELECTION FILTERS ##
-##############################
-##
-## FILTER 1: WHICH PARTY
-tmp <- luro[luro$dselleft==1,] # subset
-tmp <- luro[luro$dselpri==1,] # subset
-tmp <- luro[luro$dselpan==1,] # subset
-##
-## FILTER 2: TIME PERIOD FOR ALL SUBSETS IS SINCE 1997 
-sel.r <- which(tmp$yr > 1996)
-tmp <- tmp[sel.r,]
-## SUBSET FOR BLOG ESTIMATION, EXTENDING LUC-ROSAS = FILTERS 1+2
-tmpALL <- tmp ## checar: esto debería intersectar por completo ab1 ab2 ab3 y d3
-##
-## FILTER 3.1: TIME PERIOD BEFORE AMLO
-sel.r <- which(tmp$yr < 2018)
-## SUBSET TO REPLICATE LUCARDI-ROSAS = FILTERS 1+2+3A
-setab1 <- tmp[sel.r,]
-tmpREPLICA <- setab1
-##
-## FILTERS 3.2, 3.3, and 3.4: TIME PERIOD SINCE AMLO WITH EXTRA CONDITIONS
-## POST-AMLO
-sel.r <- which(tmp$yr > 2017)
-tmpALLAMLO <- tmp[sel.r,]
-## IN PRE-REFORM STATES ONLY 
-sel.r <- which(tmp$yr > 2017 & tmp$dprekick==1)
-setab2 <- tmp[sel.r,]
-tmpPREKICK <- setab2
-## IN POST-REFORM STATES ONLY WHERE INCUMBENT RAN
-sel.r <- which(tmp$yr > 2017 & tmp$dprekick==0 & tmp$dincballot==1)
-setd3 <- tmp[sel.r,]
-## IN POST-REFORM STATES ONLY WHERE INCUMBENT DID NOT RUN
-sel.r <- which(tmp$yr > 2017 & tmp$dprekick==0 & tmp$dincballot==0)
-setab3 <- tmp[sel.r,]
-##
-## SUBSET TO ESTIMATE DIFF-IN-DISC MODEL
-tmpPOSTKICK <- rbind(setab3, setd3)
-##
-## SUBSET TO EXTEND LUCARDI-ROSAS IN HGO VER ONLY
-sel.r <- which(tmp$edon==13 | tmp$edon==30)
-tmpNONREF <- tmp[sel.r,] ## ab1 and ab2 in these states
-##
-## function generalizing party-specific variables and generating interactions for analysis
-genx <- function(x){ ## x is the dataset to manipulate
-    tmp <- x ## rename data
-    tmp$dwin <- tmp$dpanwin
-    tmp$mg   <- tmp$mgpan ## magpan is lagged +/- mg conditional on incumbency status
-    ##tmp$mg   <- tmp$mg.panor ## get lagged margin
-    ##tmp$dincballot <- tmp$dincballotpan
-    tmp <- within(tmp, {
-        dneg            <- as.numeric( mgpan<0 )
-        dnegxmg         <- dneg * mg
-        dnegxpost       <- dneg      * dpostref
-        dnegxmgxpost    <- dneg * mg * dpostref 
-        dnegxincball    <- dneg      * dincballot
-        dnegxmgxincball <- dneg * mg * dincballot 
-        dpos            <- 1 - dneg
-        dposxmg         <- dpos * mg
-        dposxpost       <- dpos      * dpostref
-        dposxmgxpost    <- dpos * mg * dpostref
-        dposxincball    <- dpos      * dincballot
-        dposxmgxincball <- dpos * mg * dincballot 
-    })
-    return(tmp)
-}
-tmpREPLICA   <- genx(tmpREPLICA  )
-tmpPREKICK   <- genx(tmpPREKICK  )
-tmpPOSTKICK  <- genx(tmpPOSTKICK )
-tmpALL       <- genx(tmpALL      )
-tmpALLAMLO   <- genx(tmpALLAMLO  )
-tmpNONREF    <- genx(tmpNONREF   )
-rm(genx)
 
-## check N
-nrow(tmpREPLICA  )
-nrow(tmpPREKICK  )
-nrow(tmpPOSTKICK )
-nrow(tmpALL      )
-nrow(tmpALLAMLO  )
-nrow(tmpNONREF   )
-
-## Put all subsets in a list
-tmpDATA <- list(
-    tmpREPLICA
-  , tmpPREKICK
-  , tmpPOSTKICK
-  , tmpALL
-  , tmpALLAMLO
-  , tmpNONREF
-)
-##
-## headers for plots
-encab <- c(
-    "Réplica LuRo 1997-2017"
-  , "LuRo post-AMLO 2018-2025"
-  , "Post-reforma 2018-2025"
-  , "Todos 1997-2025"
-  , "Todos post-AMLO 2018-2025"
-  , "No reforma 1997-2025"
-)
-##
-## file names
-file.names <- c(
-    "REPLICA"
-  , "PREKICK"
-  , "POSTKICK"
-  , "ALL"
-  , "ALLAMLO"
-  , "NONREF"
-)
-
-#################################
-## Select a model for analysis ##
-#################################
-funfun <- function(model = 1
-                 , pty  = "pan" ## will be used for filenames
+################################
+## Function estimating models ##
+################################
+funfun <- function(model = 1           ## 1 2 3 4 5 or 6
+                 , pty  = "pan"        ## subsets data and used for filenames
                  , plot.to.pdf = FALSE ## default is to view the plot not save it
-                 , data = tmpDATA){
-    the.data <- data[[model]] ## extract data subset from list
+                   ){
+    ##############################
+    ## SUBSET SELECTION FILTERS ##
+    ##############################
+    ##
+    ## FILTER 1: WHICH PARTY
+    if (pty=="left") tmp <- luro[luro$dselleft==1,] # subset
+    if (pty=="pri")  tmp <- luro[luro$dselpri==1,] # subset
+    if (pty=="pan")  tmp <- luro[luro$dselpan==1,] # subset
+    ##
+    ## FILTER 2: TIME PERIOD FOR ALL SUBSETS IS SINCE 1997 
+    sel.r <- which(tmp$yr > 1996)
+    tmp <- tmp[sel.r,]
+    ## SUBSET FOR BLOG ESTIMATION, EXTENDING LUC-ROSAS = FILTERS 1+2
+    tmpALL <- tmp ## checar: esto debería intersectar por completo ab1 ab2 ab3 y d3
+    ##
+    ## FILTER 3.1: TIME PERIOD BEFORE AMLO
+    sel.r <- which(tmp$yr < 2018)
+    ## SUBSET TO REPLICATE LUCARDI-ROSAS = FILTERS 1+2+3A
+    setab1 <- tmp[sel.r,]
+    tmpREPLICA <- setab1
+    ##
+    ## FILTERS 3.2, 3.3, and 3.4: TIME PERIOD SINCE AMLO WITH EXTRA CONDITIONS
+    ## POST-AMLO
+    sel.r <- which(tmp$yr > 2017)
+    tmpALLAMLO <- tmp[sel.r,]
+    ## IN PRE-REFORM STATES ONLY 
+    sel.r <- which(tmp$yr > 2017 & tmp$dprekick==1)
+    setab2 <- tmp[sel.r,]
+    tmpPREKICK <- setab2
+    ## IN POST-REFORM STATES ONLY WHERE INCUMBENT RAN
+    sel.r <- which(tmp$yr > 2017 & tmp$dprekick==0 & tmp$dincballot==1)
+    setd3 <- tmp[sel.r,]
+    ## IN POST-REFORM STATES ONLY WHERE INCUMBENT DID NOT RUN
+    sel.r <- which(tmp$yr > 2017 & tmp$dprekick==0 & tmp$dincballot==0)
+    setab3 <- tmp[sel.r,]
+    ##
+    ## SUBSET TO ESTIMATE DIFF-IN-DISC MODEL
+    tmpPOSTKICK <- rbind(setab3, setd3)
+    ##
+    ## SUBSET TO EXTEND LUCARDI-ROSAS IN HGO VER ONLY
+    sel.r <- which(tmp$edon==13 | tmp$edon==30)
+    tmpNONREF <- tmp[sel.r,] ## ab1 and ab2 in these states
+    ##
+    ## function generalizing party-specific variables and generating interactions for analysis
+    genx <- function(x){ ## x is the dataset to manipulate
+        tmp <- x ## rename data
+        tmp$dwin <- tmp$dpanwin
+        tmp$mg   <- tmp$mgpan ## magpan is lagged +/- mg conditional on incumbency status
+        ##tmp$mg   <- tmp$mg.panor ## get lagged margin
+        ##tmp$dincballot <- tmp$dincballotpan
+        tmp <- within(tmp, {
+            dneg            <- as.numeric( mgpan<0 )
+            dnegxmg         <- dneg * mg
+            dnegxpost       <- dneg      * dpostref
+            dnegxmgxpost    <- dneg * mg * dpostref 
+            dnegxincball    <- dneg      * dincballot
+            dnegxmgxincball <- dneg * mg * dincballot 
+            dpos            <- 1 - dneg
+            dposxmg         <- dpos * mg
+            dposxpost       <- dpos      * dpostref
+            dposxmgxpost    <- dpos * mg * dpostref
+            dposxincball    <- dpos      * dincballot
+            dposxmgxincball <- dpos * mg * dincballot 
+        })
+        return(tmp)
+    }
+    tmpREPLICA   <- genx(tmpREPLICA  )
+    tmpPREKICK   <- genx(tmpPREKICK  )
+    tmpPOSTKICK  <- genx(tmpPOSTKICK )
+    tmpALL       <- genx(tmpALL      )
+    tmpALLAMLO   <- genx(tmpALLAMLO  )
+    tmpNONREF    <- genx(tmpNONREF   )
+    ## rm(genx)
+    ##
+    ## ## check N
+    ## nrow(tmpREPLICA  )
+    ## nrow(tmpPREKICK  )
+    ## nrow(tmpPOSTKICK )
+    ## nrow(tmpALL      )
+    ## nrow(tmpALLAMLO  )
+    ## nrow(tmpNONREF   )
+    ##
+    ## Put all subsets in a list
+    tmpDATA <- list(
+        tmpREPLICA
+      , tmpPREKICK
+      , tmpPOSTKICK
+      , tmpALL
+      , tmpALLAMLO
+      , tmpNONREF
+    )
+    ##
+    ## headers for plots
+    encab <- c(
+        "Réplica LuRo 1997-2017"
+      , "LuRo post-AMLO 2018-2025"
+      , "Post-reforma 2018-2025"
+      , "Todos 1997-2025"
+      , "Todos post-AMLO 2018-2025"
+      , "No reforma 1997-2025"
+    )
+    ##
+    ## file names
+    file.names <- c(
+        "REPLICA"
+      , "PREKICK"
+      , "POSTKICK"
+      , "ALL"
+      , "ALLAMLO"
+      , "NONREF"
+    )
+    ##
+    the.data <- tmpDATA[[model]] ## extract data subset from list
     ##
     ## dwin ~ dneg * ( 1 + mg + dincball + mg*dincball ) + dpos * ( 1 + mg + dincball + mg*dincball )
     ## dwin ~ dneg*1 + dneg*mg + dneg*dincball + dneg*mg*dincball + dpos*1 + dpos*mg + dpos*dincball + dpos*mg*dincball
@@ -596,7 +597,7 @@ funfun <- function(model = 1
         ##png("../plots/pan-luro97-23-lpm.png")
         pdf(file=paste0("../mun-reel/plots/", pty, file.names[model], "lpm.pdf"))
     }
-    plot(x = c(-.1,.1), y = c(0,1), type = "n", main = paste0(pty, "\n", encab[model]),
+    plot(x = c(-.1,.1), y = c(0,1), type = "n", main = paste0(pty, " (N=", nrow(the.data), ")", "\n", encab[model]),
          xlab = expression("Margin"[t]), ylab = expression("Pr(win)"[t+1]))
     abline(v=0)
     ##
@@ -624,9 +625,12 @@ funfun <- function(model = 1
     return(rd)
 }
 
-res <- funfun(model=1
-            , pty="pan"
-            , plot.to.pdf=TRUE)
+###########################################
+## Select a party and model for analysis ##
+###########################################
+res <- funfun(model=4
+            , pty="pri"
+            , plot.to.pdf=FALSE)
 x
 
 ## addGubYr <- function(X){
