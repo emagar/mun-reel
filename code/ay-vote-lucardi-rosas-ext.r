@@ -1,7 +1,7 @@
-########################################
+#########################################
 ## Code for ayuntamiento vote analysis ##
 ## Date started: 26nov2023             ##
-## Revised/updated: 12dic2025          ##
+## Revised/updated: 1feb2026           ##
 ## By emagar at itam dot mx            ##
 #########################################
 
@@ -121,6 +121,253 @@ tmpp <- c("dconcgo", "dconcpr", "dconcdf", "dincballot", "mg", "wsdalt", "as.fac
 ## ############################
 ## colnames(lnrecm)
 ## tmpp <- c("dconcgo", "dconcdf", "dincballot", "mg", "as.factor(trienio)"); tmp <- mylm(dv="Dturn.ln", data=lnrecm, subset="yr>1999", predictors = tmpp); summary(tmp)
+
+## #############################################################################################################
+## ## in-progress 2feb2026: prep procedure to use coalition candidate allocation info (still few cases coded) ##
+## #############################################################################################################
+## coal.alloc <- vot[, c("emm","ncoal","coal1","candcoal1","coal2","candcoal2","coal3","candcoal3","coal4","candcoal4")]
+## coal.alloc <- coal.alloc[coal.alloc$ncoal>0,] ## drop cases wo coalitions
+## ## find panistas
+## grep("pan", coal.alloc$candcoal1)
+## table(coal.alloc$ncoal)
+## vot[1,]
+## x
+## ##
+## ###############################
+## ## In luro, simplify winners ##
+## ###############################
+## table(ids.luro$emm == luro$emm) ## check ids and luro in same order
+## luro[1,]
+## ids.luro[1,]
+## ## add cols for manipulated vars
+## luro <- within( luro, {
+##     win.simple <- win
+##     part2nd.simple   <- part2nd
+##     win.prior.simple <- win.prior
+## } )
+## tmp.done <- data.frame(win=rep(0, nrow(luro)), part2nd=rep(0, nrow(luro)), win.prior=rep(0, nrow(luro))) ## indicates manipulated cases 
+## tmp.done[ids.luro$ncoal==0, 1:2] <- 1 ## cases wo coals done
+## ########################################################################################################
+## ## until I finish systematizing how coalitions allocated candidacies, will rely on simplifications    ##
+## ## nota 6feb2026: preparé funcion funfun para hacer esto en caso cps2018 pri-pvem y dgo2022on pan-pri ##
+## ## falta hacerla para los casos restantes                                                             ##
+## ########################################################################################################
+## ##
+## ############################################
+## ## no hyphen => no coal                   ##
+## ## code single party cases as manipulated ##
+## ############################################
+## sel.1 <- grep("-"    , luro$win.simple      , invert = TRUE)
+## tmp.done$win      [sel.1] <- 1
+## sel.1 <- grep("-"    , luro$part2nd.simple  , invert = TRUE)
+## tmp.done$part2nd  [sel.1] <- 1
+## sel.1 <- grep("-"    , luro$win.prior.simple, invert = TRUE)
+## tmp.done$win.prior[sel.1] <- 1
+## ##
+## ######################################
+## ## pri-pvem in 2018 in cps to pvem  ##
+## ######################################
+## funfun <- function(manip=1 , yr=2018){  ## manip 1=win.simple 2=part2nd.simple 3=win.prior.simple 
+##     variab <- luro[, c("win.simple", "part2nd.simple", "win.prior.simple")] [,manip] ## duplicate column to manipulate
+##     sel.0 <- which(tmp.done[,manip]==0  & luro$yr>=2018 & ids.luro$edon==7) ## unmanipulated cases only
+##     sel.1 <- grep("pri"    , variab)
+##     sel.2 <- grep("pvem"   , variab)
+##     sel.3 <- Reduce(intersect, list(sel.0,sel.1,sel.2))
+##     ##table(variab[sel.3])
+##     ##table(ids.luro$edon[sel.3])
+##     if (length(sel.3)>0){
+##         variab[sel.3] <- "pvem"
+##         tmp.done[sel.3, manip] <- 1  ## indicate manip
+##         print(paste("N manip:", length(sel.3)))
+##     }
+##     return(variab)
+## }
+## luro$win.simple       <- funfun(manip=1 , 2018)
+## luro$part2nd.simple   <- funfun(manip=2 , 2018)
+## luro$win.prior.simple <- funfun(manip=3 , 2021)
+## ##
+## #########################################
+## ## any single-major coalition to major ##
+## #########################################
+## sel.0 <- which(luro$done.manip==0)
+## sel.1 <- grep("pan"    , luro$win)
+## sel.2 <- grep("pri"    , luro$win, invert = TRUE)
+## sel.3 <- grep("prd"    , luro$win, invert = TRUE)
+## sel.4 <- Reduce(intersect, list(sel.0,sel.1, sel.2, sel.3))
+## table(luro$win.simple[sel.4])
+## luro$win.simple[sel.4] <- "pan"
+## luro$done.manip[sel.4] <- 1
+## ##
+## sel.0 <- which(luro$done.manip==0)
+## sel.1 <- grep("pri"    , luro$win)
+## sel.2 <- grep("pan"    , luro$win, invert = TRUE)
+## sel.3 <- grep("prd"    , luro$win, invert = TRUE)
+## sel.4 <- Reduce(intersect, list(sel.0,sel.1, sel.2, sel.3))
+## table(luro$win.simple[sel.4])
+## luro$win.simple[sel.4] <- "pri"
+## luro$done.manip[sel.4] <- 1
+## ##
+## sel.0 <- which(luro$done.manip==0)
+## sel.1 <- grep("prd"    , luro$win)
+## sel.2 <- grep("pan"    , luro$win, invert = TRUE)
+## sel.3 <- grep("pri"    , luro$win, invert = TRUE)
+## sel.4 <- Reduce(intersect, list(sel.0,sel.1, sel.2, sel.3))
+## table(luro$win.simple[sel.4])
+## luro$win.simple[sel.4] <- "prd"
+## luro$done.manip[sel.4] <- 1
+## ##
+## sel.0 <- which(luro$done.manip==0)
+## sel.1 <- grep("morena"    , luro$win)
+## sel.2 <- Reduce(intersect, list(sel.0,sel.1))
+## table(luro$win.simple[sel.2])
+## luro$win.simple[sel.2] <- "morena"
+## luro$done.manip[sel.2] <- 1
+## ##
+## ## all pvem wo majors to pvem
+## sel.0 <- which(luro$done.manip==0)
+## sel.1 <- grep("pvem"   , luro$win.simple)
+## sel.2 <- grep("pan"    , luro$win.simple, invert = TRUE)
+## sel.3 <- grep("pri"    , luro$win.simple, invert = TRUE)
+## sel.4 <- grep("prd"    , luro$win.simple, invert = TRUE)
+## sel.5 <- Reduce(intersect, list(sel.0,sel.1,sel.2, sel.3, sel.4))
+## table(luro$win.simple[sel.5])
+##       luro$win.simple[sel.5] <- "pvem"
+##       luro$done.manip[sel.5] <- 1
+## ##
+## ## all mc wo majors to mc
+## sel.0 <- which(luro$done.manip==0)
+## sel.1 <- grep("mc|conve", luro$win.simple)
+## sel.2 <- grep("pan"     , luro$win.simple, invert = TRUE)
+## sel.3 <- grep("pri"     , luro$win.simple, invert = TRUE)
+## sel.4 <- grep("prd"     , luro$win.simple, invert = TRUE)
+## sel.5 <- Reduce(intersect, list(sel.0,sel.1,sel.2, sel.3, sel.4))
+## table(luro$win.simple[sel.5])
+##       luro$win.simple[sel.5] <- "mc"
+##       luro$done.manip[sel.5] <- 1
+## ##
+## ## all pt wo majors to mc
+## sel.0 <- which(luro$done.manip==0)
+## sel.1 <- grep("pt"   , luro$win.simple)
+## sel.2 <- grep("pan"    , luro$win.simple, invert = TRUE)
+## sel.3 <- grep("pri"    , luro$win.simple, invert = TRUE)
+## sel.4 <- grep("prd"    , luro$win.simple, invert = TRUE)
+## sel.5 <- Reduce(intersect, list(sel.0,sel.1,sel.2, sel.3, sel.4))
+## table(luro$win.simple[sel.5])
+##       luro$win.simple[sel.5] <- "pt"
+##       luro$done.manip[sel.5] <- 1
+## ##
+## ## others solo
+## sel.1 <- grep("-"    , luro$win.simple, invert = TRUE)
+## sel.2 <- grep("pan|pri|prd|morena|mc|conve|pvem|pt"     , luro$win.simple, invert = TRUE)
+## sel.3 <- Reduce(intersect, list(sel.1,sel.2))
+## table(luro$win.simple[sel.3])
+##       luro$win.simple[sel.3] <- "oth"
+## ##
+## ## all rest wo majors to oth
+## sel.0 <- which(luro$done.manip==0)
+## sel.1 <- grep("pan"     , luro$win.simple, invert = TRUE)
+## sel.2 <- grep("pri"     , luro$win.simple, invert = TRUE)
+## sel.3 <- grep("prd"     , luro$win.simple, invert = TRUE)
+## sel.4 <- Reduce(intersect, list(sel.0,sel.1,sel.2, sel.3))
+## table(luro$win.simple[sel.4])
+##       luro$win.simple[sel.4] <- "oth"
+##       luro$done.manip[sel.4] <- 1
+## ##
+## ## all post-2018 pan-prd wo pri to pan
+## sel.0 <- which(luro$done.manip==0 & luro$yr > 2018)
+## sel.1 <- grep("prd"    , luro$win.simple)
+## sel.2 <- grep("pri"    , luro$win.simple, invert = TRUE)
+## sel.3 <- Reduce(intersect, list(sel.0,sel.1, sel.2))
+## table(luro$win.simple[sel.3])
+## table(ids.luro$edon[sel.3])
+## luro$win.simple[sel.3] <- "pan"
+## luro$done.manip[sel.3] <- 1
+## ##
+## ## all post-2018 pri-prd wo pan to pri
+## sel.0 <- which(luro$done.manip==0 & luro$yr > 2018)
+## sel.1 <- grep("prd"    , luro$win.simple)
+## sel.2 <- grep("pri"    , luro$win.simple)
+## sel.3 <- grep("pan"    , luro$win.simple, invert = TRUE)
+## sel.4 <- Reduce(intersect, list(sel.0,sel.1, sel.2, sel.3))
+## table(luro$win.simple[sel.4])
+## table(ids.luro$edon[sel.4])
+## luro$win.simple[sel.4] <- "pri"
+## luro$done.manip[sel.4] <- 1
+## ##
+##
+## ## Before 2018
+## ## pan-prd pre 2018
+## sel.0 <- which(luro$done.manip==0 & luro$yr <= 2018)
+## sel.1 <- grep("prd"    , luro$win.simple)
+## sel.2 <- grep("pri"    , luro$win.simple, invert = TRUE)
+## sel.3 <- Reduce(intersect, list(sel.0,sel.1, sel.2))
+## table(luro$win.simple[sel.3])
+## ##
+## tmp <- luro$win.simple[sel.3] ## subset to manipulate
+## tmp[grep("^bc" , luro$emm[sel.3])] <- sub("prd-|-prd" , "" , tmp[grep("^bc" , luro$emm[sel.3])])  ## to pan
+## tmp[grep("^coa", luro$emm[sel.3])] <- sub("prd-|-prd" , "" , tmp[grep("^coa", luro$emm[sel.3])])  ## to pan
+## tmp[grep("^col", luro$emm[sel.3])] <- sub("prd-|-prd" , "" , tmp[grep("^col", luro$emm[sel.3])])  ## to pan
+## tmp[grep("^cps", luro$emm[sel.3])] <- sub("pan-|-pan" , "" , tmp[grep("^cps", luro$emm[sel.3])])  ## to     prd
+## tmp[grep("^cua", luro$emm[sel.3])] <- sub("prd-|-prd" , "" , tmp[grep("^cua", luro$emm[sel.3])])  ## to pan
+## tmp[grep("^dgo", luro$emm[sel.3])] <- sub("prd-|-prd" , "" , tmp[grep("^dgo", luro$emm[sel.3])])  ## to pan
+## tmp[grep("^gue", luro$emm[sel.3])] <- sub("pan-|-pan" , "" , tmp[grep("^gue", luro$emm[sel.3])])  ## to     prd
+## tmp[grep("^hgo", luro$emm[sel.3])] <- sub("prd-|-prd" , "" , tmp[grep("^hgo", luro$emm[sel.3])])  ## to pan --- Xóchitl to pan
+## tmp[grep("^jal", luro$emm[sel.3])] <- sub("prd-|-prd" , "" , tmp[grep("^jal", luro$emm[sel.3])])  ## to pan
+## tmp[grep("^mex", luro$emm[sel.3])] <- sub("prd-|-prd" , "" , tmp[grep("^mex", luro$emm[sel.3])])  ## to pan --- few cases all 2015
+## tmp[grep("^mic", luro$emm[sel.3])] <- sub("pan-|-pan" , "" , tmp[grep("^mic", luro$emm[sel.3])])  ## to     prd
+## tmp[grep("^jal", luro$emm[sel.3])] <- sub("prd-|-prd" , "" , tmp[grep("^jal", luro$emm[sel.3])])  ## to pan
+## tmp[grep("^oax", luro$emm[sel.3])] <- sub("pan-|-pan" , "" , tmp[grep("^oax", luro$emm[sel.3])])  ## to     prd
+## tmp[grep("^pue", luro$emm[sel.3])] <- sub("prd-|-prd" , "" , tmp[grep("^pue", luro$emm[sel.3])])  ## to pan
+## tmp[grep("^qui", luro$emm[sel.3])] <- sub("pan-|-pan" , "" , tmp[grep("^qui", luro$emm[sel.3])])  ## to     prd
+## tmp[grep("^san", luro$emm[sel.3])] <- sub("prd-|-prd" , "" , tmp[grep("^san", luro$emm[sel.3])])  ## to pan
+## tmp[grep("^sin", luro$emm[sel.3])] <- sub("prd-|-prd" , "" , tmp[grep("^sin", luro$emm[sel.3])])  ## to pan
+## tmp[grep("^son", luro$emm[sel.3])] <- sub("prd-|-prd" , "" , tmp[grep("^son", luro$emm[sel.3])])  ## to pan
+## tmp[grep("^tam", luro$emm[sel.3])] <- sub("prd-|-prd" , "" , tmp[grep("^tam", luro$emm[sel.3])])  ## to pan
+## tmp[grep("^ver", luro$emm[sel.3])] <- sub("prd-|-prd" , "" , tmp[grep("^ver", luro$emm[sel.3])])  ## to pan --- some 2000, rest 2017
+## tmp[grep("^yuc", luro$emm[sel.3])] <- sub("prd-|-prd" , "" , tmp[grep("^yuc", luro$emm[sel.3])])  ## to pan
+## tmp[grep("^zac", luro$emm[sel.3])] <- sub("pan-|-pan" , "" , tmp[grep("^zac", luro$emm[sel.3])])  ## to     prd
+## tmp -> luro$win.simple[sel.3]  ## return after manip
+## luro$done.manip[sel.3] <- 1
+## ##
+## ## pan-pri pre 2018 all in mic
+## sel.0 <- which(luro$done.manip==0 & luro$yr <= 2018)
+## sel.1 <- grep("pan"    , luro$win.simple)
+## sel.2 <- grep("pri"    , luro$win.simple)
+## sel.3 <- Reduce(intersect, list(sel.0,sel.1, sel.2))
+## table(luro$win.simple[sel.3])
+## table(ids.luro$edon[sel.3])
+## tmp <- luro$win.simple[sel.3] ## subset for manip state by state
+## tmp[grep("^mic", luro$emm[sel.3])] <- gsub("pan-|-pan" , "" , tmp[grep("^mic", luro$emm[sel.3])])  ## to     pri
+## tmp -> luro$win.simple[sel.3]  ## return after manip
+## luro$done.manip[sel.3] <- 1
+##
+## ## pan-pri dgo 2022 and post to pri
+## luro[1,]
+## funfun <- function(variab=luro$win.simple , yr=2022){
+##     variab <- luro[, c("win.simple", "part2nd.simple", "win.prior.simple")] [,manip] ## duplicate column to manipulate
+##     sel.0 <- which(tmp.done[,manip]==0) ## unmanipulated cases only
+##     sel.1 <- grep("pan"    , variab)
+##     sel.2 <- grep("pri"    , variab)
+##     sel.3 <- which(luro$yr>=yr)
+##     sel.4 <- Reduce(intersect, list(sel.0,sel.1,sel.2,sel.3))
+##     tmp <- variab[sel.4]        ## subset for manip state by state
+##     tmp[grep("^dgo", luro$emm[sel.4])] <- "pri"
+##     print(paste("N manip:", length(tmp[grep("^dgo", luro$emm[sel.4])])))
+##     tmp -> variab[sel.4]        ## return after manip
+##     tmp.done[sel.4[grep("^dgo", luro$emm[sel.4])] , manip] <- 1 ## indicate manip
+##     return(variab)
+## }
+## luro$win.simple       <- funfun(manip=1 , 2022)
+## luro$part2nd.simple   <- funfun(manip=2 , 2022)
+## luro$win.prior.simple <- funfun(manip=3 , 2025)
+##
+## table(luro$done.manip)
+## table(luro$win.simple[luro$done.manip==0])
+##
+## sel.1 <- which(luro$done.manip==0)
+## luro$win.prior[sel.1] <-
+##     gsub("-pvem|-mc|-pt|-pna|-ph", "", luro$win.prior[sel.1])
+## x
 
 ## #############################################
 ## ## OJO: 29ene2026 esto lo quité ahora, cuando use aymu1970-on.coalition-candidacies será más fina la atribución de candidaturas
@@ -303,11 +550,10 @@ tmpp <- c("dconcgo", "dconcpr", "dconcdf", "dincballot", "mg", "wsdalt", "as.fac
 ## sel.5 <- intersect(sel.4, sel.3)
 ## table(luro$win.simple[sel.5])
 ## luro$win.simple[sel.5] <- "pri"
+##
+## ## check
+## table(luro$win.simple)
 
-
-
-## check
-table(luro$win.simple)
 ##
 #########################
 ## DO SAME FOR PART2ND ##
@@ -324,30 +570,69 @@ table(luro$win.simple)
 ## luro$win          <- luro$win.simple
 ## luro$win.simple   <- NULL
 
-## AQUI ME QUEDE, FALTA MANIP part2nd IGUAL
-## inspect prd and morena towards left recoding
-sel.1 <- grep("prd"    , luro$win)
-sel.2 <- grep("morena" , luro$part2nd)
-sel.3 <- intersect(sel.1, sel.2)
-luro[sel.3[1],]
-x
+
+###############################
+## recode prd/morena as left ##
+###############################
+## before 2015 left is prd
+sel.r <- which(ids.luro$yr<2015)
+grep("morena", luro$win    [sel.r])  ## should be empty
+grep("morena", luro$part2nd[sel.r])  ## should be empty
+luro$win      [sel.r] <- sub("prd", "left", luro$win       [sel.r])
+luro$part2nd  [sel.r] <- sub("prd", "left", luro$part2nd   [sel.r])
+sel.r <- which(ids.luro$yr<2018)
+grep("morena", luro$win.prior    [sel.r])  ## should be empty
+luro$win.prior[sel.r] <- sub("prd", "left", luro$win.prior [sel.r])
+sel.r <- which(ids.luro$yr>=2018)
+luro$win      [sel.r] <- sub("morena", "left", luro$win       [sel.r])
+luro$part2nd  [sel.r] <- sub("morena", "left", luro$part2nd   [sel.r])
+
+## cases where morena/prd won or runner-up 2015-2018
+sel.0 <- which(ids.luro$yr>=2015 & ids.luro$yr<2018)
+sel.1 <- grep("morena|prd", luro$win)
+sel.2 <- grep("morena|prd", luro$part2nd)
+sel.3 <- Reduce(intersect, list(sel.0,sel.1,sel.2))
+data.frame(ids.luro$emm[sel.3], ids.luro$yr[sel.3], luro$win[sel.3], luro$part2nd[sel.3], luro$mg[sel.3])
+## all cases where prd came 1st or 2nd will be coded as pan
+sel.1 <- grep("prd", luro$win)
+sel.2 <- Reduce(intersect, list(sel.0,sel.1))
+luro$win    [sel.3] <- "pan"
+sel.1 <- grep("prd", luro$part2nd)
+sel.2 <- Reduce(intersect, list(sel.0,sel.1))
+luro$part2nd[sel.3] <- "pan"
+##
+sel.1 <- grep("morena", luro$win)
+sel.2 <- Reduce(intersect, list(sel.0,sel.1))
+luro$win    [sel.3] <- "left"
+sel.1 <- grep("morena", luro$part2nd)
+sel.2 <- Reduce(intersect, list(sel.0,sel.1))
+luro$part2nd[sel.3] <- "left"
+
+####################################################
+## Re-lag win so win.prior inherits left recoding ##
+####################################################
+## verify time series cross section's structure (for grouped lags)
+table(order(ids.luro$inegi, ids.luro$cycle)==order(luro$ord))
+table(ids.luro$ord==luro$ord)
+## add inegi/cycle to luro
+luro$inegi <- ids.luro$inegi; luro$cycle <- ids.luro$cycle
+luro <- luro[order(    luro$ord) ,] # verify sorted before lags
+ids.luro <- luro[order(ids.luro$ord) ,] # verify sorted before lags
+## lag to create race-prior variables ##
+luro <- slide(luro, Var = "win", NewVar = "new.win.prior", TimeVar = "cycle", GroupVar = "inegi", slideBy = -1)
+head(luro)
+table(luro$new.win.prior==luro$win.prior)
+sel.0 <- which(luro$new.win.prior!=luro$win.prior)
+## looks ok!!!
+with(luro[sel.0,], data.frame(emm, yr, win.prior, new.win.prior))
+## replace manip
+luro$win.prior <- luro$new.win.prior
+luro$new.win.prior <- NULL
 
 ## replicate lucardi rosas
 luro[1,]
 x
 ##
-## rename prd/morena as left. left is prd pre-2015, morena since 2018, or either in between
-luro$win       <- sub("morena", "left", luro$win)
-luro$part2nd   <- sub("morena", "left", luro$part2nd)
-luro$win.prior <- sub("morena", "left", luro$win.prior)
-luro$run.prior <- sub("morena", "left", luro$run.prior)
-ltmp <- luro[luro$yr < 2015,]
-ltmp$win       <- sub("prd", "left", ltmp$win)
-ltmp$part2nd   <- sub("prd", "left", ltmp$part2nd)
-ltmp$win.prior <- sub("prd", "left", ltmp$win.prior)
-ltmp$run.prior <- sub("prd", "left", ltmp$run.prior)
-ltmp -> luro[luro$yr < 2015,]
-rm(ltmp)
 ## DVs
 ## OJO 1: tengo que romper las major-pty coalitions para dársela al partido importante. Do otro modo codifica triunfos múltiples... table(luro$win)
 ## OJO 2: tengo también que analizar pvem y mc

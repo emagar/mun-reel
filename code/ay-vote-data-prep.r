@@ -534,7 +534,7 @@ write.csv(vot, file = "aymu1988-on-v7-coalSplit.csv", row.names = FALSE)
 ##############################################################
 ## keep copy with all votes to use in some hard lags below
 tmp.votpre1988 <- vot                                     
-## keep 1997-on                                           
+## keep 1988-on                                           
 sel <- which(vot$yr<1988)                                 
 vot <- vot[-sel,]                                         
 
@@ -1855,13 +1855,13 @@ vo4 <- within(vo4, prd <- morena <- pvem <- pt <- mc <- NULL)
 vo4 <- vo4[, moveme(colnames(vo4), "left after pri")]
 ##
 vo4$dincballotleft <- NA
-vo4$dincballotleft[ids$yr<2015]                  <- vot$dincballotprd[ids$yr<2015]
-vo4$dincballotprd[ids$yr<2015]                   <- 0
-vo4$dincballotleft[ids$yr>=2015 & ids$yr<2018]   <- vo4$dincballotprd[ids$yr>=2015 & ids$yr<2018] + vo4$dincballotmorena[ids$yr>=2015 & ids$yr<2018]
-vo4$dincballotprd[ids$yr>=2015 & ids$yr<2018]    <- 0
+vo4$dincballotleft [ids$yr<2015]                 <- vot$dincballotprd [ids$yr<2015]
+vo4$dincballotprd  [ids$yr<2015]                 <- 0
+vo4$dincballotleft  [ids$yr>=2015 & ids$yr<2018] <- vo4$dincballotprd[ids$yr>=2015 & ids$yr<2018] + vo4$dincballotmorena[ids$yr>=2015 & ids$yr<2018]
+vo4$dincballotprd   [ids$yr>=2015 & ids$yr<2018] <- 0
 vo4$dincballotmorena[ids$yr>=2015 & ids$yr<2018] <- 0
-vo4$dincballotleft[ids$yr>=2018]                 <- vo4$dincballotmorena[ids$yr>=2018]
-vo4$dincballotmorena[ids$yr>=2018]               <- 0
+vo4$dincballotleft   [ids$yr>=2018]              <- vo4$dincballotmorena [ids$yr>=2018]
+vo4$dincballotmorena [ids$yr>=2018]              <- 0
 vo4 <- within(vo4, dincballototh <- dincballototh + dincballotprd + dincballotmorena + dincballotpvem + dincballotpt + dincballotmc)
 vo4 <- within(vo4, dincballototh <- as.numeric(dincballototh > 0))
 vo4 <- within(vo4, dincballotprd <- dincballotmorena <- dincballotpvem <- dincballotpt <- dincballotmc <- NULL)
@@ -1876,13 +1876,13 @@ vo4 <- vo4[, moveme(colnames(vo4), "dgovoth after dgovleft")]
 colnames(vo4)[grep("dpresmorena", colnames(vo4))] <- "dpresleft"
 ##
 vo4$dincleft <- NA
-vo4$dincleft[ids$yr<2015]                  <- vot$dincprd[ids$yr<2015]
-vo4$dincprd[ids$yr<2015]                   <- 0
-vo4$dincleft[ids$yr>=2015 & ids$yr<2018]   <- vo4$dincprd[ids$yr>=2015 & ids$yr<2018] + vo4$dincmorena[ids$yr>=2015 & ids$yr<2018]
-vo4$dincprd[ids$yr>=2015 & ids$yr<2018]    <- 0
+vo4$dincleft [ids$yr<2015]                 <- vot$dincprd [ids$yr<2015]
+vo4$dincprd  [ids$yr<2015]                 <- 0
+vo4$dincleft  [ids$yr>=2015 & ids$yr<2018] <- vo4$dincprd[ids$yr>=2015 & ids$yr<2018] + vo4$dincmorena[ids$yr>=2015 & ids$yr<2018]
+vo4$dincprd   [ids$yr>=2015 & ids$yr<2018] <- 0
 vo4$dincmorena[ids$yr>=2015 & ids$yr<2018] <- 0
-vo4$dincleft[ids$yr>=2018]                 <- vo4$dincmorena[ids$yr>=2018]
-vo4$dincmorena[ids$yr>=2018]               <- 0
+vo4$dincleft   [ids$yr>=2018]              <- vo4$dincmorena [ids$yr>=2018]
+vo4$dincmorena [ids$yr>=2018]              <- 0
 vo4 <- within(vo4, dincoth <- dincprd + dincmorena + dincpvem + dincpt + dincmc)
 vo4 <- within(vo4, dincoth <- as.numeric(dincoth > 0))
 vo4 <- within(vo4, dincprd <- dincmorena <- dincpvem <- dincpt <- dincmc <- NULL)
@@ -2117,7 +2117,9 @@ table(ids$status[sel], ids$yr[sel], useNA = "ifany")
 ## lnrlag [sel.r,] <- tmp3[sel.r,]
 ## reslag[sel.r,] <- tmp4[sel.r,]
 
-## duplicate vot for lucardi-rosas selection criteria
+########################################################
+## duplicate vot for lucardi-rosas selection criteria ##
+########################################################
 sel.c <- which(colnames(vot) %in% c("ord", "emm", "win", "part2nd", "mg", "win.prior", "run.prior", "mg.prior", "dincballot", "dincballotpan", "dincballotpri", "dincballotprd", "dincballotmorena"))
 luro <- vot[, sel.c]
 luro <- luro[order(luro$ord),]; ids <- ids[order(ids$ord),]; votlag <- votlag[order(votlag$ord),]
@@ -2168,7 +2170,7 @@ for (i in 10:32){
 }
 ##head(rur2020)
 ##
-## sum san quintin to ensenada (san quintinn won't elect ayuntamiento until 2024)
+## sum san quintin to ensenada (san quintin won't elect ayuntamiento until 2024)
 sel.r <- which(rur2020$inegi %in% c(2001, 2006))
 rur2020$ruralsh[sel.r] <- round(sum(rur2020$prural[sel.r]) / sum(rur2020$ptot[sel.r]), 3)
 ##
@@ -2196,6 +2198,21 @@ vot    <-    vot[order (   vot$ord) ,]
 vo4    <-    vo4[order (   vo4$ord) ,]
 lnr    <-    lnr[order (   lnr$ord) ,]
 res    <-    res[order (   res$ord) ,]
+
+#############################################
+## duplicate ids for luro (won't drop obs) ##
+#############################################
+ids.luro <- ids
+table(ids.luro$emm == vot$emm) ## check ids and luro in same order
+## add coal info
+ids.luro$ncoal    <- vot$ncoal
+ids.luro$dcoalpan <- vot$dcoalpan
+ids.luro$dcoalpri <- vot$dcoalpri
+ids.luro$dcoalprd <- vot$dcoalprd
+ids.luro$dcoalmor <- vot$dcoalmor
+ids.luro$dcoalpve <- vot$dcoalpve
+ids.luro$dcoalpt  <- vot$dcoalpt
+ids.luro$dcoalmc  <- vot$dcoalmc
 
 
 ###################

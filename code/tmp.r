@@ -224,3 +224,96 @@ inc <- slide(inc, Var = "part2nd",    NewVar = "run.prior",  TimeVar = "cycle", 
 inc <- slide(inc, Var = "mg",         NewVar = "mg.prior",   TimeVar = "cycle", GroupVar = "inegi", slideBy = -1)
 str(inc)
 
+
+
+
+funfun <- function(manip=1 , yr=2022){  ## manip 1=win.simple 2=part2nd.simple 3=win.prior.simple 
+    variab <- luro[, c("win.simple", "part2nd.simple", "win.prior.simple")] [,manip] ## duplicate column to manipulate
+    sel.0 <- which(tmp.done[,manip]==0) ## unmanipulated cases only
+    sel.1 <- grep("pan"    , variab)
+    sel.2 <- grep("pri"    , variab)
+    sel.3 <- which(luro$yr>=yr)
+    sel.4 <- Reduce(intersect, list(sel.0,sel.1,sel.2,sel.3))
+    tmp <- variab[sel.4]        ## subset for manip state by state
+    tmp[grep("^dgo", luro$emm[sel.4])] <- "pri"
+    print(paste("N manip:", length(tmp[grep("^dgo", luro$emm[sel.4])])))
+    tmp -> variab[sel.4]        ## return after manip
+    tmp.done[sel.4[grep("^dgo", luro$emm[sel.4])] , manip] <- 1 ## indicate manip
+    return(variab)
+}
+luro$win.simple       <- funfun(luro$win.simple       , 2022)
+luro$part2nd.simple   <- funfun(luro$part2nd.simple   , 2022)
+luro$win.prior.simple <- funfun(luro$win.prior.simple , 2025)
+
+
+
+
+
+
+
+
+funfun <- function(variab=luro$win.simple , yr=2018){
+    sel.1 <- grep("pri"    , variab)
+    sel.2 <- grep("pvem"   , variab)
+    sel.3 <- which(luro$yr==yr)
+    sel.4 <- intersect(sel.1, sel.2)
+    sel.5 <- intersect(sel.4, sel.3)
+    tmp <- variab[sel.5] ## subset for manip state by state
+    tmp[grep("^cps", luro$emm[sel.5])] <- gsub("pri-|-pri", "", tmp[grep("^cps", luro$emm[sel.5])])  ## to pvem
+    tmp -> variab[sel.5]  ## return after manip
+    return(variab)
+}
+
+
+
+funfun <- function(variab=luro$win.simple , yr=2018){
+    sel.1 <- grep("pan"    , variab)
+    sel.2 <- grep("pri"    , variab)
+    sel.3 <- which(luro$yr<yr)
+    sel.4 <- intersect(sel.1, sel.2)
+    sel.5 <- intersect(sel.4, sel.3)
+    tmp <- variab[sel.5] ## subset for manip state by state
+    tmp[grep("^mic", luro$emm[sel.5])] <- gsub("pan-|-pan" , "" , tmp[grep("^mic", luro$emm[sel.5])])  ## to     pri
+    tmp -> variab[sel.5]  ## return after manip
+    return(variab)
+
+
+
+table(ids.luro$edon[sel.3])
+
+funfun <- function(variab=luro$win.simple , yr=2018){
+    sel.0 <- 
+    sel.1 <- grep("pan"    , variab)
+    sel.2 <- grep("prd"    , variab)
+    sel.3 <- which(luro$yr<yr)
+    sel.4 <- intersect(sel.1, sel.2)
+    sel.5 <- intersect(sel.4, sel.3)
+    tmp <- variab[sel.5] ## subset for manip state by state
+    tmp[grep("^bc" , luro$emm[sel.5])] <- gsub("prd-|-prd" , "" , tmp[grep("^bc" , luro$emm[sel.5])])  ## to pan
+    tmp[grep("^coa", luro$emm[sel.5])] <- gsub("prd-|-prd" , "" , tmp[grep("^coa", luro$emm[sel.5])])  ## to pan
+    tmp[grep("^col", luro$emm[sel.5])] <- gsub("prd-|-prd" , "" , tmp[grep("^col", luro$emm[sel.5])])  ## to pan
+    tmp[grep("^cps", luro$emm[sel.5])] <- gsub("pan-|-pan" , "" , tmp[grep("^cps", luro$emm[sel.5])])  ## to     prd
+    tmp[grep("^cua", luro$emm[sel.5])] <- gsub("prd-|-prd" , "" , tmp[grep("^cua", luro$emm[sel.5])])  ## to pan
+    tmp[grep("^dgo", luro$emm[sel.5])] <- gsub("prd-|-prd" , "" , tmp[grep("^dgo", luro$emm[sel.5])])  ## to pan
+    tmp[grep("^gue", luro$emm[sel.5])] <- gsub("pan-|-pan" , "" , tmp[grep("^gue", luro$emm[sel.5])])  ## to     prd
+    tmp[grep("^hgo", luro$emm[sel.5])] <- gsub("prd-|-prd" , "" , tmp[grep("^hgo", luro$emm[sel.5])])  ## to pan --- Xóchitl to pan
+    tmp[grep("^jal", luro$emm[sel.5])] <- gsub("prd-|-prd" , "" , tmp[grep("^jal", luro$emm[sel.5])])  ## to pan
+    tmp[grep("^mex", luro$emm[sel.5])] <- gsub("prd-|-prd" , "" , tmp[grep("^mex", luro$emm[sel.5])])  ## to pan --- few cases all 2015
+    tmp[grep("^mic", luro$emm[sel.5])] <- gsub("pan-|-pan" , "" , tmp[grep("^mic", luro$emm[sel.5])])  ## to     prd
+    tmp[grep("^jal", luro$emm[sel.5])] <- gsub("prd-|-prd" , "" , tmp[grep("^jal", luro$emm[sel.5])])  ## to pan
+    tmp[grep("^oax", luro$emm[sel.5])] <- gsub("pan-|-pan" , "" , tmp[grep("^oax", luro$emm[sel.5])])  ## to     prd
+    tmp[grep("^pue", luro$emm[sel.5])] <- gsub("prd-|-prd" , "" , tmp[grep("^pue", luro$emm[sel.5])])  ## to pan
+    tmp[grep("^qui", luro$emm[sel.5])] <- gsub("pan-|-pan" , "" , tmp[grep("^qui", luro$emm[sel.5])])  ## to     prd
+    tmp[grep("^san", luro$emm[sel.5])] <- gsub("prd-|-prd" , "" , tmp[grep("^san", luro$emm[sel.5])])  ## to pan
+    tmp[grep("^sin", luro$emm[sel.5])] <- gsub("prd-|-prd" , "" , tmp[grep("^sin", luro$emm[sel.5])])  ## to pan
+    tmp[grep("^son", luro$emm[sel.5])] <- gsub("prd-|-prd" , "" , tmp[grep("^son", luro$emm[sel.5])])  ## to pan
+    tmp[grep("^tam", luro$emm[sel.5])] <- gsub("prd-|-prd" , "" , tmp[grep("^tam", luro$emm[sel.5])])  ## to pan
+    tmp[grep("^ver", luro$emm[sel.5])] <- gsub("prd-|-prd" , "" , tmp[grep("^ver", luro$emm[sel.5])])  ## to pan --- some 2000, rest 2017
+    tmp[grep("^yuc", luro$emm[sel.5])] <- gsub("prd-|-prd" , "" , tmp[grep("^yuc", luro$emm[sel.5])])  ## to pan
+    tmp[grep("^zac", luro$emm[sel.5])] <- gsub("pan-|-pan" , "" , tmp[grep("^zac", luro$emm[sel.5])])  ## to     prd
+    tmp -> variab[sel.5]  ## return after manip
+    return(variab)
+}
+luro$win.simple       <- funfun(luro$win.simple       , 2018)
+luro$part2nd.simple   <- funfun(luro$part2nd.simple   , 2018)
+luro$win.prior.simple <- funfun(luro$win.prior.simple , 2021)
