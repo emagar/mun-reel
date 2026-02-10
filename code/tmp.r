@@ -247,6 +247,11 @@ luro$win.prior.simple <- funfun(luro$win.prior.simple , 2025)
 
 
 
+[1] "zac-18.025" "zac-18.057"
+> data.frame(luro$emm[sel.0], luro$yr[sel.0], luro$win[sel.0], luro$part2nd[sel.0], luro$win.prior[sel.0])
+  luro.emm.sel.0. luro.yr.sel.0.  luro.win.sel.0. luro.part2nd.sel.0. luro.win.prior.sel.0.
+1      zac-18.025           2021 pt-pvem-left-pna                left            pan-pan-mc
+2      zac-18.057           2021 pt-pvem-left-pna                left                   pri
 
 
 

@@ -1073,7 +1073,7 @@ vot$lumwpop20 <- vot$meanwpop; vot$meanwpop <- NULL
 rm(cese,lumu,i,pth,tmp)
 
 ## re-define party-by-party incumbency variables
-## rename vars: dincpan will now mean outgoing mayor is pan etc, dincballotpan that outgoing mayior is in ballot again
+## rename vars: dincpan will now mean outgoing mayor is pan etc, dincballotpan that outgoing mayor is in ballot again
 colnames(vot) <- gsub("^dinc", "dincballot", colnames(vot))
 ## generic dummy dincballot=1 if outgoing mayor (regardless of party) is in ballot again
 vot <- within(vot, {

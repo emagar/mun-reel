@@ -1,7 +1,7 @@
 #########################################
 ## Code for ayuntamiento vote analysis ##
 ## Date started: 26nov2023             ##
-## Revised/updated: 1feb2026           ##
+## Revised/updated: 8feb2026           ##
 ## By emagar at itam dot mx            ##
 #########################################
 
@@ -580,12 +580,19 @@ grep("morena", luro$win    [sel.r])  ## should be empty
 grep("morena", luro$part2nd[sel.r])  ## should be empty
 luro$win      [sel.r] <- sub("prd", "left", luro$win       [sel.r])
 luro$part2nd  [sel.r] <- sub("prd", "left", luro$part2nd   [sel.r])
-sel.r <- which(ids.luro$yr<2018)
-grep("morena", luro$win.prior    [sel.r])  ## should be empty
-luro$win.prior[sel.r] <- sub("prd", "left", luro$win.prior [sel.r])
+## ## win.prior and run.prior manipulated solo below
+## sel.r <- which(ids.luro$yr<2018)
+## grep("morena", luro$win.prior    [sel.r])  ## should be empty
+## luro$win.prior[sel.r] <- sub("prd", "left", luro$win.prior [sel.r])
+##
 sel.r <- which(ids.luro$yr>=2018)
 luro$win      [sel.r] <- sub("morena", "left", luro$win       [sel.r])
 luro$part2nd  [sel.r] <- sub("morena", "left", luro$part2nd   [sel.r])
+sel.1 <- grep("prd", luro$win       [sel.r])
+table(ids.luro$yr[sel.r][sel.1], ids.luro$edon[sel.r][sel.1])
+## prd since 2018 will be coded as pan
+luro$win      [sel.r] <- sub("prd", "pan", luro$win       [sel.r])
+luro$part2nd  [sel.r] <- sub("prd", "pan", luro$part2nd   [sel.r])
 
 ## cases where morena/prd won or runner-up 2015-2018
 sel.0 <- which(ids.luro$yr>=2015 & ids.luro$yr<2018)
@@ -593,24 +600,29 @@ sel.1 <- grep("morena|prd", luro$win)
 sel.2 <- grep("morena|prd", luro$part2nd)
 sel.3 <- Reduce(intersect, list(sel.0,sel.1,sel.2))
 data.frame(ids.luro$emm[sel.3], ids.luro$yr[sel.3], luro$win[sel.3], luro$part2nd[sel.3], luro$mg[sel.3])
+rm(sel.1, sel.2, sel.3)
 ## all cases where prd came 1st or 2nd will be coded as pan
 sel.1 <- grep("prd", luro$win)
 sel.2 <- Reduce(intersect, list(sel.0,sel.1))
-luro$win    [sel.3] <- "pan"
+luro$win    [sel.2] <- "pan"
+rm(sel.1, sel.2)
 sel.1 <- grep("prd", luro$part2nd)
 sel.2 <- Reduce(intersect, list(sel.0,sel.1))
-luro$part2nd[sel.3] <- "pan"
+luro$part2nd[sel.2] <- "pan"
+rm(sel.1, sel.2)
 ##
 sel.1 <- grep("morena", luro$win)
 sel.2 <- Reduce(intersect, list(sel.0,sel.1))
-luro$win    [sel.3] <- "left"
+luro$win    [sel.2] <- "left"
+rm(sel.1, sel.2)
 sel.1 <- grep("morena", luro$part2nd)
 sel.2 <- Reduce(intersect, list(sel.0,sel.1))
-luro$part2nd[sel.3] <- "left"
+luro$part2nd[sel.2] <- "left"
+rm(sel.0, sel.1, sel.2)
 
-####################################################
-## Re-lag win so win.prior inherits left recoding ##
-####################################################
+#################################################################
+## Re-lag win so win.prior and run.prior inherit left recoding ##
+#################################################################
 ## verify time series cross section's structure (for grouped lags)
 table(order(ids.luro$inegi, ids.luro$cycle)==order(luro$ord))
 table(ids.luro$ord==luro$ord)
@@ -619,7 +631,8 @@ luro$inegi <- ids.luro$inegi; luro$cycle <- ids.luro$cycle
 luro <- luro[order(    luro$ord) ,] # verify sorted before lags
 ids.luro <- luro[order(ids.luro$ord) ,] # verify sorted before lags
 ## lag to create race-prior variables ##
-luro <- slide(luro, Var = "win", NewVar = "new.win.prior", TimeVar = "cycle", GroupVar = "inegi", slideBy = -1)
+luro <- slide(luro, Var = "win"    , NewVar = "new.win.prior", TimeVar = "cycle", GroupVar = "inegi", slideBy = -1)
+luro <- slide(luro, Var = "part2nd", NewVar = "new.run.prior", TimeVar = "cycle", GroupVar = "inegi", slideBy = -1)
 head(luro)
 table(luro$new.win.prior==luro$win.prior)
 sel.0 <- which(luro$new.win.prior!=luro$win.prior)
@@ -627,7 +640,8 @@ sel.0 <- which(luro$new.win.prior!=luro$win.prior)
 with(luro[sel.0,], data.frame(emm, yr, win.prior, new.win.prior))
 ## replace manip
 luro$win.prior <- luro$new.win.prior
-luro$new.win.prior <- NULL
+luro$run.prior <- luro$new.run.prior
+luro$new.win.prior <- luro$new.run.prior <- NULL
 
 ## replicate lucardi rosas
 luro[1,]
@@ -682,7 +696,9 @@ luro$mgleft[tmp] <- -luro$mg.prior[tmp]
 luro$mgleft[luro$dselleft==0] <- NA
 ##
 ## left=prd|morena in 2015:17 generates no 1st/2nd left overlap
-intersect(grep("left", luro$win), grep("left", luro$part2nd)) # check it is empty
+sel.0 <- intersect(grep("left", luro$win), grep("left", luro$part2nd)) # check it is empty
+luro$emm[sel.0]
+##data.frame(luro$emm[sel.0], luro$yr[sel.0], luro$win[sel.0], luro$part2nd[sel.0], luro$win.prior[sel.0])
 
 ## ##
 ## ## all prior incumbents version pending --- ojo: coalitions inflate party reelection rates
@@ -741,6 +757,16 @@ for (i in 1:32){
 }
 head(luro)
 
+###################################################################################
+## 10feb2026 attempt top fix three cases where both prd and morena coded as left ##
+###################################################################################
+## gue-17.021 recode prd as pan to avoid left confusion
+## gue-17.042 recode pri-prd as pri to avoid left confusion
+## pue-17.166 recode pan-pri-prd as pan-pri to avoid left confusion
+luro$dincballotprd[which(luro$emm %in%  c("gue-17.021", "gue-17.042", "pue-17.166"))] <- 0
+luro$dselleft     [which(luro$emm %in%  c("gue-17.021", "gue-17.042", "pue-17.166"))] <- 0 ## drop the cases from analysis
+
+
 
 ################################
 ## Function estimating models ##
@@ -795,12 +821,18 @@ funfun <- function(model = 1           ## 1 2 3 4 5 or 6
     ## function generalizing party-specific variables and generating interactions for analysis
     genx <- function(x){ ## x is the dataset to manipulate
         tmp <- x ## rename data
-        tmp$dwin <- tmp$dpanwin
-        tmp$mg   <- tmp$mgpan ## magpan is lagged +/- mg conditional on incumbency status
+        if (pty=="pan")  tmp$dwin <- tmp$dpanwin
+        if (pty=="pri")  tmp$dwin <- tmp$dpriwin
+        if (pty=="left") tmp$dwin <- tmp$dleftwin
+        if (pty=="pan")  tmp$mg   <- tmp$mgpan ## magpan is lagged +/- mg conditional on incumbency status
+        if (pty=="pri")  tmp$mg   <- tmp$mgpri
+        if (pty=="left") tmp$mg   <- tmp$mgleft
         ##tmp$mg   <- tmp$mg.panor ## get lagged margin
         ##tmp$dincballot <- tmp$dincballotpan
         tmp <- within(tmp, {
-            dneg            <- as.numeric( mgpan<0 )
+            if (pty=="pan")  dneg            <- as.numeric( mgpan<0 )
+            if (pty=="pri")  dneg            <- as.numeric( mgpri<0 )
+            if (pty=="left") dneg            <- as.numeric( mgleft<0 )
             dnegxmg         <- dneg * mg
             dnegxpost       <- dneg      * dpostref
             dnegxmgxpost    <- dneg * mg * dpostref 
@@ -823,13 +855,15 @@ funfun <- function(model = 1           ## 1 2 3 4 5 or 6
     tmpNONREF    <- genx(tmpNONREF   )
     ## rm(genx)
     ##
-    ## ## check N
-    ## nrow(tmpREPLICA  )
-    ## nrow(tmpPREKICK  )
-    ## nrow(tmpPOSTKICK )
-    ## nrow(tmpALL      )
-    ## nrow(tmpALLAMLO  )
-    ## nrow(tmpNONREF   )
+    ## check N
+    print( paste(
+        "1 N=", nrow(tmpREPLICA  ),
+        "2 N=", nrow(tmpPREKICK  ),
+        "3 N=", nrow(tmpPOSTKICK ),
+        "4 N=", nrow(tmpALL      ),
+        "5 N=", nrow(tmpALLAMLO  ),
+        "6 N=", nrow(tmpNONREF   )
+    ))
     ##
     ## Put all subsets in a list
     tmpDATA <- list(
@@ -913,10 +947,10 @@ funfun <- function(model = 1           ## 1 2 3 4 5 or 6
 ###########################################
 ## Select a party and model for analysis ##
 ###########################################
-res <- funfun(model=4
-            , pty="pri"
+res <- funfun(model=3
+            , pty="left"
             , plot.to.pdf=FALSE)
-x
+
 
 ## addGubYr <- function(X){
 ##     ## input a data.frame
