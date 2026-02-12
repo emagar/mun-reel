@@ -322,3 +322,19 @@ funfun <- function(variab=luro$win.simple , yr=2018){
 luro$win.simple       <- funfun(luro$win.simple       , 2018)
 luro$part2nd.simple   <- funfun(luro$part2nd.simple   , 2018)
 luro$win.prior.simple <- funfun(luro$win.prior.simple , 2021)
+
+
+
+
+
+
+
+
+
+        paste0("All 1997-2017 (LuRo replica "           , "N=", nrow(tmpREPLICA  ), ")")
+      , paste0("Pre-kickoff 2018-2025 (LuRo extension " , "N=", nrow(tmpPREKICK  ), ")")
+      , paste0("Post-kickoff 2018-2025 ("               , "N=", nrow(tmpPOSTKICK ), ")")
+      , paste0("All 1997-2025 ("                        , "N=", nrow(tmpALL      ), ")")
+      , paste0("All 2018-2025 ("                        , "N=", nrow(tmpALLAMLO  ), ")")
+      , paste0("Non reformers 2018-2025 (Hgo & Ver "    , "N=", nrow(tmpNONREF   ), ")")
+    

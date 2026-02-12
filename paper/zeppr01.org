@@ -1,4 +1,4 @@
-La reelección municipal como póliza de seguro
+ 
 
 Year the reform kicked in. Column N reports the number of units electing municipal authorities per cycle (i.e., excluding /usos y costumbres/ municipalities). 
 |    | edo |   yr |        N |
@@ -243,3 +243,18 @@ Uppal, Y. (2009). The Disadvantaged Incumbents: Estimating Incumbency Effects in
 [fn:5] En 100 por ciento de las muestras posteriores hay una brecha maldita para el partido del alcalde sin ocupante en la boleta ($\beta_0 < \alpha_0$). En cambio, hay una brecha invertida con ocupante en la boleta ($\beta_0 + \beta_1 > \alpha_0 + \alpha_1$) en entre 15 y 20 por ciento de la muestra posterior.
 
 [fn:6] ``Sheinbaum matiza propuesta para eliminar la reelección legislativa; lo vamos a consultar con el pueblo'', [[https://animalpolitico.com/elecciones-2024/presidencia/sheinbaum-eliminar-reeleccion-legislativa-consulta-pueblo][Animal político]], 8 de marzo 2024. 
+
+
+
+------
+
+
+plots:
+
+1) LuRo del paper
+2) Las mías del blog con simulaciones (equivalen a ALL)
+3) All-AMLO cuenta bien caso Morena --- igual que left post-kick <- mejor éste
+4) PREKICK y POSTKICK lado a lado hacen el contraste Garfias (creo)
+
+Los encabezados
+ALLAMLO

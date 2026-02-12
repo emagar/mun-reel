@@ -1,0 +1,89 @@
+\documentclass[letter,12pt]{article}
+\usepackage[letterpaper,right=1.25in,left=1.25in,top=1in,bottom=1in]{geometry}
+\usepackage{setspace}
+
+\usepackage[utf8]{inputenc}   % allows input of special characters from keyboard (input encoding)
+\usepackage[T1]{fontenc}      % what fonts to use when printing characters       (output encoding)
+\usepackage{amsmath}          % facilitates writing math formulas and improves the typographical quality of their output
+\usepackage[hyphens]{url}     % adds line breaks to long urls
+\renewcommand{\UrlFont}{\ttfamily\small} % shrinks url font 1 step down
+\usepackage[pdftex]{graphicx} % enhanced support for graphics
+\usepackage{tikz}             % Easier syntax to draw pgf files (invokes pgf automatically)
+\usetikzlibrary{arrows}
+
+\usepackage{mathptmx}           % set font type to Times
+\usepackage[scaled=.90]{helvet} % set font type to Times (Helvetica for some special characters)
+\usepackage{courier}            % set font type to Times (Courier for other special characters)
+
+\usepackage{rotating}         % sideway tables and figures that take a full page
+\usepackage{caption}          % allows multipage figures and tables with same caption (\ContinuedFloat)
+
+\usepackage{dcolumn}          % needed for apsrtable and stargazer tables from R to compile
+\usepackage{arydshln}         % dashed lines in tables (hdashline, cdashline{3-4}, 
+                              %see http://tex.stackexchange.com/questions/20140/can-a-table-include-a-horizontal-dashed-line)
+                              % must be loaded AFTER dcolumn, 
+                              %see http://tex.stackexchange.com/questions/12672/which-tabular-packages-do-which-tasks-and-which-packages-conflict
+
+\usepackage{amssymb}          % has nicer empty set \varnothing, among much much more
+
+%FOR SPANISH FORMATTING (HYPHENATION ETC.)
+\usepackage[spanish]{babel}
+\addto\captionsspanish{\renewcommand{\figurename}{Diagrama}} % cambia Figura por Diagrama
+
+\usepackage[longnamesfirst, sort]{natbib}\bibpunct[]{(}{)}{,}{a}{}{;} % handles biblio and references 
+%% \AtBeginDocument{\renewcommand\harvardand{y}} % change 'author and author' by Spanish 'author y author'
+
+\newcommand{\mc}{\multicolumn}
+
+%% TO ADD NOTES IN TEXT, PUT % BEFORE THE ONE YOU WANT DISBALED
+%\usepackage[disable]{todonotes}                            % notes not showed
+\usepackage[colorinlistoftodos, textsize=small]{todonotes} % show notes
+\newcommand{\eric}[1]{\todo[color=red!15, inline]{\textbf{Eric:} #1}}
+
+% Format epigraph
+\usepackage{epigraph}
+\setlength\epigraphwidth{.8\textwidth}
+\setlength\epigraphrule{0pt} % no rule
+
+% multicolumns in appendix
+\usepackage{multicol}
+
+% change text color
+\usepackage{xcolor}
+
+\begin{document}
+
+% \title{Redistricting and the separation of incumbency and campaign effects: name recognition in Coahuila}
+\title{La reelección municipal como póliza de seguro\thanks{Paper read at Tec de Monterrey's Political Science Conference, Feb.\ 27--28, 2026. I am grateful for the generous support of the Asociación Mexicana de Cultura A.C.\ and to Gabino Martínez Díaz and Rodrigo Santibáñez Razo for research assistance. The author bears full responsibility for errors and limitations in the study.}}
+\author{Eric Magar  \\ ITAM \\ \url{emagar@itam.mx}}
+\date{\today}
+\maketitle
+
+% \begin{center} \textbf{$\rightarrow$~~Preliminary draft~~$\leftarrow$} \\ (please inquire for new version)  \end{center}
+
+\begin{abstract}
+\noindent Recent research uncovers systematic evidence of an incumbency curse in Mexican elections. The pattern resembles those found in Brazil, India, Romania, and Zambia. A study of marginal municipal races between 1997 and 2010 revealed a discontinuity in the likelihood of winning the next election, estimating a .20 drop in the probability of reelecting in time t+1 the party that barely won in time t relative to the party that barely lost. This paper replicates the analysis extending data to also cover the following decade, when Mexico removed single-term limits for municipal governments. I find that the incumbency curse holds for races with an open seat. But when the incumbent mayor was on the ballot, the discontinuity is systematically reversed for every party. An incumbent mayor with static ambition therefore shields municipal parties from highly likely defeat.
+\end{abstract}
+
+\noindent Cuando un partido asume las riendas del gobierno ¿puede esperarse que mejoren sus fortunas electorales futuras? ¿O podrían, paradójicamente, empeorar sistemáticamente?
+
+\begin{figure}
+  \centering
+  \includegraphics[width=\columnwidth]{../plots/leftPREKICKlpm.pdf}
+  \caption{The effect of the election margin on the future probability of reelection}\label{F:regplot}
+\end{figure}  
+
+
+
+\newpage 
+\section{Introduction}
+
+Texto
+
+
+\singlespacing
+
+\bibliographystyle{apsrInitials}
+\bibliography{/home/eric/Dropbox/mydocs/magar}
+
+\end{document}

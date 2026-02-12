@@ -815,7 +815,7 @@ funfun <- function(model = 1           ## 1 2 3 4 5 or 6
     tmpPOSTKICK <- rbind(setab3, setd3)
     ##
     ## SUBSET TO EXTEND LUCARDI-ROSAS IN HGO VER ONLY
-    sel.r <- which(tmp$edon==13 | tmp$edon==30)
+    sel.r <- which((tmp$edon==13 | tmp$edon==30) & tmp$yr>2017)
     tmpNONREF <- tmp[sel.r,] ## ab1 and ab2 in these states
     ##
     ## function generalizing party-specific variables and generating interactions for analysis
@@ -876,13 +876,29 @@ funfun <- function(model = 1           ## 1 2 3 4 5 or 6
     )
     ##
     ## headers for plots
+    ## ## español
+    ## encab <- c(
+    ##     paste0("Todos 1997-2017 (réplica LuRo "        , "N=", nrow(tmpREPLICA  ), ")")
+    ##   , paste0("Pre-patada 2018-2025 (extensión LuRo " , "N=", nrow(tmpPREKICK  ), ")")
+    ##   , paste0("Post-patada 2018-2025 ("               , "N=", nrow(tmpPOSTKICK ), ")")
+    ##   , paste0("Todos 1997-2025 ("                     , "N=", nrow(tmpALL      ), ")")
+    ##   , paste0("Todos 2018-2025 ("                     , "N=", nrow(tmpALLAMLO  ), ")")
+    ##   , paste0("No reformistas 2018-2025 (Hgo y Ver "  , "N=", nrow(tmpNONREF   ), ")")
+    ## )
+    ## inglés
     encab <- c(
-        "Réplica LuRo 1997-2017"
-      , "LuRo post-AMLO 2018-2025"
-      , "Post-reforma 2018-2025"
-      , "Todos 1997-2025"
-      , "Todos post-AMLO 2018-2025"
-      , "No reforma 1997-2025"
+        paste0("1997-2017 all (Lucardi-Rosas replica "  , "N=", nrow(tmpREPLICA  ), ")")
+      , paste0("2018-2025 pre-kickoff states ("         , "N=", nrow(tmpPREKICK  ), ")")
+      , paste0("2018-2025 post-kickoff states ("        , "N=", nrow(tmpPOSTKICK ), ")")
+      , paste0("1997-2025 all states ("                 , "N=", nrow(tmpALL      ), ")")
+      , paste0("2018-2025 all states ("                 , "N=", nrow(tmpALLAMLO  ), ")")
+      , paste0("2018-2025 non-reform states (Hgo & Ver ", "N=", nrow(tmpNONREF   ), ")")
+      ##   paste0("All 1997-2017 (LuRo replica "           , "N=", nrow(tmpREPLICA  ), ")")
+      ## , paste0("Pre-kickoff 2018-2025 (LuRo extension " , "N=", nrow(tmpPREKICK  ), ")")
+      ## , paste0("Post-kickoff 2018-2025 ("               , "N=", nrow(tmpPOSTKICK ), ")")
+      ## , paste0("All 1997-2025 ("                        , "N=", nrow(tmpALL      ), ")")
+      ## , paste0("All 2018-2025 ("                        , "N=", nrow(tmpALLAMLO  ), ")")
+      ## , paste0("Non reformers 2018-2025 (Hgo & Ver "    , "N=", nrow(tmpNONREF   ), ")")
     )
     ##
     ## file names
@@ -916,7 +932,7 @@ funfun <- function(model = 1           ## 1 2 3 4 5 or 6
         ##png("../plots/pan-luro97-23-lpm.png")
         pdf(file=paste0("../mun-reel/plots/", pty, file.names[model], "lpm.pdf"))
     }
-    plot(x = c(-.1,.1), y = c(0,1), type = "n", main = paste0(pty, " (N=", nrow(the.data), ")", "\n", encab[model]),
+    plot(x = c(-.1,.1), y = c(0,1), type = "n", main = paste0(toupper(pty), "\n", encab[model]),
          xlab = expression("Margin"[t]), ylab = expression("Pr(win)"[t+1]))
     abline(v=0)
     ##
@@ -947,9 +963,9 @@ funfun <- function(model = 1           ## 1 2 3 4 5 or 6
 ###########################################
 ## Select a party and model for analysis ##
 ###########################################
-res <- funfun(model=3
-            , pty="left"
-            , plot.to.pdf=FALSE)
+res <- funfun(model=1
+            , pty="pan"
+            , plot.to.pdf=TRUE)
 
 
 ## addGubYr <- function(X){
