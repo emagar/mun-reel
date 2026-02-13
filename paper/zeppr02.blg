@@ -1,0 +1,46 @@
+This is BibTeX, Version 0.99d (TeX Live 2022/dev/Debian)
+Capacity: max_strings=200000, hash_size=200000, hash_prime=170003
+The top-level auxiliary file: zeppr02.aux
+The style file: apsr.bst
+Database file #1: /home/eric/Dropbox/mydocs/magar.bib
+You've used 17 entries,
+            2874 wiz_defined-function locations,
+            814 strings with 8569 characters,
+and the built_in function-call counts, 57646 in all, are:
+= -- 9349
+> -- 632
+< -- 0
++ -- 4279
+- -- 233
+* -- 4787
+:= -- 11794
+add.period$ -- 69
+call.type$ -- 17
+change.case$ -- 221
+chr.to.int$ -- 17
+cite$ -- 17
+duplicate$ -- 264
+empty$ -- 563
+format.name$ -- 251
+if$ -- 10323
+int.to.chr$ -- 5
+int.to.str$ -- 0
+missing$ -- 19
+newline$ -- 76
+num.names$ -- 191
+pop$ -- 77
+preamble$ -- 1
+purify$ -- 255
+quote$ -- 0
+skip$ -- 218
+stack$ -- 0
+substring$ -- 13016
+swap$ -- 37
+text.length$ -- 238
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 62
+warning$ -- 0
+while$ -- 398
+width$ -- 0
+write$ -- 237

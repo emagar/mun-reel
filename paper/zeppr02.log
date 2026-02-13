@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2026.2.1)  12 FEB 2026 08:46
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2026.2.1)  13 FEB 2026 12:50
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -844,36 +844,158 @@ LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <10> not available
 (Font)              Font shape `OT1/ptm/b/n' tried instead on input line 60.
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <7.4> not available
 (Font)              Font shape `OT1/ptm/b/n' tried instead on input line 60.
-<../plots/leftPREKICKlpm.pdf, id=4, 505.89pt x 505.89pt>
-File: ../plots/leftPREKICKlpm.pdf Graphic file (type pdf)
-<use ../plots/leftPREKICKlpm.pdf>
-Package pdftex.def Info: ../plots/leftPREKICKlpm.pdf  used on input line 72.
-(pdftex.def)             Requested size: 433.62001pt x 433.62885pt.
  [1
 
-{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}] [2 <../plots/leftPREKICKlp
-m.pdf>]
-No file zeppr02.bbl.
-[3] (./zeppr02.aux
+{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}]
+LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <9> not available
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 76.
+LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <7> not available
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 76.
+ [2] [3] [4]
+<../plots/luro-fig1.png, id=22, 960.58875pt x 252.945pt>
+File: ../plots/luro-fig1.png Graphic file (type png)
+<use ../plots/luro-fig1.png>
+Package pdftex.def Info: ../plots/luro-fig1.png  used on input line 160.
+(pdftex.def)             Requested size: 433.62001pt x 114.18314pt.
+ [5 <../plots/luro-fig1.png>]
+Underfull \hbox (badness 10000) in paragraph at lines 210--221
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 210--221
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 222--246
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 222--246
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 222--246
+
+ []
+
+[6] [7]
+! Missing $ inserted.
+<inserted text> 
+                $
+l.272 ... evidencia mixta. Con silla vacÃ­a, \beta
+                                                  _0 < \alpha_0 en la totali...
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+
+LaTeX Warning: Command \' invalid in math mode on input line 272.
+
+
+LaTeX Warning: Command \' invalid in math mode on input line 272.
+
+
+LaTeX Warning: Command \' invalid in math mode on input line 272.
+
+
+LaTeX Warning: Command \' invalid in math mode on input line 272.
+
+
+LaTeX Warning: Command \' invalid in math mode on input line 272.
+
+! Missing $ inserted.
+<inserted text> 
+                $
+l.273 
+      
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+Missing character: There is no ó in font zptmcm7t!
+Missing character: There is no ó in font zptmcm7t!
+Missing character: There is no ó in font zptmcm7t!
+Missing character: There is no á in font zptmcm7t!
+Missing character: There is no ó in font zptmcm7t!
+
+Overfull \hbox (396.91846pt too wide) in paragraph at lines 272--273
+\T1/ptm/m/n/12 cia mix-ta. Con si-lla va-cía, $\OML/ztmcm/m/it/12 ^^L[] < []en
+latotalidadde\OT1/ztmcm/m/n/12 1\OML/ztmcm/m/it/12 ; \OT1/ztmcm/m/n/12 500\OML/
+ztmcm/m/it/12 muestrasposteriores; lamaldicindelpartidoocupante:Encambio; cuand
+oelpresidentemunicipalbuscreelegirse; \OT1/ztmcm/m/n/12 (\OML/ztmcm/m/it/12 ^^L
+[] \OT1/ztmcm/m/n/12 +
+ []
+
+
+Overfull \hbox (620.51007pt too wide) in paragraph at lines 272--273
+\OML/ztmcm/m/it/12 ^^L[]\OT1/ztmcm/m/n/12 ) \OML/ztmcm/m/it/12 < \OT1/ztmcm/m/n
+/12 (\OML/ztmcm/m/it/12 [] \OT1/ztmcm/m/n/12 + \OML/ztmcm/m/it/12 []\OT1/ztmc
+m/m/n/12 )\OML/ztmcm/m/it/12 enslolaquintaparteomenosdelamuestraposterior:Oloeq
+uivalente \OT1/ztmcm/m/n/12 : \OML/ztmcm/m/it/12 labrechaseinviertecuatrodecinc
+oveces; oms:Noespocacosa:Unalcaldeenlaboletaesunaplizadesegurocontraswingsparti
+distasnegativos:$ 
+ []
+
+<../plots/leftPREKICKlpm.pdf, id=41, 505.89pt x 505.89pt>
+File: ../plots/leftPREKICKlpm.pdf Graphic file (type pdf)
+<use ../plots/leftPREKICKlpm.pdf>
+Package pdftex.def Info: ../plots/leftPREKICKlpm.pdf  used on input line 295.
+(pdftex.def)             Requested size: 195.12767pt x 195.12718pt.
+<../plots/leftPOSTKICKlpm.pdf, id=42, 505.89pt x 505.89pt>
+File: ../plots/leftPOSTKICKlpm.pdf Graphic file (type pdf)
+<use ../plots/leftPOSTKICKlpm.pdf>
+Package pdftex.def Info: ../plots/leftPOSTKICKlpm.pdf  used on input line 296.
+(pdftex.def)             Requested size: 195.12767pt x 195.12718pt.
+<../plots/panPREKICKlpm.pdf, id=43, 505.89pt x 505.89pt>
+File: ../plots/panPREKICKlpm.pdf Graphic file (type pdf)
+<use ../plots/panPREKICKlpm.pdf>
+Package pdftex.def Info: ../plots/panPREKICKlpm.pdf  used on input line 297.
+(pdftex.def)             Requested size: 195.12767pt x 195.12718pt.
+<../plots/panPOSTKICKlpm.pdf, id=44, 505.89pt x 505.89pt>
+File: ../plots/panPOSTKICKlpm.pdf Graphic file (type pdf)
+<use ../plots/panPOSTKICKlpm.pdf>
+Package pdftex.def Info: ../plots/panPOSTKICKlpm.pdf  used on input line 298.
+(pdftex.def)             Requested size: 195.12767pt x 195.12718pt.
+<../plots/priPREKICKlpm.pdf, id=45, 505.89pt x 505.89pt>
+File: ../plots/priPREKICKlpm.pdf Graphic file (type pdf)
+<use ../plots/priPREKICKlpm.pdf>
+Package pdftex.def Info: ../plots/priPREKICKlpm.pdf  used on input line 299.
+(pdftex.def)             Requested size: 195.12767pt x 195.12718pt.
+<../plots/priPOSTKICKlpm.pdf, id=46, 505.89pt x 505.89pt>
+File: ../plots/priPOSTKICKlpm.pdf Graphic file (type pdf)
+<use ../plots/priPOSTKICKlpm.pdf>
+Package pdftex.def Info: ../plots/priPOSTKICKlpm.pdf  used on input line 300.
+(pdftex.def)             Requested size: 195.12767pt x 195.12718pt.
+(./zeppr02.bbl [8] [9 <../plots/leftPREKICKlpm.pdf> <../plots/leftPOSTKICKlpm.p
+df> <../plots/panPREKICKlpm.pdf> <../plots/panPOSTKICKlpm.pdf> <../plots/priPRE
+KICKlpm.pdf> <../plots/priPOSTKICKlpm.pdf>] [10]) [11] (./zeppr02.aux
 LaTeX Info: Redefining \. on input line 8.
 LaTeX Info: Redefining \% on input line 8.
 ) ) 
 Here is how much of TeX's memory you used:
- 18904 strings out of 478287
- 369234 string characters out of 5849290
- 637997 words of memory out of 5000000
- 36754 multiletter control sequences out of 15000+600000
- 519790 words of font info for 114 fonts, out of 8000000 for 9000
+ 19108 strings out of 478287
+ 373662 string characters out of 5849290
+ 649648 words of memory out of 5000000
+ 36925 multiletter control sequences out of 15000+600000
+ 543725 words of font info for 157 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 84i,10n,89p,931b,463s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 84i,19n,89p,1290b,463s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texlive/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/share/texli
-ve/texmf-dist/fonts/type1/urw/courier/ucrr8a.pfb></usr/share/texlive/texmf-dist
-/fonts/type1/urw/times/utmb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/ur
-w/times/utmr8a.pfb>
-Output written on zeppr02.pdf (3 pages, 42645 bytes).
+ve/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texlive/tex
+mf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dis
+t/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts
+/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1
+/public/amsfonts/symbols/msbm10.pfb></usr/share/texlive/texmf-dist/fonts/type1/
+urw/courier/ucrr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/symbol/us
+yr.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/sh
+are/texlive/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/share/texlive/tex
+mf-dist/fonts/type1/urw/times/utmri8a.pfb>
+Output written on zeppr02.pdf (11 pages, 208835 bytes).
 PDF statistics:
- 41 PDF objects out of 1000 (max. 8388607)
- 27 compressed objects within 1 object stream
+ 145 PDF objects out of 1000 (max. 8388607)
+ 97 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
- 18 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 48 words of extra memory for PDF output out of 10000 (max. 10000000)
 

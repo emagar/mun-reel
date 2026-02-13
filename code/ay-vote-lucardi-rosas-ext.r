@@ -1,7 +1,7 @@
 #########################################
 ## Code for ayuntamiento vote analysis ##
 ## Date started: 26nov2023             ##
-## Revised/updated: 8feb2026           ##
+## Revised/updated: 13feb2026          ##
 ## By emagar at itam dot mx            ##
 #########################################
 
@@ -963,10 +963,16 @@ funfun <- function(model = 1           ## 1 2 3 4 5 or 6
 ###########################################
 ## Select a party and model for analysis ##
 ###########################################
-res <- funfun(model=1
-            , pty="pan"
-            , plot.to.pdf=TRUE)
+res <- funfun(model=2
+            , pty="left"
+            , plot.to.pdf=FALSE)
 
+## summarize
+tmp <- luro[luro$dselpan==1 & luro$yr>2017,]
+nrow(tmp)
+table(tmp$dincballotpan) / nrow(tmp)
+table(tmp$win, tmp$dleftwin)
+x
 
 ## addGubYr <- function(X){
 ##     ## input a data.frame
