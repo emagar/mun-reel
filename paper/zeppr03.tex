@@ -54,7 +54,7 @@
 \begin{document}
 
 % \title{Redistricting and the separation of incumbency and campaign effects: name recognition in Coahuila}
-\title{La reelección municipal como póliza de seguro\thanks{Paper read at Tec de Monterrey's Political Science Conference, Feb.\ 27--28, 2026. I am grateful for the generous support of the Asociación Mexicana de Cultura A.C.\ and to Gabino Martínez Díaz and Rodrigo Santibáñez Razo for research assistance. The author bears full responsibility for errors and limitations in the study.}}
+\title{La reelección municipal como póliza de seguro\thanks{Paper read at Tec de Monterrey's Political Science Conference, Feb.\ 27--28, 2026. I am grateful to Francisco Garfias for suggestions on an early draft of the paper, to Gabino Martínez Díaz and Rodrigo Santibáñez Razo for research assistance, and for the generous support of the Asociación Mexicana de Cultura A.C. The author bears full responsibility for errors and limitations in the study.}}
 \author{Eric Magar  \\ ITAM \\ \url{emagar@itam.mx}}
 \date{\today}
 \maketitle
@@ -137,7 +137,7 @@ Para sorpresa de todos, los reformadores electorales eliminaron la eterna prohib
 
 Los reformadores nunca abrazaron con mucho entusiasmo la institución de la reelección. Además de limitarla a un solo periodo consecutivo adicional, también impusieron que debiera renominarlos el mismo partido con quien ganaron originalmente. Así, formalmente, el partido mantuvo la posibilidad de vetar a un alcalde ambicioso.\footnote{Por qué digo formalmente: la reforma permitió el transfuguismo, siempre y cuando fuera temprano en el mandato. Sin embargo, a pesar de la restricción, muchos presidentes aparecieron en la boleta de otro partido o coalición. En ausencia de una instancia que oficialice el transfuguismo municipal en tiempo real, como si la hay en asambleas, los reguladores electorales dieron por buenas las justificaciones de los alcaldes.} Y recientemente se contrarreformó la constitución para restituir la prohibición de siempre, en todos los ámbitos, a partir de 2030.
 
-\citet{motolinia-reel-book2026} es el estudio más ambicioso de este breve paréntesis reeleccionista mexicano. Inspirada por la literatura, se ocupa de la reelección legislativa, estudiando el caso de los Congresos locales de México. El enfoque subnacional le permite aprovechar los calendarios diferenciados en el banderazo inicial para afinar su estrategia empírica. Recabó y analizó un volumen monumental de evidencia sobre los diputados locales (más de medio millón de discursos al pleno de la asamblea, alrededor de diez mil votaciones nominales, la integración de comisiones ordinarias así como los reportes de gasto en gestoría de miles de legisladores). Comparados con los demás diputados, quienes buscaron la reelección consecutiva duplicaron la probabilidad de integrarse a comisiones con jurisdicción sobre políticas particularistas (\emph{pork}); hicieron 2 por ciento más menciones a proyectos tipo \emph{pork} para el distrito desde la tribuna; y reportaron presupuestos de gestoría 15 por ciento mayores. Las métricas de unidad partidista, en cambio, no registran diferencias---los incentivos cruzados que teoriza parecen anularse mutuamente. 
+\citet{motolinia-reel-book2026} es el estudio más ambicioso de este breve paréntesis reeleccionista mexicano. Inspirada por la literatura, se ocupa de la reelección legislativa, estudiando el caso de los Congresos locales de México. El enfoque subnacional le permite aprovechar los calendarios diferenciados en el banderazo inicial para afinar su estrategia empírica. Recabó y analizó un volumen monumental de evidencia sobre los diputados locales (más de medio millón de discursos al pleno de la asamblea, alrededor de diez mil votaciones nominales, la integración de comisiones ordinarias así como los reportes de gasto en gestoría de miles de legisladores, y mucho más). Comparados con los demás diputados, quienes buscaron la reelección consecutiva duplicaron la probabilidad de integrarse a comisiones con jurisdicción sobre políticas particularistas (\emph{pork}); hicieron 2 por ciento más menciones a proyectos tipo \emph{pork} para el distrito desde la tribuna; y reportaron presupuestos de gestoría 15 por ciento mayores. Las métricas de unidad partidista, en cambio, no registran diferencias---los incentivos cruzados que teoriza parecen anularse mutuamente. 
 
 Los efectos que detecta son significativos, pero pequeños. Quizás faltó tiempo para que los cambios instatucionales madurasen. O quizás la reforma simplemente no tuvo efectos de importancia. La contrarreforma impedirá saberlo.
 
@@ -189,7 +189,9 @@ Y el indicador $\text{ocup}_{t+1}$ adopta el valor uno cuando el presidente muni
 
 \section{Los datos y sus subconjuntos}
 
-\noindent La estimación del efecto de la reforma en la probabilidad de reelección del partido municipal enfrenta dos obstáculos potenciales. Uno se asocia con la autoselección de los competidores, otro con el colapso del sistema de partidos de la transición democrática.
+\noindent Anticipo tres obstáculos para la estimación del efecto de la reforma en la probabilidad de reelección del partido municipal. Uno se asocia con la autoselección de los competidores, otro con el colapso del sistema de partidos de la transición democrática, el tercero con la ubicuidad de las coaliciones electorales.
+
+\subsection{Self-selection}
 
 \begin{table}
   \centering
@@ -215,9 +217,9 @@ Y el indicador $\text{ocup}_{t+1}$ adopta el valor uno cuando el presidente muni
   \caption{Presidentes municipales en la boleta 2018--2025. Excluye Hidalgo y Veracruz. Fuentes: \citet{magar.el.dataset.2026}.}\label{T:incballot}
 \end{table}
 
-El primer obstáculo es que los presidentes municipales tienen un grado de agencia en la decisión de buscar la reelección consecutiva o desistir. El cuadro \ref{T:incballot} muestra que 38 por ciento de los ocupantes en el periodo se repostularon en busca de la reelección. Si bien esta cifra denota entusiasmo por la reforma entre gobernantes municipales, 44 por ciento de ellos no contendió a pesar de tener la oportunidad. Esta autoselección quizás magnifique el efecto en la probabilidad que interesa medir. Para verlo imaginemos dos clases de alcaldes, los que anticipan una campaña de reelección imposible, y los que anticipan una campaña sin mayores dificultades. Si estas expectativas fuesen acertadas y todos compitieran, el primer grupo obtendría resultados sensiblemente menos favorables, y tasas de derrota mucho mayores, que el segundo. Lo cual debería también orillarlos a retirarse con más probabilidad que los segundos, ampliando márgenes y tasas de reelección.
+El primer obstáculo es que los presidentes municipales tienen un grado de agencia en la decisión de buscar la reelección consecutiva o desistir de ello. El cuadro \ref{T:incballot} muestra que 38 por ciento de los ocupantes en el periodo se repostularon en busca de la reelección. Si bien esta cifra denota entusiasmo por la reforma entre gobernantes municipales, también reporta que 44 por ciento de ellos no contendió a pesar de tener la oportunidad. Esta autoselección debería magnificar el efecto en la probabilidad que interesa medir. Para verlo imaginemos dos clases de alcaldes, los que anticipan una campaña de reelección imposible, y los que anticipan una campaña sin mayores dificultades. Si estas expectativas fuesen acertadas y todos compitieran, el primer grupo obtendría resultados sensiblemente menos favorables, y tasas de derrota mucho mayores, que el segundo. Lo cual debería también orillarlos a retirarse con más probabilidad que los segundos, ampliando márgenes y tasas de reelección.
 
-Esto resulta problemático para quien busca una estrategia de identificación del efecto causal del fin de la prohibición (el tratamiento) \emph{sin} dicho efecto de autoselección.\footnote{Y podría mitigarlo un indicador empírico---que no tengo---para distinguir retiros voluntarios, del tipo recién discutido, de aquéllos por razones ortogonales a las expectativas, como cuando el partido veta con éxito a un alcalde en su ambición reeleccionista.} A mí, en cambio, me interesa medirlos juntos, porque la reelección consecutiva es una institución diseñada precisamente para permitir que quien tenga ventajas, quien haya cultivado a su coalición electoral, de hecho \emph{pueda autoseleccionarse} para volver a contender. Desde la óptica de mi argumento, el primer obstáculo se desvanece: la autoselección es algo busco capturar empíricamente.
+Este fenómeno resulta problemático para quien busque una estrategia de identificación del efecto causal del fin de la prohibición (el tratamiento) \emph{sin} dicho efecto de autoselección.\footnote{Y podrían mitigarlo un indicadores empíricos---que no tengo---para distinguir retiros voluntarios, del tipo recién discutido, de aquéllos por motivos ortogonales a las expectativas, como cuando el partido veta con éxito a un alcalde en su ambición reeleccionista.} A mí, en cambio, me interesa medirlos juntos, porque la reelección consecutiva es una institución diseñada precisamente para permitir que quien tenga ventajas, quien haya cultivado a su coalición electoral, de hecho \emph{pueda autoseleccionarse} para volver a contender. Desde la óptica de mi argumento, el primero simplemente no es un obstáculo: la autoselección es algo busco capturar empíricamente.
 
 %% \begin{table}
 %%   \centering
@@ -233,16 +235,13 @@ Esto resulta problemático para quien busca una estrategia de identificación de
 
 %% La matriz de 2-por-2 del cuadro \ref{T:matrix} ilustra el primer obstáculo, cruzando el deseo de buscar la reelección consecutiva (la ambición estática de Schlesinger) con el éxito en ser renominado para contender. El cuadro supone que quienes no aspiran a reelegirse declinarían la nominación, si se las diera el partido---y la celda $c$ está vacía. (Podría no ser así, siempre es concebible que alguien te haga recapacitar cuando declinas... omito esta complicación.) Lo que sí contempla el cuadro es la posibilidad de que quien aspire a la reelección no consiga la nominación, lo que llamo `ser retirado' (celda $b$), distinto de `retirarte' (celda $a$). El obstáculo radica en que la evidencia no permite distinguir observaciones en las celdas $a$ y $b$.  
 
-El colapso del sistema de partidos, en cambio, sí podría dificultar la medición del efecto de la nueva institución, porque la elección crítica de 2018 coincidió con el banderazo primero. Los cambios en desempeño podrían atribuirse al fin de la prohibición reeleccionista, al surgimiento del partido que consiguió realinear al electorado mexicano, o a ambos. Como Motolinía, aprovecharé los banderazos cronológicamente diferenciados como palanca para la separación, analizando subconjuntos distintos de observaciones. El cuadro \ref{T:data} los resume.
-
-Seleccionaré para todos los casos las elecciones municipales marginales ($\pm10\%$) en el periodo de elecciones democráticas desde el año 1997. Haré una estimación general de los modelos con el conjunto de elecciones 1997--2025, que incluye tanto el sistema tripartita de la democratización como el sistema obradorista que lo remplazó. El número de observaciones de la izquierda, el PAN y el PRI es variable porque se toman aquellos municipios que cada uno de los partidos, en el ciclo anterior, o bien ganó marginalmente o bien quedó en segundo lugar marginalmente. Cabe mencionar que, en el caso de la izquierda, desde 2018  se trata de Morena, antes de 2015 del PRD, y entre 2015 y 2017 cualquiera de estos dos partidos.\footnote{Hay tres observaciones entre 2015 y 2017 en que el ganador y el segundo lugar correspondieron a Morena y el PRD. Quité estas tres observaciones de la muestra.}
-
-Después intentaré sortear el segundo obstáculo estimando modelos del periodo 2018--2025, el sistema obradorista de partidos. Analizaré dos subconjuntos mutuamente excluyentes. El primero corresponde a los estados que, pasada la elección crítica de AMLO, aún no daban el banderazo de salida para la reelección municipal. Permitirán corroborar si los patrones de Lucardi--Rosas se replican, en ausencia de institución reeleccionista, tras 2018. El segundo corresponde a los estados que dieron el baderazo reeleccionista, y es donde se esperaría un posible cambio. (El apéndice también replica la estimación para el periodo 1997--2017, y corrobora que mi estudio encuentra patrones iguales a Lucardi--Rosas.)
+\subsection{El efecto AMLO}
 
 \begin{table}
   \centering
   \begin{tabular}{@{\extracolsep{5pt}}lrrrrrrrr}
-            & &                        & \mc{4}{c}{2018--2025}  \\ \cline{4-7}
+    & &                        & \mc{4}{c}{2018--2025}  \\ \cline{4-7}
+    & \mc{2}{c}{(1)} & \mc{2}{c}{(2)} & \mc{2}{c}{(3)} & \mc{2}{c}{(4)} \\
  & \mc{2}{c}{1997--2017} & \mc{2}{c}{Pre-banderazo} & \mc{2}{c}{Post-banderazo} & \mc{2}{c}{1997--2025} \\ \cline{2-3} \cline{4-5} \cline{6-7} \cline{8-9}
  Partido    & opos. & ocup. & opos. & ocup. & opos. & ocup. & Total &     N \\ [1ex] \hline \\ [-1.8ex]
  Izquierda  & 35.0 & 38.7 & 1.6 & 1.5 & 11.7 & 11.5 & 100.0 & 3,896 \\
@@ -252,6 +251,24 @@ Después intentaré sortear el segundo obstáculo estimando modelos del periodo 
   \end{tabular}
   \caption{Tres subconjuntos de elecciones marginales en 1997--2025 para las estimaciones. Antes de 2015, la izquierda es el PRD, desde 2018 es Morena, y entre esos años es cualquiera de ambos. Fuentes: \citet{magar.el.dataset.2026}.}\label{T:data}
 \end{table}
+
+El colapso del sistema de partidos, en cambio, sí podría dificultar la medición del efecto de la nueva institución, porque la elección crítica de 2018 coincidió con el banderazo primero. Podría atribuirse los cambios en desempeño al fin de la prohibición reeleccionista, al surgimiento de Morena, partido que consiguió realinear al electorado mexicano, o a ambos. Como Motolinía, aprovecharé los banderazos cronológicamente diferenciados como palanca para la separación, analizando subconjuntos distintos de observaciones. El cuadro \ref{T:data} los resume.
+
+Para todas mis estimaciones seleccionaré exclusivamente las elecciones municipales marginales ($\pm10\%$) en el periodo de elecciones democráticas desde el año 1997. La columna (4) reporta el número de observaciones para cada partido. Empezaré haciendo una estimación general de los modelos con este conjunto de elecciones 1997--2025, que incluye (que confunde) el sistema tripartita de la democratización y el sistema obradorista que lo remplazó. El número de observaciones de la izquierda, el PAN y el PRI es variable porque se toman aquellos municipios que cada uno de los partidos, en el ciclo anterior, o bien ganó marginalmente o bien quedó en segundo lugar marginalmente. El obstáculo se asoma claro en en el caso de la izquierda, ya que debí seleccionar dos partidos: desde 2018 se trata de Morena, antes de 2015 del PRD, y entre 2015 y 2017 cualquiera de estos dos partidos.\footnote{Hay tres observaciones entre 2015 y 2017 en donde el ganador y el segundo lugar correspondieron a Morena y el PRD. Quité estas tres observaciones de la muestra. Sólo fueron tres porque la descoordinación que ocasionó Morena en la izquierda electoral a partir de 2015 los dejó a ambos, en muchos casos, por debajo del margen, otorgándole victorias artificiales al PRI.}
+
+Para intentar sortear este obstáculo, estimaré después los modelos modelos para el periodo 2018--2025, el sistema obradorista de partidos. Analizaré por separado dos subconjuntos mutuamente excluyentes de observaciones. El primero corresponde a los estados que, pasada la elección crítica de AMLO, aún no daban el banderazo de salida para la reelección municipal (la columna 2). Permitirán corroborar si los patrones de Lucardi--Rosas se replican, en ausencia de institución reeleccionista, tras la elección de AMLO en 2018, que fue concurrente con las municipales. El segundo subconjunto corresponde a los estados que ya dieron el banderazo reeleccionista, y es donde se esperaría un posible cambio como consecuencia de la nueva institución (columna 3).
+
+(Finalmente, el apéndice también replica la estimación para el periodo 1997--2017 (columna 1), en aras de corroborar que mi estudio encuentra patrones idéndicos a Lucardi--Rosas.)
+
+\subsection{Las coaliciones}
+
+El tercer obstáculo resulta de las frecuentes coaliciones pre-electorales que hacen los partidos. \citet{magar.el.dataset.2026} y \citet{spoon.pulido.PRI-PVEM2017} ofrecen más detalle. Proscritas en el priato clásico, la democratización las convirtió en algo común con relativa rapidez. Para el ciclo 2006--2008, por ejemplo, cuatro de cada cinco elecciones municipales tuvieron una o más coaliciones, y la proporción mantiene hasta hoy.
+
+Se trataba originalmente de coaliciones entre un partido mayor (el PRI, PAN o PRD) y uno o más partidos oportunistas (PVEM, PT, etc.), en aras de remozar el voto y las oportunidades de victoria del mayor. Pero desde 2010 se volvieron comunes las coaliciones anti-PRI entre el PAN y el PRD. Y posterior a 2018, las coaliciones anti-Morena entre el PAN, el PRI y el PRD.
+
+La dificultad para el analista es de atribución: ¿a cuál de los partidos coaligados debe corresponderle la victoria o la derrota? La selección de elecciones municipales marginales requiere un indicador de los partidos que se colocaron en primero y segundo lugares. Parece seguro otorgarle el triunfo al partido mayor cuando éste se coaligó solo con partidos menores. Pero surgen dudas tratándose de coaliciones con más de un partido mayor. Considere por ejemplo el municipio de Durango, que la coalición PAN-PRD ganó en 2016. En 2019 el PAN se alzó con la victoria solo, en 2022 lo hizo la coalición PAN-PRI-PRD, y en 2025 reeligió a Toño Ochoa en la presidencia pero con una coalición PAN-PRI. Una lectura literal indicaría que el PRD ganó en 2016 y en 2022, perdió los otros años. Si, en cambio, aportáramos conocimiento del sistema de partidos duranguense, descontaríamos al PRD del estado por tratarse de un partido muy menor. Si, además, incorporasemos el hecho de que Toño Ochoa ha sido un connotado panista, probablemente descontaríamos también al PRI en las victorias de 2022 y 2025.
+
+Por desgracia no tengo esta información para llevar a cabo un análisis sistemático de miles de elecciones municipales. Las estimaciones que presento abajo hacen una lectura literal de las coaliciones. En iteraciones próximas del artículo usaré criterios de clasificación más finos (como son los convenios de coalición, el partido del gobernador, la votación histórica de los partidos en cada plaza, etc.) para intentar demostrar que mis hallazgos no son resultado de esta particular codificación de las coaliciones entre partidos mayores. 
 
 \section{Resultados}
 
@@ -378,6 +395,18 @@ No me detendré ahora a discutir las estimaciones que reporta el cuadro para cen
 \noindent Por escribirse.
 
 \section*{Appendix}
+
+\begin{figure}
+  \centering
+  %\resizebox{.8\textwidth}{!}{
+    \begin{tabular}{c}
+      \includegraphics[width=.45\columnwidth]{../plots/leftREPLICAlpm.pdf} \\
+      \includegraphics[width=.45\columnwidth]{../plots/panREPLICAlpm.pdf} \\
+      \includegraphics[width=.45\columnwidth]{../plots/priREPLICAlpm.pdf} \\
+    \end{tabular}
+  % }
+  \caption{Modelos para el periodo 1997--2017: réplica de Lucardi--Rosas}\label{F:replica}
+\end{figure}  
 
 \singlespacing
 

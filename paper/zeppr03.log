@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2026.2.1)  18 FEB 2026 12:23
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2026.2.1)  19 FEB 2026 11:31
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -858,73 +858,90 @@ File: ../plots/luro-fig1.png Graphic file (type png)
 Package pdftex.def Info: ../plots/luro-fig1.png  used on input line 158.
 (pdftex.def)             Requested size: 433.62001pt x 114.18314pt.
  [5 <../plots/luro-fig1.png>]
-[6] [7] [8]
-<../plots/izq-mcmc.png, id=43, 459.7175pt x 439.6425pt>
+[6] [7] [8] [9]
+<../plots/izq-mcmc.png, id=46, 459.7175pt x 439.6425pt>
 File: ../plots/izq-mcmc.png Graphic file (type png)
 <use ../plots/izq-mcmc.png>
-Package pdftex.def Info: ../plots/izq-mcmc.png  used on input line 263.
+Package pdftex.def Info: ../plots/izq-mcmc.png  used on input line 280.
 (pdftex.def)             Requested size: 134.42114pt x 128.55298pt.
-<../plots/pan-mcmc.png, id=44, 459.7175pt x 439.6425pt>
+<../plots/pan-mcmc.png, id=47, 459.7175pt x 439.6425pt>
 File: ../plots/pan-mcmc.png Graphic file (type png)
 <use ../plots/pan-mcmc.png>
-Package pdftex.def Info: ../plots/pan-mcmc.png  used on input line 264.
+Package pdftex.def Info: ../plots/pan-mcmc.png  used on input line 281.
 (pdftex.def)             Requested size: 134.42114pt x 128.55298pt.
-<../plots/pri-mcmc.png, id=45, 459.7175pt x 439.6425pt>
+<../plots/pri-mcmc.png, id=48, 459.7175pt x 439.6425pt>
 File: ../plots/pri-mcmc.png Graphic file (type png)
 <use ../plots/pri-mcmc.png>
-Package pdftex.def Info: ../plots/pri-mcmc.png  used on input line 265.
+Package pdftex.def Info: ../plots/pri-mcmc.png  used on input line 282.
 (pdftex.def)             Requested size: 134.42114pt x 128.55298pt.
 
-Overfull \hbox (5.64342pt too wide) in paragraph at lines 262--267
+Overfull \hbox (5.64342pt too wide) in paragraph at lines 279--284
  [][] 
  []
 
-[9 <../plots/izq-mcmc.png> <../plots/pan-mcmc.png> <../plots/pri-mcmc.png>]
-<../plots/leftPREKICKlpm.pdf, id=52, 505.89pt x 505.89pt>
+[10 <../plots/izq-mcmc.png> <../plots/pan-mcmc.png> <../plots/pri-mcmc.png>]
+[11] [12]
+<../plots/leftPREKICKlpm.pdf, id=61, 505.89pt x 505.89pt>
 File: ../plots/leftPREKICKlpm.pdf Graphic file (type pdf)
 <use ../plots/leftPREKICKlpm.pdf>
-Package pdftex.def Info: ../plots/leftPREKICKlpm.pdf  used on input line 371.
+Package pdftex.def Info: ../plots/leftPREKICKlpm.pdf  used on input line 388.
 (pdftex.def)             Requested size: 195.12767pt x 195.12718pt.
-<../plots/leftPOSTKICKlpm.pdf, id=53, 505.89pt x 505.89pt>
+<../plots/leftPOSTKICKlpm.pdf, id=62, 505.89pt x 505.89pt>
 File: ../plots/leftPOSTKICKlpm.pdf Graphic file (type pdf)
 <use ../plots/leftPOSTKICKlpm.pdf>
-Package pdftex.def Info: ../plots/leftPOSTKICKlpm.pdf  used on input line 371.
+Package pdftex.def Info: ../plots/leftPOSTKICKlpm.pdf  used on input line 388.
 (pdftex.def)             Requested size: 195.12767pt x 195.12718pt.
-<../plots/panPREKICKlpm.pdf, id=54, 505.89pt x 505.89pt>
+<../plots/panPREKICKlpm.pdf, id=63, 505.89pt x 505.89pt>
 File: ../plots/panPREKICKlpm.pdf Graphic file (type pdf)
 <use ../plots/panPREKICKlpm.pdf>
-Package pdftex.def Info: ../plots/panPREKICKlpm.pdf  used on input line 371.
+Package pdftex.def Info: ../plots/panPREKICKlpm.pdf  used on input line 388.
 (pdftex.def)             Requested size: 195.12767pt x 195.12718pt.
-<../plots/panPOSTKICKlpm.pdf, id=55, 505.89pt x 505.89pt>
+<../plots/panPOSTKICKlpm.pdf, id=64, 505.89pt x 505.89pt>
 File: ../plots/panPOSTKICKlpm.pdf Graphic file (type pdf)
 <use ../plots/panPOSTKICKlpm.pdf>
-Package pdftex.def Info: ../plots/panPOSTKICKlpm.pdf  used on input line 371.
+Package pdftex.def Info: ../plots/panPOSTKICKlpm.pdf  used on input line 388.
 (pdftex.def)             Requested size: 195.12767pt x 195.12718pt.
-<../plots/priPREKICKlpm.pdf, id=56, 505.89pt x 505.89pt>
+<../plots/priPREKICKlpm.pdf, id=65, 505.89pt x 505.89pt>
 File: ../plots/priPREKICKlpm.pdf Graphic file (type pdf)
 <use ../plots/priPREKICKlpm.pdf>
-Package pdftex.def Info: ../plots/priPREKICKlpm.pdf  used on input line 371.
+Package pdftex.def Info: ../plots/priPREKICKlpm.pdf  used on input line 388.
 (pdftex.def)             Requested size: 195.12767pt x 195.12718pt.
-<../plots/priPOSTKICKlpm.pdf, id=57, 505.89pt x 505.89pt>
+<../plots/priPOSTKICKlpm.pdf, id=66, 505.89pt x 505.89pt>
 File: ../plots/priPOSTKICKlpm.pdf Graphic file (type pdf)
 <use ../plots/priPOSTKICKlpm.pdf>
-Package pdftex.def Info: ../plots/priPOSTKICKlpm.pdf  used on input line 371.
+Package pdftex.def Info: ../plots/priPOSTKICKlpm.pdf  used on input line 388.
 (pdftex.def)             Requested size: 195.12767pt x 195.12718pt.
-
-(./zeppr03.bbl [10] [11] [12 <../plots/leftPREKICKlpm.pdf> <../plots/leftPOSTKI
-CKlpm.pdf> <../plots/panPREKICKlpm.pdf> <../plots/panPOSTKICKlpm.pdf> <../plots
-/priPREKICKlpm.pdf> <../plots/priPOSTKICKlpm.pdf>] [13]) [14] (./zeppr03.aux
+<../plots/leftREPLICAlpm.pdf, id=67, 505.89pt x 505.89pt>
+File: ../plots/leftREPLICAlpm.pdf Graphic file (type pdf)
+<use ../plots/leftREPLICAlpm.pdf>
+Package pdftex.def Info: ../plots/leftREPLICAlpm.pdf  used on input line 403.
+(pdftex.def)             Requested size: 195.12767pt x 195.12718pt.
+<../plots/panREPLICAlpm.pdf, id=68, 505.89pt x 505.89pt>
+File: ../plots/panREPLICAlpm.pdf Graphic file (type pdf)
+<use ../plots/panREPLICAlpm.pdf>
+Package pdftex.def Info: ../plots/panREPLICAlpm.pdf  used on input line 404.
+(pdftex.def)             Requested size: 195.12767pt x 195.12718pt.
+<../plots/priREPLICAlpm.pdf, id=69, 505.89pt x 505.89pt>
+File: ../plots/priREPLICAlpm.pdf Graphic file (type pdf)
+<use ../plots/priREPLICAlpm.pdf>
+Package pdftex.def Info: ../plots/priREPLICAlpm.pdf  used on input line 405.
+(pdftex.def)             Requested size: 195.12767pt x 195.12718pt.
+ (./zeppr03.bbl [13] [14 <../plots/leftPREKICKlpm.pdf> <../plots/leftPOSTKICKlp
+m.pdf> <../plots/panPREKICKlpm.pdf> <../plots/panPOSTKICKlpm.pdf> <../plots/pri
+PREKICKlpm.pdf> <../plots/priPOSTKICKlpm.pdf>] [15 <../plots/leftREPLICAlpm.pdf
+> <../plots/panREPLICAlpm.pdf> <../plots/priREPLICAlpm.pdf>]) [16]
+(./zeppr03.aux
 LaTeX Info: Redefining \. on input line 8.
 LaTeX Info: Redefining \% on input line 8.
 ) ) 
 Here is how much of TeX's memory you used:
- 19130 strings out of 478287
- 374435 string characters out of 5849290
- 657828 words of memory out of 5000000
- 36946 multiletter control sequences out of 15000+600000
- 542334 words of font info for 156 fonts, out of 8000000 for 9000
+ 19159 strings out of 478287
+ 375300 string characters out of 5849290
+ 655881 words of memory out of 5000000
+ 36971 multiletter control sequences out of 15000+600000
+ 545137 words of font info for 158 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 84i,19n,89p,1286b,463s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 84i,19n,89p,1332b,463s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texlive/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/share/texli
 ve/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texlive/tex
 mf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dis
@@ -934,10 +951,10 @@ t/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts
 syr.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/s
 hare/texlive/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/share/texlive/te
 xmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on zeppr03.pdf (14 pages, 403436 bytes).
+Output written on zeppr03.pdf (16 pages, 418949 bytes).
 PDF statistics:
- 157 PDF objects out of 1000 (max. 8388607)
- 101 compressed objects within 2 object streams
+ 187 PDF objects out of 1000 (max. 8388607)
+ 123 compressed objects within 2 object streams
  0 named destinations out of 1000 (max. 500000)
- 63 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 78 words of extra memory for PDF output out of 10000 (max. 10000000)
 

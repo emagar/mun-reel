@@ -3,44 +3,44 @@ Capacity: max_strings=200000, hash_size=200000, hash_prime=170003
 The top-level auxiliary file: zeppr03.aux
 The style file: apsr.bst
 Database file #1: /home/eric/Dropbox/mydocs/magar.bib
-You've used 20 entries,
+You've used 21 entries,
             2874 wiz_defined-function locations,
-            832 strings with 9151 characters,
-and the built_in function-call counts, 71147 in all, are:
-= -- 11574
-> -- 788
+            839 strings with 9335 characters,
+and the built_in function-call counts, 76095 in all, are:
+= -- 12400
+> -- 839
 < -- 0
-+ -- 5333
-- -- 288
-* -- 5943
-:= -- 14492
-add.period$ -- 81
-call.type$ -- 20
-change.case$ -- 260
-chr.to.int$ -- 20
-cite$ -- 20
-duplicate$ -- 310
-empty$ -- 663
-format.name$ -- 308
-if$ -- 12748
++ -- 5723
+- -- 306
+* -- 6371
+:= -- 15472
+add.period$ -- 85
+call.type$ -- 21
+change.case$ -- 273
+chr.to.int$ -- 21
+cite$ -- 21
+duplicate$ -- 325
+empty$ -- 697
+format.name$ -- 326
+if$ -- 13639
 int.to.chr$ -- 5
 int.to.str$ -- 0
-missing$ -- 23
-newline$ -- 89
-num.names$ -- 227
-pop$ -- 90
+missing$ -- 24
+newline$ -- 93
+num.names$ -- 239
+pop$ -- 93
 preamble$ -- 1
-purify$ -- 300
+purify$ -- 315
 quote$ -- 0
-skip$ -- 254
+skip$ -- 267
 stack$ -- 0
-substring$ -- 16166
-swap$ -- 42
-text.length$ -- 280
+substring$ -- 17337
+swap$ -- 44
+text.length$ -- 294
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 72
+type$ -- 76
 warning$ -- 0
-while$ -- 470
+while$ -- 495
 width$ -- 0
-write$ -- 280
+write$ -- 293
