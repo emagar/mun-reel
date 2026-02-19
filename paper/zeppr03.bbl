@@ -45,10 +45,24 @@ Cox, Gary~W. \harvardand\ Mathew~D. McCubbins. 1986.
 \newblock ``Electoral Politics as a Redistributive Game.'' {\em The Journal of
   Politics} 48(2):370--89.
 
+\harvarditem[D\'iaz~Cayeros, Est\'evez \harvardand\ Magaloni]{D\'iaz~Cayeros,
+  Est\'evez \harvardand\
+  Magaloni}{2016}{diaz-estevez-magaloni-Poverty-book.2016}
+D\'iaz~Cayeros, Alberto, Federico Est\'evez \harvardand\ Beatriz Magaloni.
+  2016.
+\newblock {\em The Political Logic of Poverty Relief: Electoral Strategies and
+  Social Policy in {M}exico}.
+\newblock New York:  Cambridge University Press.
+
 \harvarditem{Erikson}{1971}{erikson1971incumbency}
 Erikson, Robert~S. 1971.
 \newblock ``The Advantage of Incumbency in Congressional Elections.'' {\em
   Polity} 3:395--405.
+
+\harvarditem{Gelman \harvardand\ King}{1991}{gelman.king.1991incumbency}
+Gelman, Andrew \harvardand\ Gary King. 1991.
+\newblock ``Systemic Consequences of Incumbency Advantage in United States
+  House Elections.'' {\em American Journal of Political Science} 35(1):110--38.
 
 \harvarditem{Jacobson}{1987}{jacobson.1987.runningScared}
 Jacobson, Gary~C. 1987.
@@ -72,7 +86,8 @@ Lucardi, Adri\'an \harvardand\ Guillermo Rosas. 2016.
 \harvarditem{Magar}{2026}{magar.el.dataset.2026}
 Magar, Eric. 2026.
 \newblock ``Local Competition in Mexican Politics since 1979: A Comprehensive
-  Dataset of Municipal Elections.'' Unpublished manuscript, ITAM.
+  Dataset of Municipal Elections.'' Available at SSRN:
+  \url{http://dx.doi.org/10.2139/ssrn.5400731}.
 
 \harvarditem{Mayhew}{1974}{mayhew1974vanishingMg}
 Mayhew, David~R. 1974.
@@ -89,6 +104,12 @@ Motolinia, Luc\'ia. 2026.
 Schlesinger, Joseph~A. 1966.
 \newblock {\em Ambition and Politics: Political Careers in the United States}.
 \newblock Chicago:  Rand McNally.
+
+\harvarditem{Stokes}{2005}{stokes.Argentina2005}
+Stokes, Susan~C. 2005.
+\newblock ``Perverse accountability: A formal model of machine politics with
+  evidence from Argentina.'' {\em American Political Science Review}
+  99(3):315--25.
 
 \harvarditem{Uppal}{2009}{uppal.IncumbencyIndia.2009}
 Uppal, Yogesh. 2009.

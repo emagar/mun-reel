@@ -963,15 +963,39 @@ funfun <- function(model = 1           ## 1 2 3 4 5 or 6
 ###########################################
 ## Select a party and model for analysis ##
 ###########################################
-res <- funfun(model=2
+res <- funfun(model=3
             , pty="left"
             , plot.to.pdf=FALSE)
+library(stargazer)
+stargazer(res)
+library(lmtest)
+waldtest(res.pan, res.pan.r)
+x
 
 ## summarize
 tmp <- luro[luro$dselpan==1 & luro$yr>2017,]
 nrow(tmp)
 table(tmp$dincballotpan) / nrow(tmp)
 table(tmp$win, tmp$dleftwin)
+x
+
+## summarize
+tmp <-  vot[ids$yr>2017 & ids$edon!=13 & ids$edon!=30,]
+tmpy <- ids[ids$yr>2017 & ids$edon!=13 & ids$edon!=30,]
+tmp$post <- 1;
+tmp$post[tmpy$edon==1  & tmpy$yr<2019] <- 0
+tmp$post[tmpy$edon==2  & tmpy$yr<2019] <- 0
+tmp$post[tmpy$edon==10 & tmpy$yr<2019] <- 0
+tmp$post[tmpy$edon==9  & tmpy$yr<2021] <- 0
+tmp$post[tmpy$edon==21 & tmpy$yr<2021] <- 0
+tmp$post[tmpy$edon==18 & tmpy$yr<2024] <- 0
+tmp$post[tmpy$edon==29 & tmpy$yr<2024] <- 0
+
+table(tmpy$yr, tmp$post)
+table(tmpy$yr, tmp$race.prior)
+table(tmp$dincballot)
+table(ids$yr)
+tmp[1,]
 x
 
 ## addGubYr <- function(X){
