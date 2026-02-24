@@ -1088,7 +1088,7 @@ logitModel <- function() {
 ## prep data as for LPM above ##
 ################################
 pty <- "left" 
-model <- 4
+model <- 6
 tmp <- funfun(model=model
             , pty=pty
             , plot.to.pdf=FALSE
@@ -1142,35 +1142,36 @@ dl.inits <- function (){
 dl.parameters <- c("beta")
 #dm.parameters <- c("beta", "sigma", "depvar.hat")
 ## test ride
-fit1jags <- jags (data=dl.data, inits=dl.inits, dl.parameters,
+fitjags <- jags (data=dl.data, inits=dl.inits, dl.parameters,
              model.file=logitModel, n.chains=3,
              n.iter=1000, n.thin=10
              )
 
 ## estimate
-fit1jags <- jags (data=dl.data, inits=dl.inits, dl.parameters,
+fitjags <- jags (data=dl.data, inits=dl.inits, dl.parameters,
                   model.file=logitModel, n.chains=3,
                   n.iter=100000, n.thin=100,
                   )
-fit1jags
-##fit1jags <- update(fit1jags, 10000) # continue updating to produce 10000 new draws per chain
-traceplot(fit1jags) # visually check posterior parameter convergence
+pty; model
+fitjags
+##fitjags <- update(fitjags, 10000) # continue updating to produce 10000 new draws per chain
+traceplot(fitjags) # visually check posterior parameter convergence
 
 ##
-fit1jags$var.labels <- var.labels # add object to interpret coefficients
-summary(fit1jags$BUGSoutput$summary)
+fitjags$var.labels <- var.labels # add object to interpret coefficients
+summary(fitjags$BUGSoutput$summary)
 
 ## ## load saved posterior samples
 ## load(paste0("../mun-reel/data/leftPREKICKjags.RData"))
 ##
 ## antilogit <- function(X){ exp(X) / (exp(X)+1) }
 ## ## use one for plots/analysis with posterior sample
-## left3jags -> fit1jags
+## left3jags -> fitjags
 
 
 ## sims bayesian
 ## pr(win)
-coefs <- fit1jags$BUGSoutput$sims.matrix; coefs <- coefs[,-grep("deviance", colnames(fit1jags$BUGSoutput$sims.matrix))]
+coefs <- fitjags$BUGSoutput$sims.matrix; coefs <- coefs[,-grep("deviance", colnames(fitjags$BUGSoutput$sims.matrix))]
 scenario <- c(
     dneg = 1              ## dneg <- c(0,1)
   , dnegxincball = 1      ## dnegxincball
@@ -1204,14 +1205,14 @@ sc$dincball <- sc$mg <- NULL
 head(sc)
 sc <- as.matrix(sc)
 #
-tmp.mean    <- fit1jags$BUGSoutput$summary[grep("beta", rownames(fit1jags$BUGSoutput$summary)),1] # coef point pred (mean posterior)
+tmp.mean    <- fitjags$BUGSoutput$summary[grep("beta", rownames(fitjags$BUGSoutput$summary)),1] # coef point pred (mean posterior)
 pointPred <- sc %*% diag(tmp.mean) # right side achieves multiplication of matrix columns by vector
 pointPred <- antilogit(rowSums(pointPred)) # will plug this in sc later
-tmp.10   <- apply(X=fit1jags$BUGSoutput$sims.matrix[,grep("beta", colnames(fit1jags$BUGSoutput$sims.matrix))]
+tmp.10   <- apply(X=fitjags$BUGSoutput$sims.matrix[,grep("beta", colnames(fitjags$BUGSoutput$sims.matrix))]
                 , 2, FUN=function(X) quantile(X,.1)) # coef 10%
 LL        <- sc %*% diag(tmp.10) # right side achieves multiplication of matrix columns by vector
 LL        <- antilogit(rowSums(LL)) # will plug this in sc later
-tmp.90   <- apply(X=fit1jags$BUGSoutput$sims.matrix[,grep("beta", colnames(fit1jags$BUGSoutput$sims.matrix))]
+tmp.90   <- apply(X=fitjags$BUGSoutput$sims.matrix[,grep("beta", colnames(fitjags$BUGSoutput$sims.matrix))]
                 , 2, FUN=function(X) quantile(X,.9)) # coef 90%
 UL        <- sc %*% diag(tmp.90) # right side achieves multiplication of matrix columns by vector
 UL        <- antilogit(rowSums(UL)) # will plug this in sc later
@@ -1228,7 +1229,7 @@ sc$UL <- UL; rm(UL)
 head(sc)
 ##
 ## Add sims to output object
-fit1jags$post.estim.sims <- sc
+fitjags$post.estim.sims <- sc
 
 
 ##########
@@ -1278,46 +1279,61 @@ if (model %in% c(3,4,5)) legend("topright", legend = c("incumbent running","open
 ########################
 # simulations end here #
 ########################
-fit1jags$var.labels
+fitjags$var.labels
 ## N
 dim(tmp)
-## pan 4758
-## pri 7293
+## pan 1 3656
+## pan 2 151
+## pan 3 1816
+## pan 4 5623
+## pan 6 199
+## pri 1 5877
+## pri 2 151
+## pri 3 1840
+## pri 4 7868
+## pri 6 169
 ## left 1 2869
 ## left 2 121
 ## left 3 906
 ## left 4 3896
+## left 6 111
 
 ## change in intercept
 ##(dneg - dpos): 
-table( (fit1jags$BUGSoutput$sims.list$beta[,5]) - fit1jags$BUGSoutput$sims.list$beta[,1] < 0) / 1500
-## pan 1 
-## pan 2 
-## pan 3 
-## pan 4 
-## pri 1 
-## pri 2 
-## pri 3 
-## pri 4 
+table( (fitjags$BUGSoutput$sims.list$beta[,5]) - fitjags$BUGSoutput$sims.list$beta[,1] < 0) / 1500
+## pan 1 1.000
+## pan 2 0.876
+## pan 3 0.677
+## pan 4 1.000
+## pan 6 0.075
+## pri 1 1.000
+## pri 2 0.858
+## pri 3 0.999
+## pri 4 1.000
+## pri 6 0.605
 ## left 1 1.000
 ## left 2 0.916
 ## left 3 0.984
 ## left 4 1.000
+## left 6 0.889
 ## (dneg + dnegxdinc) - (dpos + dposxdinc)
-table(( ( fit1jags$BUGSoutput$sims.list$beta[,5] + fit1jags$BUGSoutput$sims.list$beta[,6] )
-      - ( fit1jags$BUGSoutput$sims.list$beta[,1] + fit1jags$BUGSoutput$sims.list$beta[,2] ) < 0)) / 1500
+table(( ( fitjags$BUGSoutput$sims.list$beta[,5] + fitjags$BUGSoutput$sims.list$beta[,6] )
+      - ( fitjags$BUGSoutput$sims.list$beta[,1] + fitjags$BUGSoutput$sims.list$beta[,2] ) < 0)) / 1500
 ## pan 1 -----
 ## pan 2 -----
-## pan 3
-## pan 4
+## pan 3 0.488
+## pan 4 0.504
+## pan 6 -----
 ## pri 1 -----
 ## pri 2 -----
-## pri 3
-## pri 4
+## pri 3 0.177
+## pri 4 0.189
+## pri 6 -----
 ## left 1 -----
 ## left 2 -----
 ## left 3 0.219
 ## left 4 0.225
+## left 6 -----
 
 var.labels
 pan1jags$BUGSoutput$summary
@@ -1327,7 +1343,7 @@ left2jags$BUGSoutput$summary
 
 ## make copy of estimation
 model; pty
-left4jags <- fit1jags 
+left6jags <- fitjags 
 ## save bugs objects
-save(left4jags , file = paste0("../mun-reel/data/" , pty, model, file.names[[model]] , "jags.RData"))
+save(left6jags , file = paste0("../mun-reel/data/" , pty, model, file.names[[model]] , "jags.RData"))
 
