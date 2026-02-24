@@ -774,6 +774,7 @@ luro$dselleft     [which(luro$emm %in%  c("gue-17.021", "gue-17.042", "pue-17.16
 funfun <- function(model = 1           ## 1 2 3 4 5 or 6
                  , pty  = "pan"        ## subsets data and used for filenames
                  , plot.to.pdf = FALSE ## default is to view the plot not save it
+                 , bayes.prep  = FALSE ## default is to do frequentist LPM estimation 
                    ){
     ##############################
     ## SUBSET SELECTION FILTERS ##
@@ -888,8 +889,8 @@ funfun <- function(model = 1           ## 1 2 3 4 5 or 6
     ## inglés
     encab <- c(
         paste0("1997-2017 all (Lucardi-Rosas replica "  , "N=", nrow(tmpREPLICA  ), ")")
-      , paste0("2018-2025 pre-kickoff states ("         , "N=", nrow(tmpPREKICK  ), ")")
-      , paste0("2018-2025 post-kickoff states ("        , "N=", nrow(tmpPOSTKICK ), ")")
+      , paste0("2018-2025 pre-kick-off states ("        , "N=", nrow(tmpPREKICK  ), ")")
+      , paste0("2018-2025 post-kick-off states ("       , "N=", nrow(tmpPOSTKICK ), ")")
       , paste0("1997-2025 all states ("                 , "N=", nrow(tmpALL      ), ")")
       , paste0("2018-2025 all states ("                 , "N=", nrow(tmpALLAMLO  ), ")")
       , paste0("2018-2025 non-reform states (Hgo & Ver ", "N=", nrow(tmpNONREF   ), ")")
@@ -917,47 +918,55 @@ funfun <- function(model = 1           ## 1 2 3 4 5 or 6
     ## dwin ~ dneg*1 + dneg*mg + dneg*dincball + dneg*mg*dincball + dpos*1 + dpos*mg + dpos*dincball + dpos*mg*dincball
     ## dwin ~ dneg   + dnegxmg + dnegxpost     + dnegxmgxpost     + dpos   + dposxmg   + dposxpost   + dposxmgxpost
     ##
-    ## Estima luc+rosas model
-    if (model %in% c(1,2,6)){
-        rd <- lm(dwin ~ dneg                + dnegxmg                   + dpos                + dposxmg                   - 1, data = the.data)
+    if (bayes.prep==FALSE){
+        ## Estima luc+rosas model
+        if (model %in% c(1,2,6)){
+            rd <- lm(dwin ~ dneg                + dnegxmg                   + dpos                + dposxmg                   - 1, data = the.data)
+        }
+        ## Estima model que controla incumbent
+        if (model %in% c(3,4,5)){
+            rd <- lm(dwin ~ dneg + dnegxincball + dnegxmg + dnegxmgxincball + dpos + dposxincball + dposxmg + dposxmgxincball - 1, data = the.data)
+        }
+        print(summary.lm(rd))
+        ##
+        ## plot
+        if (plot.to.pdf==TRUE){
+            ##png("../plots/pan-luro97-23-lpm.png")
+            pdf(file=paste0("../mun-reel/plots/", pty, file.names[model], "lpm.pdf"))
+        }
+        plot(x = c(-.1,.1), y = c(0,1), type = "n", main = paste0(toupper(pty), "\n", encab[model]),
+             xlab = expression("Margin"[t]), ylab = expression("Pr(win)"[t+1]))
+        abline(v=0)
+        ##
+        ## incumbent not running
+        segments(x0 = -.1, y0 = (  rd$coefficients ["dneg"] +
+                                   rd$coefficients ["dnegxmg"] * -.1  ),
+                 x1=  0,   y1 = (  rd$coefficients ["dneg"]   ))
+        segments(x0 =  .1, y0 = (  rd$coefficients ["dpos"] +
+                                   rd$coefficients ["dposxmg"] *  .1  ),
+                 x1=  0,   y1 = (  rd$coefficients ["dpos"]   ))
+        ## incumbent running
+        if (model %in% c(3,4,5)){
+            segments(x0 = -.1, y0 = ( (rd$coefficients ["dneg"]    + rd$coefficients ["dnegxincball"]) +
+                                      (rd$coefficients ["dnegxmg"] + rd$coefficients ["dnegxmgxincball"]) * -.1),
+                     x1=  0,   y1 = (  rd$coefficients ["dneg"]    + rd$coefficients ["dnegxincball"]), lty = 2)
+            segments(x0 =  .1, y0 = ( (rd$coefficients ["dpos"]    + rd$coefficients ["dposxincball"]) +
+                                      (rd$coefficients ["dposxmg"] + rd$coefficients ["dposxmgxincball"]) *  .1),
+                     x1=  0,   y1 = (  rd$coefficients ["dpos"]    + rd$coefficients ["dposxincball"]), lty = 2)
+            ## legend
+            legend("topright", legend = c("incumbent running","open seat"), lty = c(2,1))
+        }
+        if (plot.to.pdf==TRUE){
+            dev.off()
+        }
+        return(rd)
     }
-    ## Estima model que controla incumbent
-    if (model %in% c(3,4,5)){
-        rd <- lm(dwin ~ dneg + dnegxincball + dnegxmg + dnegxmgxincball + dpos + dposxincball + dposxmg + dposxmgxincball - 1, data = the.data)
-    }
-    print(summary.lm(rd))
     ##
-    ## plot
-    if (plot.to.pdf==TRUE){
-        ##png("../plots/pan-luro97-23-lpm.png")
-        pdf(file=paste0("../mun-reel/plots/", pty, file.names[model], "lpm.pdf"))
+    ## or export prepared data
+    if (bayes.prep==TRUE){
+        return(the.data)
+    ##    return(tmpDATA)
     }
-    plot(x = c(-.1,.1), y = c(0,1), type = "n", main = paste0(toupper(pty), "\n", encab[model]),
-         xlab = expression("Margin"[t]), ylab = expression("Pr(win)"[t+1]))
-    abline(v=0)
-    ##
-    ## incumbent not running
-    segments(x0 = -.1, y0 = (  rd$coefficients ["dneg"] +
-                               rd$coefficients ["dnegxmg"] * -.1  ),
-             x1=  0,   y1 = (  rd$coefficients ["dneg"]   ))
-    segments(x0 =  .1, y0 = (  rd$coefficients ["dpos"] +
-                               rd$coefficients ["dposxmg"] *  .1  ),
-             x1=  0,   y1 = (  rd$coefficients ["dpos"]   ))
-    ## incumbent running
-    if (model %in% c(3,4,5)){
-        segments(x0 = -.1, y0 = ( (rd$coefficients ["dneg"]    + rd$coefficients ["dnegxincball"]) +
-                                  (rd$coefficients ["dnegxmg"] + rd$coefficients ["dnegxmgxincball"]) * -.1),
-                 x1=  0,   y1 = (  rd$coefficients ["dneg"]    + rd$coefficients ["dnegxincball"]), lty = 2)
-        segments(x0 =  .1, y0 = ( (rd$coefficients ["dpos"]    + rd$coefficients ["dposxincball"]) +
-                                  (rd$coefficients ["dposxmg"] + rd$coefficients ["dposxmgxincball"]) *  .1),
-                 x1=  0,   y1 = (  rd$coefficients ["dpos"]    + rd$coefficients ["dposxincball"]), lty = 2)
-        ## legend
-        legend("topright", legend = c("incumbent running","open seat"), lty = c(2,1))
-    }
-    if (plot.to.pdf==TRUE){
-        dev.off()
-    }
-    return(rd)
 }
 
 ###########################################
@@ -1054,6 +1063,7 @@ x
 ##  JAGS ESTIMATION  ##
 #######################
 #######################
+##
 library(R2jags)
 antilogit <- function(X){ exp(X) / (exp(X)+1) }
 #########################################
@@ -1073,6 +1083,40 @@ logitModel <- function() {
     }
 }
 ##
+
+################################
+## prep data as for LPM above ##
+################################
+pty <- "left" 
+model <- 4
+tmp <- funfun(model=model
+            , pty=pty
+            , plot.to.pdf=FALSE
+            , bayes.prep=TRUE)
+##
+## re-do these for mcmc plots
+encab <- c(
+    paste0(toupper(pty), "\n" , "1997-2017 all (Lucardi-Rosas replica "  , "N=", nrow(tmp), ")")
+  , paste0(toupper(pty), "\n" , "2018-2025 pre-kick-off states ("        , "N=", nrow(tmp), ")")
+  , paste0(toupper(pty), "\n" , "2018-2025 post-kick-off states ("       , "N=", nrow(tmp), ")")
+  , paste0(toupper(pty), "\n" , "1997-2025 all states ("                 , "N=", nrow(tmp), ")")
+  , paste0(toupper(pty), "\n" , "2018-2025 all states ("                 , "N=", nrow(tmp), ")")
+  , paste0(toupper(pty), "\n" , "2018-2025 non-reform states (Hgo & Ver ", "N=", nrow(tmp), ")")
+    ##   paste0("All 1997-2017 (LuRo replica "           , "N=", nrow(tmpREPLICA  ), ")")
+    ## , paste0("Pre-kickoff 2018-2025 (LuRo extension " , "N=", nrow(tmpPREKICK  ), ")")
+    ## , paste0("Post-kickoff 2018-2025 ("               , "N=", nrow(tmpPOSTKICK ), ")")
+    ## , paste0("All 1997-2025 ("                        , "N=", nrow(tmpALL      ), ")")
+    ## , paste0("All 2018-2025 ("                        , "N=", nrow(tmpALLAMLO  ), ")")
+    ## , paste0("Non reformers 2018-2025 (Hgo & Ver "    , "N=", nrow(tmpNONREF   ), ")")
+)
+file.names <- c(
+    "REPLICA"
+  , "PREKICK"
+  , "POSTKICK"
+  , "ALL"
+  , "ALLAMLO"
+  , "NONREF"
+)
 ######################################
 ### EXTRA DATA PREP FOR JAGS MODEL ###
 ######################################
@@ -1100,35 +1144,28 @@ dl.parameters <- c("beta")
 ## test ride
 fit1jags <- jags (data=dl.data, inits=dl.inits, dl.parameters,
              model.file=logitModel, n.chains=3,
-             n.iter=100, n.thin=10
+             n.iter=1000, n.thin=10
              )
+
 ## estimate
 fit1jags <- jags (data=dl.data, inits=dl.inits, dl.parameters,
                   model.file=logitModel, n.chains=3,
                   n.iter=100000, n.thin=100,
                   )
 fit1jags
-tmp.bak -> fit1jags
-fit1jags <- update(fit1jags, 10000) # continue updating to produce 10000 new draws per chain
+##fit1jags <- update(fit1jags, 10000) # continue updating to produce 10000 new draws per chain
 traceplot(fit1jags) # visually check posterior parameter convergence
 
 ##
 fit1jags$var.labels <- var.labels # add object to interpret coefficients
 summary(fit1jags$BUGSoutput$summary)
-##
 
-
-## load saved posterior samples
-load(file =  "pan-1997-2023-jags.RData")   ## pan1jags
-load(file =  "pri-1997-2023-jags.RData")   ## pri1jags
-load(file = "left-1997-2023-jags.RData")  ## left1jags
-load(file =  "pan-2018-2023-jags.RData")   ## pan2jags
-load(file =  "pri-2018-2023-jags.RData")   ## pri2jags
-load(file = "left-2018-2023-jags.RData")  ## left2jags
+## ## load saved posterior samples
+## load(paste0("../mun-reel/data/leftPREKICKjags.RData"))
 ##
-antilogit <- function(X){ exp(X) / (exp(X)+1) }
-## use one for plots/analysis with posterior sample
-pri2jags -> fit1jags
+## antilogit <- function(X){ exp(X) / (exp(X)+1) }
+## ## use one for plots/analysis with posterior sample
+## left3jags -> fit1jags
 
 
 ## sims bayesian
@@ -1192,19 +1229,15 @@ head(sc)
 ##
 ## Add sims to output object
 fit1jags$post.estim.sims <- sc
-##
-## rename/save party estimation
-##left1jags <- fit1jags
 
 
 ##########
 ## plot ##
 ##########
-##png("../plots/pan-97-17-mcmc.png")
-##pdf("../plots/pan-97-17-mcmc.pdf")
-##plot(x = c(-.1,.1), y = c(0,1), type = "n", main = "PAN 1997-2023", xlab = expression("Margin"[t]), ylab = expression("Probability of winning"[t+1]))
-plot(x = c(-.1,.1), y = c(0,1), type = "n", main = "PAN 1997-2017", xlab = expression("Margen en t"), ylab = expression("Probabilidad de ganar en t+1"))
-points(sc$dnegxmg[sc$dneg==1 & sc$dnegxincball==1], sc$pred[sc$dneg==1 & sc$dnegxincball==1], pch = 19, col = rgb(.4,.6,.2, alpha=.25), cex = .65)
+##pdf(paste0("../mun-reel/plots/" , pty , model , file.names[[model]] , "mcmc.pdf"))
+plot(x = c(-.1,.1), y = c(0,1), type = "n", main = encab[[model]], xlab = expression("Margin"[t]), ylab = expression("Probability of winning"[t+1]))
+##plot(x = c(-.1,.1), y = c(0,1), type = "n", main = encab[[model]], xlab = expression("Margen en t"), ylab = expression("Probabilidad de ganar en t+1"))
+if (model %in% c(3,4,5)) points(sc$dnegxmg[sc$dneg==1 & sc$dnegxincball==1], sc$pred[sc$dneg==1 & sc$dnegxincball==1], pch = 19, col = rgb(.4,.6,.2, alpha=.25), cex = .65)
 points(sc$dnegxmg[sc$dneg==1 & sc$dnegxincball==0], sc$pred[sc$dneg==1 & sc$dnegxincball==0], pch = 19, col = rgb(.6,.4,.2, alpha=.25), cex = .65)
 ##
 ## polygon(x = c(sc$dnegxmg[sc$dneg==1 & sc$dnegxincball==1], rev(sc$dnegxmg[sc$dneg==1 & sc$dnegxincball==1])),
@@ -1214,7 +1247,7 @@ points(sc$dnegxmg[sc$dneg==1 & sc$dnegxincball==0], sc$pred[sc$dneg==1 & sc$dneg
 ##         y = c(sc$LL     [sc$dneg==1 & sc$dnegxincball==0], rev(sc$UL     [sc$dneg==1 & sc$dnegxincball==0])),
 ##         col = rgb(.5,.5,.5, alpha=.25))
 ##
-#points(sc$dposxmg[sc$dpos==1 & sc$dposxincball==1], sc$pred[sc$dpos==1 & sc$dposxincball==1], pch = 19, col = rgb(.4,.6,.2, alpha=.25), cex = .65)
+if (model %in% c(3,4,5)) points(sc$dposxmg[sc$dpos==1 & sc$dposxincball==1], sc$pred[sc$dpos==1 & sc$dposxincball==1], pch = 19, col = rgb(.4,.6,.2, alpha=.25), cex = .65)
 points(sc$dposxmg[sc$dpos==1 & sc$dposxincball==0], sc$pred[sc$dpos==1 & sc$dposxincball==0], pch = 19, col = rgb(.6,.4,.2, alpha=.25), cex = .65)
 ##
 ## polygon(x = c(sc$dposxmg[sc$dpos==1 & sc$dposxincball==1], rev(sc$dposxmg[sc$dpos==1 & sc$dposxincball==1])),
@@ -1226,19 +1259,21 @@ points(sc$dposxmg[sc$dpos==1 & sc$dposxincball==0], sc$pred[sc$dpos==1 & sc$dpos
 ##
 abline(v=0)
 ## incumbent on the ballot
-segments(x0 = -.1, y0 = (  sc$pointPred[sc$dnegxmg==-.1 & sc$dnegxincball==1]  ),
-         x1=  0,   y1 = (  sc$pointPred[sc$dnegxmg==0   & sc$dnegxincball==1]  ), lwd = 2, col = rgb(.4,.6,.2))
-segments(x0 =  .1, y0 = (  sc$pointPred[sc$dposxmg== .1 & sc$dposxincball==1]  ),
-         x1=  0,   y1 = (  sc$pointPred[sc$dposxmg==0   & sc$dposxincball==1]  ), lwd = 2, col = rgb(.4,.6,.2))
+if (model %in% c(3,4,5)) {
+    segments(x0 = -.1, y0 = (  sc$pointPred[sc$dnegxmg==-.1 & sc$dnegxincball==1]  ),
+             x1=  0,   y1 = (  sc$pointPred[sc$dnegxmg==0   & sc$dnegxincball==1]  ), lwd = 2, col = rgb(.4,.6,.2))
+    segments(x0 =  .1, y0 = (  sc$pointPred[sc$dposxmg== .1 & sc$dposxincball==1]  ),
+             x1=  0,   y1 = (  sc$pointPred[sc$dposxmg==0   & sc$dposxincball==1]  ), lwd = 2, col = rgb(.4,.6,.2))
+}
 ## open seat
 segments(x0 = -.1, y0 = (  sc$pointPred[sc$dnegxmg==-.1 & sc$dnegxincball==0 & sc$dneg==1]  ),
          x1=  0,   y1 = (  sc$pointPred[sc$dnegxmg==0   & sc$dnegxincball==0 & sc$dneg==1]  ), lwd = 2, col = rgb(.6,.4,.2))
 segments(x0 =  .1, y0 = (  sc$pointPred[sc$dposxmg== .1 & sc$dposxincball==0 & sc$dpos==1]  ),
          x1=  0,   y1 = (  sc$pointPred[sc$dposxmg==0   & sc$dposxincball==0 & sc$dpos==1]  ), lwd = 2, col = rgb(.6,.4,.2))
 ## legend
-##legend("topright", legend = c("incumbent running","open seat"), lty = c(1,1), col = c(rgb(.4,.6,.2),rgb(.6,.4,.2)), lwd = c(2,2))
-legend("topright", legend = c("alcalde en la boleta","silla vacía"), lty = c(1,1), col = c(rgb(.4,.6,.2),rgb(.6,.4,.2)), lwd = c(2,2))
-dev.off()
+if (model %in% c(3,4,5)) legend("topright", legend = c("incumbent running","open seat"), lty = c(1,1), col = c(rgb(.4,.6,.2),rgb(.6,.4,.2)), lwd = c(2,2))
+##legend("topright", legend = c("alcalde en la boleta","silla vacía"), lty = c(1,1), col = c(rgb(.4,.6,.2),rgb(.6,.4,.2)), lwd = c(2,2))
+##dev.off()
 
 ########################
 # simulations end here #
@@ -1248,23 +1283,41 @@ fit1jags$var.labels
 dim(tmp)
 ## pan 4758
 ## pri 7293
-## left 2889
-## left 18-23 394
+## left 1 2869
+## left 2 121
+## left 3 906
+## left 4 3896
 
 ## change in intercept
 ##(dneg - dpos): 
 table( (fit1jags$BUGSoutput$sims.list$beta[,5]) - fit1jags$BUGSoutput$sims.list$beta[,1] < 0) / 1500
-## pan 1
-## pri 1
-## left 1
-## left 18-23 1
+## pan 1 
+## pan 2 
+## pan 3 
+## pan 4 
+## pri 1 
+## pri 2 
+## pri 3 
+## pri 4 
+## left 1 1.000
+## left 2 0.916
+## left 3 0.984
+## left 4 1.000
 ## (dneg + dnegxdinc) - (dpos + dposxdinc)
 table(( ( fit1jags$BUGSoutput$sims.list$beta[,5] + fit1jags$BUGSoutput$sims.list$beta[,6] )
       - ( fit1jags$BUGSoutput$sims.list$beta[,1] + fit1jags$BUGSoutput$sims.list$beta[,2] ) < 0)) / 1500
-## pan  .197
-## pri  .146
-## left .199
-## left 18-23 .203
+## pan 1 -----
+## pan 2 -----
+## pan 3
+## pan 4
+## pri 1 -----
+## pri 2 -----
+## pri 3
+## pri 4
+## left 1 -----
+## left 2 -----
+## left 3 0.219
+## left 4 0.225
 
 var.labels
 pan1jags$BUGSoutput$summary
@@ -1272,35 +1325,9 @@ pri1jags$BUGSoutput$summary
 left1jags$BUGSoutput$summary
 left2jags$BUGSoutput$summary
 
-pan1jags <- fit1jags
-
+## make copy of estimation
+model; pty
+left4jags <- fit1jags 
 ## save bugs objects
-save(pan1jags,  file =  "pan-1997-2023-jags.RData")
-save(pri1jags,  file =  "pri-1997-2023-jags.RData")
-save(left1jags, file = "left-1997-2023-jags.RData")
-save(pan2jags,  file =  "pan-2018-2023-jags.RData")
-save(pri2jags,  file =  "pri-2018-2023-jags.RData")
-save(left2jags, file = "left-2018-2023-jags.RData")
-save(fit1jags,  file =  "pan-1997-2017-jags.RData")
-save(fit1jags,  file =  "pri-1997-2017-jags.RData")
-save(fit1jags,  file = "left-1997-2017-jags.RData")
-
-load(file =  "pan-1997-2023-jags.RData")
-load(file =  "pri-1997-2023-jags.RData")
-load(file = "left-1997-2023-jags.RData")
-load(file =  "pan-2018-2023-jags.RData")
-load(file =  "pri-2018-2023-jags.RData")
-load(file = "left-2018-2023-jags.RData")
-load(file =  "pan-1997-2017-jags.RData")
-load(file =  "pri-1997-2017-jags.RData")
-load(file = "left-1997-2017-jags.RData")
-
-summary(lm(pan ~ dcoalpan + dcoalpan, data = vot)) ## Para ilustrar endogeneidad
-ls()
-dim(vot)
-
- 
-
-
-
+save(left4jags , file = paste0("../mun-reel/data/" , pty, model, file.names[[model]] , "jags.RData"))
 
