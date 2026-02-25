@@ -1076,7 +1076,7 @@ logitModel <- function() {
         logit(p[n]) <- inprod(beta[],X[n,]);  ## FLEXIBLE SPECIFICATION FOR VARYING N OF REGRESSORS, PREPARE depvar AND X IN R
     }
     ############################
-    ## NON-INFORMATIVE LEFTORS ##
+    ## NON-INFORMATIVE PRIORS ##
     ############################
     for (k in 1:K){                ## loop over regressors
         beta[k] ~ dnorm(0, .0001);
@@ -1150,7 +1150,7 @@ fitjags <- jags (data=dl.data, inits=dl.inits, dl.parameters,
 ## estimate
 fitjags <- jags (data=dl.data, inits=dl.inits, dl.parameters,
                   model.file=logitModel, n.chains=3,
-                  n.iter=100000, n.thin=100,
+                  n.iter=100000, n.thin=100
                   )
 pty; model
 fitjags
@@ -1161,12 +1161,26 @@ traceplot(fitjags) # visually check posterior parameter convergence
 fitjags$var.labels <- var.labels # add object to interpret coefficients
 summary(fitjags$BUGSoutput$summary)
 
-## ## load saved posterior samples
-## load(paste0("../mun-reel/data/leftPREKICKjags.RData"))
-##
-## antilogit <- function(X){ exp(X) / (exp(X)+1) }
-## ## use one for plots/analysis with posterior sample
-## left3jags -> fitjags
+## load saved posterior samples
+load(paste0("../mun-reel/data/left1REPLICAjags.RData"))
+load(paste0("../mun-reel/data/left2PREKICKjags.RData"))
+load(paste0("../mun-reel/data/left3POSTKICKjags.RData"))
+load(paste0("../mun-reel/data/left4ALLjags.RData"))
+##load(paste0("../mun-reel/data/left6NONREFjags.RData"))
+load(paste0("../mun-reel/data/pan1REPLICAjags.RData"))
+load(paste0("../mun-reel/data/pan2PREKICKjags.RData"))
+load(paste0("../mun-reel/data/pan3POSTKICKjags.RData"))
+load(paste0("../mun-reel/data/pan4ALLjags.RData"))
+##load(paste0("../mun-reel/data/pan6NONREFjags.RData"))
+load(paste0("../mun-reel/data/pri1REPLICAjags.RData"))
+load(paste0("../mun-reel/data/pri2PREKICKjags.RData"))
+load(paste0("../mun-reel/data/pri3POSTKICKjags.RData"))
+load(paste0("../mun-reel/data/pri4ALLjags.RData"))
+##load(paste0("../mun-reel/data/pri6NONREFjags.RData"))
+
+antilogit <- function(X){ exp(X) / (exp(X)+1) }
+## rename one for plots/analysis with posterior sample
+left3jags -> fitjags
 
 
 ## sims bayesian
@@ -1282,57 +1296,57 @@ if (model %in% c(3,4,5)) legend("topright", legend = c("incumbent running","open
 fitjags$var.labels
 ## N
 dim(tmp)
-## pan 1 3656
-## pan 2 151
-## pan 3 1816
-## pan 4 5623
-## pan 6 199
-## pri 1 5877
-## pri 2 151
-## pri 3 1840
-## pri 4 7868
-## pri 6 169
+## pan  1 3656
+## pri  1 5877
 ## left 1 2869
+## pan  2 151
+## pri  2 151
 ## left 2 121
+## pan  3 1816
+## pri  3 1840
 ## left 3 906
+## pan  4 5623
+## pri  4 7868
 ## left 4 3896
+## pan  6 199
+## pri  6 169
 ## left 6 111
 
 ## change in intercept
 ##(dneg - dpos): 
 table( (fitjags$BUGSoutput$sims.list$beta[,5]) - fitjags$BUGSoutput$sims.list$beta[,1] < 0) / 1500
-## pan 1 1.000
-## pan 2 0.876
-## pan 3 0.677
-## pan 4 1.000
-## pan 6 0.075
-## pri 1 1.000
-## pri 2 0.858
-## pri 3 0.999
-## pri 4 1.000
-## pri 6 0.605
+## pan  1 1.000
+## pri  1 1.000
 ## left 1 1.000
+## pan  2 0.876
+## pri  2 0.858
 ## left 2 0.916
+## pan  3 0.677
+## pri  3 0.999
 ## left 3 0.984
+## pan  4 1.000
+## pri  4 1.000
 ## left 4 1.000
+## pan  6 0.075
+## pri  6 0.605
 ## left 6 0.889
 ## (dneg + dnegxdinc) - (dpos + dposxdinc)
 table(( ( fitjags$BUGSoutput$sims.list$beta[,5] + fitjags$BUGSoutput$sims.list$beta[,6] )
       - ( fitjags$BUGSoutput$sims.list$beta[,1] + fitjags$BUGSoutput$sims.list$beta[,2] ) < 0)) / 1500
-## pan 1 -----
-## pan 2 -----
-## pan 3 0.488
-## pan 4 0.504
-## pan 6 -----
-## pri 1 -----
-## pri 2 -----
-## pri 3 0.177
-## pri 4 0.189
-## pri 6 -----
+## pan  1 -----
+## pri  1 -----
 ## left 1 -----
+## pan  2 -----
+## pri  2 -----
 ## left 2 -----
+## pan  3 0.488
+## pri  3 0.177
 ## left 3 0.219
+## pan  4 0.504
+## pri  4 0.189
 ## left 4 0.225
+## pan  6 -----
+## pri  6 -----
 ## left 6 -----
 
 var.labels
