@@ -23,6 +23,80 @@
 
 
 
+  I use MCMC to estimate equation 1, implemented with Jags \citep{jags.cite}, called from R \citep{r.cite}.
+
+  \noindent We stop the algorithm after 100 thousand iterations. The first 50 thousand are discarded to let the model adapt by updating the prior distributions of parameters to the data. Non-informative priors were used across the board: $\lambda_q \sim \mathcal{N}(0, 4),~q=1,\ldots5)$ and $\rho \sim \texttt{exp}(\frac{3}{4})$ (the exponential distribution has positive range and, with this parameterization, a median of about 1, a mean of 1.25, and a maximum value of 4.5). Every hundredth iteration of the final 50 thousand was saved as sample of parameters' posterior distributions (of size $3~\text{chains} \times 50000/100 = 1500$). 
+
+To verify convergence, Tables \ref{T:traceplotStart}--\ref{T:traceplotEnd} plot iterations of the Gibbs sampler (x-axis) and sampled values of model parameters (y-axis). One election/map is reported per Table, and one parameter per plot, with columns selecting three ways to measure votes: raw vote shares ($\texttt{v}$), mean district vote shares ($\bar{\texttt{v}}$), and population-weighted mean district votes ($\bar{\texttt{v}}$). With three chains utilized in each Jags call, plots allow verification of two things: that chains had reached a steady state; and that all chains (one in green, one in red, one in blue in the plots) had converged. With no exception, the parameter samples we report in the text had all converged.
+
+
+We now turn to estimating overall bias and its components. We fit equation \ref{E:kingMulti} using MCMC estimation to generate overall bias and responsiveness estimates. The on-line appendix details model implentation and links to data and computer code for replication.\footnote{\citet{gelman.hill.2007} is a comprehensive introduction to MCMC estimation. For each vote operationalization ($v$, $\bar{v}$, and $\bar{w}$), three chains were iterated 50 thousand times, taking every 50th observation of the final 25 thousand to sample the posterior distribution. The Gelman-Hill $\hat{R} \approx 1$, evidence that the chains had reached a steady state. Convergence also inspected visually in chain trace plots of each model parameter, as reported in the on-line appendix. Estimation performed with open source software \texttt{Jags} \citep{jags.cite}, implemented in \texttt{R} \citep{r.cite} with library \texttt{R2jags} \citep{r.r2jags}.} The responsiveness parameter is of secondary interest here, but useful for assessment of model fit. Judging the 90\% Bayesian confidence intervals (i.e., the 5th to 95th percentile range of $\hat{\rho}$'s posterior sample) reveals sizable shifts in the estimate between congressional elections: from a low of $[2,2.3]$ in 2015 to a high of $[2.6,3.0]$ in 2006. The large-party premium of recent Mexican plurality congressional races is about one-sixth smaller than the power of the putative cube law of plurality elections \citep{taagepera.CubeLaw.1973}.
+
+
+El modelo se estimó con el método MCMC \citep{clinton.jackman.rivers.2004}.\footnote{Usé software de código fuente abierto para el análsis: la plataforma estadística R \citeyearpar{r.cite} y el programa Bugs \citep{winbugs.2000} para estimación bayesiana. Diez mil iteraciones bastaron para que los parámetros estimados convergieran en valores estables. La distribución a posteriori de los parámetros que reporto es el resultado de una muestra de cada décima observación de la segunda mitad de iteraciones. Los diagramas reportan la mediana de la muestra a posteriori de cada parámetro.} Con 67 diputados que votaron en el periodo (un suplente asumió el cargo cuando su propietario pidió licencia en abril 2012), un reporte tabular de las estimaciones es impráctico y una aproximación gráfica es preferible. Cada punto en el Diagrama \ref{F:Static} representa a un diputado en el espacio político de la IV$^\text{a}$ Legislatura, coloreado según el partido al que pertenece. La interpretación más literal de estas cantidades, según la teoría espacial del voto, es la siguiente. Mientras más cercanos entre sí sean un par de legisladores, mayor será la probabilidad de que, en una votación seleccionada al azar, ambos hayan votado igual. Dicha probabilidad se reduce conforme se distancian sus puntos ideales. Los diputados del PAN, por ejemplo, aparecen como un núcleo relativamente compacto en el noreste del espacio, indicativo de una fuerte tendencia a permanecer unidos en votaciones. Lo mismo ocurrió con un grupo de perredistas en el noroeste, que siguieron a pie juntillas a su coordinador (los círculos negros indican a los coordinadores, todos integrantes de la Comisión de Gobierno). Al mismo tiempo, los panistas y este grupo de perredistas, en virtud de la brecha que los separa espacialmente, a menudo se enfrentaron en las votaciones plenarias.
+
+\usepackage{interval} % math intervals neater
+
+\begin{sidewaystable}
+  \centering
+  \resizebox{.7\textwidth}{!}{
+\begin{tabular}{c|rcr|rcr|rcr}
+          &  \mc{3}{c}{Left} & \mc{3}{c}{PAN} & \mc{3}{c}{PRI} \\
+          &   point   & .95-interval & $\hat{R}$  &   point   & .95-interval & $\hat{R}$  &   point   & .95-interval & $\hat{R}$  \\ \hline
+  \mc{5}{l}{1997--2017 all municipalities pre-reform} \\ %% model1
+$\alpha0$&  $-0.503$ &    $(-0.70, -0.31)$ & 1.001 & $ 0.107$ &          $(-0.07, 0.28)$ & 1.001 & $ 0.338$ &           $(0.194, 0.47)$ & 1.002 \\
+$\alpha1$&  $ 0.159$ & $(-198.05, 201.16)$ & 1.001 & $-1.566$ &      $(-200.94, 183.33)$ & 1.002 & $ 3.109$ &      $(-193.923, 202.62)$ & 1.003 \\
+$\alpha2$&  $ 4.215$ &      $(0.45, 7.88)$ & 1.002 & $ 6.509$ &           $(3.24, 9.82)$ & 1.003 & $ 2.058$ &          $(-0.605, 4.82)$ & 1.003 \\
+$\alpha3$&  $-1.908$ & $(-196.29, 193.49)$ & 1.003 & $-0.233$ &      $(-191.44, 194.40)$ & 1.004 & $-0.519$ &      $(-199.781, 196.34)$ & 1.000 \\
+ $\beta0$&  $-1.241$ &    $(-1.47, -1.01)$ & 1.003 & $-0.939$ &         $(-1.13, -0.74)$ & 1.000 & $-0.605$ &         $(-0.744, -0.46)$ & 1.000 \\
+ $\beta1$&  $ 0.042$ & $(-198.29, 195.77)$ & 1.001 & $-3.166$ &      $(-191.44, 191.29)$ & 1.001 & $-1.575$ &      $(-210.598, 188.00)$ & 1.000 \\
+ $\beta2$&  $ 4.314$ &     $(-0.01, 8.35)$ & 1.001 & $ 2.895$ &          $(-0.47, 6.50)$ & 1.001 & $ 7.566$ &          $(5.190, 10.05)$ & 1.000 \\
+ $\beta3$&  $ 0.213$ & $(-188.78, 197.53)$ & 1.002 & $-1.035$ &      $(-205.07, 195.70)$ & 1.002 & $ 3.274$ &      $(-199.579, 186.14)$ & 1.002 \\
+deviance  &  $3475.1$ &    $(3471.6, 3482.6)$ & 1.002 & $4763.3$ &         $(4759.8, 4770.3)$ & 1.007 & $8029.9$ &         $(8026.5, 8036.6)$ & 1.001 \\
+  \mc{5}{l}{2018--2025 pre-kick-in municipalities} \\ %% model2
+$\alpha0$&  $-0.463$ &     $(-1.61, 0.63)$ & 1.001 & $-0.860$ &          $(-1.75, 0.07)$ & 1.002 & $-0.138$ &          $(-1.029, 0.76)$ & 1.001 \\
+$\alpha1$&  $ 1.308$ & $(-192.12, 197.28)$ & 1.000 & $ 1.988$ &      $(-202.22, 206.28)$ & 1.000 & $-2.593$ &      $(-184.700, 196.64)$ & 1.003 \\
+$\alpha2$&  $29.878$ &     $(1.13, 62.15)$ & 1.000 & $ 0.845$ &        $(-15.85, 18.60)$ & 1.001 & $16.373$ &         $(-1.496, 36.84)$ & 1.003 \\
+$\alpha3$&  $-1.379$ & $(-209.16, 185.75)$ & 1.001 & $ 2.358$ &      $(-196.09, 207.43)$ & 1.000 & $-0.428$ &      $(-192.962, 188.68)$ & 1.000 \\
+ $\beta0$&  $-1.517$ &    $(-2.57, -0.53)$ & 1.001 & $-1.721$ &         $(-2.81, -0.77)$ & 1.001 & $-0.882$ &          $(-1.831, 0.06)$ & 1.001 \\
+ $\beta1$&  $-1.584$ & $(-190.64, 196.94)$ & 1.001 & $-4.191$ &      $(-199.20, 192.73)$ & 1.001 & $ 2.317$ &      $(-188.123, 190.76)$ & 1.001 \\
+ $\beta2$&  $16.726$ &    $(-2.27, 36.46)$ & 1.001 & $ 6.668$ &        $(-13.00, 27.31)$ & 1.001 & $ 1.436$ &        $(-17.301, 19.56)$ & 1.002 \\
+ $\beta3$&  $ 2.621$ & $(-190.53, 209.16)$ & 1.001 & $ 4.496$ &      $(-188.64, 200.48)$ & 1.000 & $-3.773$ &      $(-201.357, 183.81)$ & 1.000 \\
+deviance  &  $ 132.1$ &      $(128.5, 139.0)$ & 1.002 & $ 169.7$ &           $(166.1, 176.3)$ & 1.001 & $ 188.4$ &           $(184.8, 195.7)$ & 1.003 \\
+  \mc{5}{l}{2018--2025 post-kick-in municipalities} \\ %% model3
+$\alpha0$&  $-0.202$ &     $(-0.56, 0.15)$ & 1.001 & $-0.920$ &         $(-1.24, -0.63)$ & 1.001 & $-0.435$ &         $(-0.736, -0.14)$ & 1.000 \\
+$\alpha1$&  $-1.130$ &     $(-2.45, 0.06)$ & 1.001 & $ 0.731$ &           $(0.12, 1.30)$ & 1.001 & $-0.358$ &          $(-0.987, 0.23)$ & 1.001 \\
+$\alpha2$&  $-1.448$ &     $(-8.70, 5.73)$ & 1.001 & $-2.693$ &          $(-8.36, 2.94)$ & 1.001 & $ 6.948$ &          $(0.891, 13.09)$ & 1.000 \\
+$\alpha3$&  $ 5.041$ &   $(-19.33, 29.06)$ & 1.000 & $ 5.557$ &         $(-5.70, 16.49)$ & 1.001 & $ 0.965$ &        $(-10.984, 13.05)$ & 1.001 \\
+ $\beta0$&  $-0.783$ &    $(-1.18, -0.38)$ & 1.004 & $-1.029$ &         $(-1.36, -0.71)$ & 1.001 & $-1.094$ &         $(-1.437, -0.78)$ & 1.005 \\
+ $\beta1$&  $ 0.028$ &     $(-0.95, 0.95)$ & 1.002 & $ 0.849$ &           $(0.19, 1.47)$ & 1.000 & $ 0.656$ &           $(0.013, 1.30)$ & 1.003 \\
+ $\beta2$&  $12.350$ &     $(5.03, 19.75)$ & 1.002 & $ 4.730$ &         $(-0.89, 10.67)$ & 1.003 & $ 2.794$ &          $(-2.602, 8.55)$ & 1.004 \\
+ $\beta3$&  $-6.231$ &   $(-23.32, 10.70)$ & 1.001 & $ 0.890$ &        $(-10.37, 12.08)$ & 1.001 & $-0.561$ &        $(-12.819, 11.22)$ & 1.005 \\
+deviance  &  $1221.2$ &    $(1215.6, 1229.9)$ & 1.001 & $2307.0$ &         $(2300.8, 2316.7)$ & 1.000 & $2240.9$ &         $(2235.0, 2250.7)$ & 1.002 \\
+  \mc{5}{l}{1997--2025 all municipalities} \\ %% model4
+$\alpha0$&  $-0.429$ &    $(-0.60, -0.25)$ & 1.003 & $-0.197$ &         $(-0.34, -0.04)$ & 1.000 & $  0.190$ &           $(0.066, 0.31)$ & 1.002 \\
+$\alpha1$&  $-0.868$ &     $(-2.09, 0.27)$ & 1.000 & $ 0.025$ &          $(-0.54, 0.56)$ & 1.001 & $ -0.982$ &         $(-1.569, -0.45)$ & 1.003 \\
+$\alpha2$&  $ 3.657$ &      $(0.47, 6.90)$ & 1.003 & $ 3.841$ &           $(1.16, 6.55)$ & 1.000 & $  3.274$ &           $(0.927, 5.63)$ & 1.002 \\
+$\alpha3$&  $ 0.094$ &   $(-20.66, 22.80)$ & 1.004 & $-0.677$ &         $(-11.27, 9.83)$ & 1.001 & $  4.539$ &         $(-5.848, 15.80)$ & 1.003 \\
+ $\beta0$&  $-1.141$ &    $(-1.34, -0.95)$ & 1.001 & $-0.986$ &         $(-1.15, -0.82)$ & 1.000 & $ -0.707$ &         $(-0.832, -0.57)$ & 1.001 \\
+ $\beta1$&  $ 0.392$ &     $(-0.49, 1.21)$ & 1.002 & $ 0.817$ &           $(0.22, 1.37)$ & 1.003 & $  0.265$ &          $(-0.318, 0.84)$ & 1.003 \\
+ $\beta2$&  $ 6.541$ &     $(2.92, 10.27)$ & 1.004 & $ 3.540$ &           $(0.74, 6.42)$ & 1.000 & $  6.880$ &           $(4.720, 9.16)$ & 1.001 \\
+ $\beta3$&  $-0.376$ &   $(-15.97, 15.63)$ & 1.003 & $ 2.007$ &         $(-7.67, 12.18)$ & 1.001 & $ -4.515$ &         $(-14.922, 6.15)$ & 1.002 \\
+deviance  &  $4906.7$ &    $(4901.1, 4916.8)$ & 1.003 & $7291.3$ &         $(7285.6, 7301.0)$ & 1.003 & $10664.7$ &       $(10658.9, 10673.4)$ & 1.000 \\
+  \mc{5}{l}{2018--2025 non-reformer municipalities} \\ %% model6
+$\alpha0$& $ -0.153$ &     $(-1.11, 0.77)$ & 1.002 & $ -2.068$ &         $(-3.24, -1.04)$ & 1.003 & $-1.252$ &         $(-2.305, -0.28)$ & 1.003 \\
+$\alpha1$& $  3.454$ & $(-184.31, 200.27)$ & 1.003 & $ -0.608$ &      $(-184.88, 196.08)$ & 1.001 & $ 3.717$ &      $(-192.134, 194.51)$ & 1.000 \\
+$\alpha2$& $ -3.291$ &   $(-24.42, 18.09)$ & 1.001 & $-13.679$ &         $(-33.43, 4.76)$ & 1.002 & $-0.811$ &        $(-19.626, 18.22)$ & 1.003 \\
+$\alpha3$& $  4.430$ & $(-203.94, 202.06)$ & 1.000 & $  0.293$ &      $(-186.79, 200.98)$ & 1.000 & $-2.822$ &      $(-198.600, 196.10)$ & 1.001 \\
+ $\beta0$& $ -1.009$ &     $(-2.09, 0.06)$ & 1.001 & $ -1.031$ &         $(-1.91, -0.20)$ & 1.001 & $-1.434$ &         $(-2.485, -0.49)$ & 1.001 \\
+ $\beta1$& $ -0.349$ & $(-190.96, 197.41)$ & 1.003 & $ -4.757$ &      $(-192.46, 187.61)$ & 1.000 & $ 0.751$ &      $(-213.058, 193.24)$ & 1.002 \\
+ $\beta2$& $ 18.052$ &    $(-3.12, 40.03)$ & 1.003 & $ -2.396$ &        $(-19.02, 14.60)$ & 1.001 & $ 6.165$ &        $(-10.930, 23.71)$ & 1.000 \\
+ $\beta3$& $ -0.335$ & $(-196.75, 189.54)$ & 1.000 & $  0.700$ &      $(-195.91, 195.44)$ & 1.001 & $-2.657$ &      $(-202.936, 194.24)$ & 1.001 \\
+deviance  & $  154.5$ &      $(150.9, 161.5)$ & 1.004 & $  214.1$ &           $(210.5, 221.0)$ & 1.000 & $ 190.7$ &           $(187.2, 197.8)$ & 1.000 \\ \hline
+\end{tabular}
+}
+\caption{MCMC estimates for equation 1 with different subsets of marginal races}
+\end{sidewaystable}
 
 
 

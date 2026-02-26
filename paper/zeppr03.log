@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2026.2.1)  25 FEB 2026 01:12
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2026.2.1)  26 FEB 2026 01:42
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -714,7 +714,7 @@ File: lstmisc.sty 2020/03/24 1.8d (Carsten Heinz)
 File: listings.cfg 2020/03/24 1.8d listings configuration
 ))
 Package: listings 2020/03/24 1.8d (Carsten Heinz)
-LaTeX Font Info:    Trying to load font information for T1+ptm on input line 57
+LaTeX Font Info:    Trying to load font information for T1+ptm on input line 58
 .
 
 (/usr/share/texlive/texmf-dist/tex/latex/psnfss/t1ptm.fd
@@ -735,20 +735,20 @@ LaTeX Info: Redefining \% on input line 8.
 )
 \openout1 = `zeppr03.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 57.
-LaTeX Font Info:    ... okay on input line 57.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 57.
-LaTeX Font Info:    ... okay on input line 57.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 57.
-LaTeX Font Info:    ... okay on input line 57.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 57.
-LaTeX Font Info:    ... okay on input line 57.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 57.
-LaTeX Font Info:    ... okay on input line 57.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 57.
-LaTeX Font Info:    ... okay on input line 57.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 57.
-LaTeX Font Info:    ... okay on input line 57.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 58.
+LaTeX Font Info:    ... okay on input line 58.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 58.
+LaTeX Font Info:    ... okay on input line 58.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 58.
+LaTeX Font Info:    ... okay on input line 58.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 58.
+LaTeX Font Info:    ... okay on input line 58.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 58.
+LaTeX Font Info:    ... okay on input line 58.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 58.
+LaTeX Font Info:    ... okay on input line 58.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 58.
+LaTeX Font Info:    ... okay on input line 58.
 
 *geometry* driver: auto-detecting
 *geometry* detected driver: pdftex
@@ -809,134 +809,134 @@ e
 Package caption Info: Begin \AtBeginDocument code.
 Package caption Info: listings package is loaded.
 Package caption Info: End \AtBeginDocument code.
-LaTeX Info: Redefining \. on input line 57.
-LaTeX Info: Redefining \% on input line 57.
+LaTeX Info: Redefining \. on input line 58.
+LaTeX Info: Redefining \% on input line 58.
 
 
 Package todonotes Warning: The length marginparwidth is less than 2cm and will 
 most likely cause issues with the appearance of inserted todonotes. The issue c
 an be solved by adding a line like \setlength {\marginparwidth }{2cm} prior to 
-loading the todonotes package. on input line 57.
+loading the todonotes package. on input line 58.
 
 \c@lstlisting=\count342
 LaTeX Font Info:    Trying to load font information for OT1+ztmcm on input line
- 63.
+ 64.
 (/usr/share/texlive/texmf-dist/tex/latex/psnfss/ot1ztmcm.fd
 File: ot1ztmcm.fd 2000/01/03 Fontinst v1.801 font definitions for OT1/ztmcm.
 )
 LaTeX Font Info:    Trying to load font information for OML+ztmcm on input line
- 63.
+ 64.
 
 (/usr/share/texlive/texmf-dist/tex/latex/psnfss/omlztmcm.fd
 File: omlztmcm.fd 2000/01/03 Fontinst v1.801 font definitions for OML/ztmcm.
 )
 LaTeX Font Info:    Trying to load font information for OMS+ztmcm on input line
- 63.
+ 64.
 
 (/usr/share/texlive/texmf-dist/tex/latex/psnfss/omsztmcm.fd
 File: omsztmcm.fd 2000/01/03 Fontinst v1.801 font definitions for OMS/ztmcm.
 )
 LaTeX Font Info:    Trying to load font information for OMX+ztmcm on input line
- 63.
+ 64.
 
 (/usr/share/texlive/texmf-dist/tex/latex/psnfss/omxztmcm.fd
 File: omxztmcm.fd 2000/01/03 Fontinst v1.801 font definitions for OMX/ztmcm.
 )
 LaTeX Font Info:    Trying to load font information for OT1+ptm on input line 6
-3.
+4.
 
 (/usr/share/texlive/texmf-dist/tex/latex/psnfss/ot1ptm.fd
 File: ot1ptm.fd 2001/06/04 font definitions for OT1/ptm.
 )
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <20.74> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 63.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 64.
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <14.4> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 63.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 64.
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <12> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 63.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 64.
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <10.95> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 63.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 64.
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <8> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 63.
-LaTeX Font Info:    Trying to load font information for T1+pcr on input line 63
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 64.
+LaTeX Font Info:    Trying to load font information for T1+pcr on input line 64
 .
 
 (/usr/share/texlive/texmf-dist/tex/latex/psnfss/t1pcr.fd
 File: t1pcr.fd 2001/06/04 font definitions for T1/pcr.
 )
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <6> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 63.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 64.
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <10> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 63.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 64.
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <7.4> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 63.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 64.
  [1
 
 {/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}]
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <9> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 79.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 80.
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <7> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 79.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 80.
  [2] [3] [4]
 <../plots/luro-fig1.png, id=22, 960.58875pt x 252.945pt>
 File: ../plots/luro-fig1.png Graphic file (type png)
 <use ../plots/luro-fig1.png>
-Package pdftex.def Info: ../plots/luro-fig1.png  used on input line 161.
+Package pdftex.def Info: ../plots/luro-fig1.png  used on input line 162.
 (pdftex.def)             Requested size: 433.62001pt x 114.18314pt.
  [5 <../plots/luro-fig1.png>]
 [6] [7] [8] [9]
 <../plots/left4ALLmcmc.pdf, id=46, 505.89pt x 505.89pt>
 File: ../plots/left4ALLmcmc.pdf Graphic file (type pdf)
 <use ../plots/left4ALLmcmc.pdf>
-Package pdftex.def Info: ../plots/left4ALLmcmc.pdf  used on input line 288.
+Package pdftex.def Info: ../plots/left4ALLmcmc.pdf  used on input line 289.
 (pdftex.def)             Requested size: 208.13574pt x 208.13412pt.
 <../plots/pan4ALLmcmc.pdf, id=47, 505.89pt x 505.89pt>
 File: ../plots/pan4ALLmcmc.pdf Graphic file (type pdf)
 <use ../plots/pan4ALLmcmc.pdf>
-Package pdftex.def Info: ../plots/pan4ALLmcmc.pdf  used on input line 289.
+Package pdftex.def Info: ../plots/pan4ALLmcmc.pdf  used on input line 290.
 (pdftex.def)             Requested size: 208.13574pt x 208.13412pt.
 <../plots/pri4ALLmcmc.pdf, id=48, 505.89pt x 505.89pt>
 File: ../plots/pri4ALLmcmc.pdf Graphic file (type pdf)
 <use ../plots/pri4ALLmcmc.pdf>
-Package pdftex.def Info: ../plots/pri4ALLmcmc.pdf  used on input line 290.
+Package pdftex.def Info: ../plots/pri4ALLmcmc.pdf  used on input line 291.
 (pdftex.def)             Requested size: 208.13574pt x 208.13412pt.
 
-Overfull \hbox (6.65147pt too wide) in paragraph at lines 287--292
+Overfull \hbox (6.65147pt too wide) in paragraph at lines 288--293
  [][] 
  []
 
 <../plots/left2PREKICKmcmc.pdf, id=49, 505.89pt x 505.89pt>
 File: ../plots/left2PREKICKmcmc.pdf Graphic file (type pdf)
 <use ../plots/left2PREKICKmcmc.pdf>
-Package pdftex.def Info: ../plots/left2PREKICKmcmc.pdf  used on input line 314.
+Package pdftex.def Info: ../plots/left2PREKICKmcmc.pdf  used on input line 315.
 
 (pdftex.def)             Requested size: 173.44534pt x 173.44382pt.
 <../plots/left3POSTKICKmcmc.pdf, id=50, 505.89pt x 505.89pt>
 File: ../plots/left3POSTKICKmcmc.pdf Graphic file (type pdf)
 <use ../plots/left3POSTKICKmcmc.pdf>
-Package pdftex.def Info: ../plots/left3POSTKICKmcmc.pdf  used on input line 315
+Package pdftex.def Info: ../plots/left3POSTKICKmcmc.pdf  used on input line 316
 .
 (pdftex.def)             Requested size: 173.44534pt x 173.44382pt.
 <../plots/pan2PREKICKmcmc.pdf, id=51, 505.89pt x 505.89pt>
 File: ../plots/pan2PREKICKmcmc.pdf Graphic file (type pdf)
 <use ../plots/pan2PREKICKmcmc.pdf>
-Package pdftex.def Info: ../plots/pan2PREKICKmcmc.pdf  used on input line 316.
+Package pdftex.def Info: ../plots/pan2PREKICKmcmc.pdf  used on input line 317.
 (pdftex.def)             Requested size: 173.44534pt x 173.44382pt.
 <../plots/pan3POSTKICKmcmc.pdf, id=52, 505.89pt x 505.89pt>
 File: ../plots/pan3POSTKICKmcmc.pdf Graphic file (type pdf)
 <use ../plots/pan3POSTKICKmcmc.pdf>
-Package pdftex.def Info: ../plots/pan3POSTKICKmcmc.pdf  used on input line 317.
+Package pdftex.def Info: ../plots/pan3POSTKICKmcmc.pdf  used on input line 318.
 
 (pdftex.def)             Requested size: 173.44534pt x 173.44382pt.
 <../plots/pri2PREKICKmcmc.pdf, id=53, 505.89pt x 505.89pt>
 File: ../plots/pri2PREKICKmcmc.pdf Graphic file (type pdf)
 <use ../plots/pri2PREKICKmcmc.pdf>
-Package pdftex.def Info: ../plots/pri2PREKICKmcmc.pdf  used on input line 318.
+Package pdftex.def Info: ../plots/pri2PREKICKmcmc.pdf  used on input line 319.
 (pdftex.def)             Requested size: 173.44534pt x 173.44382pt.
 <../plots/pri3POSTKICKmcmc.pdf, id=54, 505.89pt x 505.89pt>
 File: ../plots/pri3POSTKICKmcmc.pdf Graphic file (type pdf)
 <use ../plots/pri3POSTKICKmcmc.pdf>
-Package pdftex.def Info: ../plots/pri3POSTKICKmcmc.pdf  used on input line 319.
+Package pdftex.def Info: ../plots/pri3POSTKICKmcmc.pdf  used on input line 320.
 
 (pdftex.def)             Requested size: 173.44534pt x 173.44382pt.
 [10] [11 <../plots/left4ALLmcmc.pdf> <../plots/pan4ALLmcmc.pdf> <../plots/pri4A
@@ -946,32 +946,32 @@ f> <../plots/pan2PREKICKmcmc.pdf> <../plots/pan3POSTKICKmcmc.pdf> <../plots/pri
 <../plots/leftPREKICKlpm.pdf, id=168, 505.89pt x 505.89pt>
 File: ../plots/leftPREKICKlpm.pdf Graphic file (type pdf)
 <use ../plots/leftPREKICKlpm.pdf>
-Package pdftex.def Info: ../plots/leftPREKICKlpm.pdf  used on input line 428.
+Package pdftex.def Info: ../plots/leftPREKICKlpm.pdf  used on input line 429.
 (pdftex.def)             Requested size: 195.12767pt x 195.12718pt.
 <../plots/leftPOSTKICKlpm.pdf, id=169, 505.89pt x 505.89pt>
 File: ../plots/leftPOSTKICKlpm.pdf Graphic file (type pdf)
 <use ../plots/leftPOSTKICKlpm.pdf>
-Package pdftex.def Info: ../plots/leftPOSTKICKlpm.pdf  used on input line 428.
+Package pdftex.def Info: ../plots/leftPOSTKICKlpm.pdf  used on input line 429.
 (pdftex.def)             Requested size: 195.12767pt x 195.12718pt.
 <../plots/panPREKICKlpm.pdf, id=170, 505.89pt x 505.89pt>
 File: ../plots/panPREKICKlpm.pdf Graphic file (type pdf)
 <use ../plots/panPREKICKlpm.pdf>
-Package pdftex.def Info: ../plots/panPREKICKlpm.pdf  used on input line 428.
+Package pdftex.def Info: ../plots/panPREKICKlpm.pdf  used on input line 429.
 (pdftex.def)             Requested size: 195.12767pt x 195.12718pt.
 <../plots/panPOSTKICKlpm.pdf, id=171, 505.89pt x 505.89pt>
 File: ../plots/panPOSTKICKlpm.pdf Graphic file (type pdf)
 <use ../plots/panPOSTKICKlpm.pdf>
-Package pdftex.def Info: ../plots/panPOSTKICKlpm.pdf  used on input line 428.
+Package pdftex.def Info: ../plots/panPOSTKICKlpm.pdf  used on input line 429.
 (pdftex.def)             Requested size: 195.12767pt x 195.12718pt.
 <../plots/priPREKICKlpm.pdf, id=172, 505.89pt x 505.89pt>
 File: ../plots/priPREKICKlpm.pdf Graphic file (type pdf)
 <use ../plots/priPREKICKlpm.pdf>
-Package pdftex.def Info: ../plots/priPREKICKlpm.pdf  used on input line 428.
+Package pdftex.def Info: ../plots/priPREKICKlpm.pdf  used on input line 429.
 (pdftex.def)             Requested size: 195.12767pt x 195.12718pt.
 <../plots/priPOSTKICKlpm.pdf, id=173, 505.89pt x 505.89pt>
 File: ../plots/priPOSTKICKlpm.pdf Graphic file (type pdf)
 <use ../plots/priPOSTKICKlpm.pdf>
-Package pdftex.def Info: ../plots/priPOSTKICKlpm.pdf  used on input line 428.
+Package pdftex.def Info: ../plots/priPOSTKICKlpm.pdf  used on input line 429.
 (pdftex.def)             Requested size: 195.12767pt x 195.12718pt.
  [15] [16 <../plots/leftPREKICKlpm.pdf> <../plots/leftPOSTKICKlpm.pdf> <../plot
 s/panPREKICKlpm.pdf> <../plots/panPOSTKICKlpm.pdf> <../plots/priPREKICKlpm.pdf>
@@ -979,28 +979,28 @@ s/panPREKICKlpm.pdf> <../plots/panPOSTKICKlpm.pdf> <../plots/priPREKICKlpm.pdf>
 <../plots/leftREPLICAlpm.pdf, id=222, 505.89pt x 505.89pt>
 File: ../plots/leftREPLICAlpm.pdf Graphic file (type pdf)
 <use ../plots/leftREPLICAlpm.pdf>
-Package pdftex.def Info: ../plots/leftREPLICAlpm.pdf  used on input line 493.
+Package pdftex.def Info: ../plots/leftREPLICAlpm.pdf  used on input line 559.
 (pdftex.def)             Requested size: 195.12767pt x 195.12718pt.
 <../plots/panREPLICAlpm.pdf, id=223, 505.89pt x 505.89pt>
 File: ../plots/panREPLICAlpm.pdf Graphic file (type pdf)
 <use ../plots/panREPLICAlpm.pdf>
-Package pdftex.def Info: ../plots/panREPLICAlpm.pdf  used on input line 494.
+Package pdftex.def Info: ../plots/panREPLICAlpm.pdf  used on input line 560.
 (pdftex.def)             Requested size: 195.12767pt x 195.12718pt.
 <../plots/priREPLICAlpm.pdf, id=224, 505.89pt x 505.89pt>
 File: ../plots/priREPLICAlpm.pdf Graphic file (type pdf)
 <use ../plots/priREPLICAlpm.pdf>
-Package pdftex.def Info: ../plots/priREPLICAlpm.pdf  used on input line 495.
+Package pdftex.def Info: ../plots/priREPLICAlpm.pdf  used on input line 561.
 (pdftex.def)             Requested size: 195.12767pt x 195.12718pt.
- (./zeppr03.bbl [17] [18 <../plots/leftREPLICAlpm.pdf> <../plots/panREPLICAlpm.
-pdf> <../plots/priREPLICAlpm.pdf>]) [19] (./zeppr03.aux
+ (./zeppr03.bbl [17] [18] [19 <../plots/leftREPLICAlpm.pdf> <../plots/panREPLIC
+Alpm.pdf> <../plots/priREPLICAlpm.pdf>] [20]) [21] (./zeppr03.aux
 LaTeX Info: Redefining \. on input line 8.
 LaTeX Info: Redefining \% on input line 8.
 ) ) 
 Here is how much of TeX's memory you used:
- 20564 strings out of 478287
- 396648 string characters out of 5849290
- 679779 words of memory out of 5000000
- 38357 multiletter control sequences out of 15000+600000
+ 20568 strings out of 478287
+ 396689 string characters out of 5849290
+ 710780 words of memory out of 5000000
+ 38361 multiletter control sequences out of 15000+600000
  547402 words of font info for 161 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  84i,19n,89p,1332b,471s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -1013,10 +1013,10 @@ t/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts
 syr.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/s
 hare/texlive/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/share/texlive/te
 xmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on zeppr03.pdf (19 pages, 909439 bytes).
+Output written on zeppr03.pdf (21 pages, 914610 bytes).
 PDF statistics:
- 297 PDF objects out of 1000 (max. 8388607)
- 217 compressed objects within 3 object streams
+ 303 PDF objects out of 1000 (max. 8388607)
+ 221 compressed objects within 3 object streams
  0 named destinations out of 1000 (max. 500000)
  108 words of extra memory for PDF output out of 10000 (max. 10000000)
 
