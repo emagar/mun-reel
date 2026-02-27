@@ -1,19 +1,63 @@
 * Question
-Does winning office hurt the party's electoral fortunes? 
-- Counter to incumbency advantage in USA
-- Curse found in Brazil, Zambia, etc.
-* Lucardi--Rosas
+** Shouldn't winning office improve the party's future electoral fortunes? 
+- Apparently not: Lucardi--Rosas (2016), subnational 1997--2010 
+~0.2 drop prob(reelection) incumbent relative to runner-up 
+Their pic here?
+- Incumbency curse also found in Brazil, Zambia, etc.
 - Coalitions built from scratch at each cycle
-- Inefficient?
-* Conflicting explanations
-- Cox-McCubbins
-- Unless ties are personalistic and machines jump ship.
-* Reforma reeleccionista
-- Has potential to dillute/remove the curse
-- Machine stays with the incumbent
-* Motolinia's minimal effects
+** Antedates reelection reform
+- Could this change the pattern? Incumbency advantage (Erikson 1971)
+* Electoral reform
+- Removal of single-term limit for municipal officers 2018--2030
+- Except 2, all states two-term limit
+- Staggered adoption
+** Table here
+* Minimal effects
+** Motolinia (2026) state legislators
+- Speeches 500k 
+- Roll call votes 10k
+- Committee assignments, casework reports 1k
+- ...
+** Systematic effects: relative to rest, members who sought reelection
+- twice likelier to sit in pork committees
+- 2 percent likelier to speak pork
+- spent 15% more in casework
+- no change in party discipline
+** Might this be different in executive offices?
 * Model controlling incumbent on the ballot
-* Three obstacles
+\begin{equation}\label{E:model}
+\begin{split}
+\text{logit}\bigl(p_{t+1}\bigr) =~  & ~~~~~~~~~~~~~~\text{neg}_t \times (\alpha_0 + \alpha_1 \text{ocup}_{t+1} + \alpha_2 \text{mg}_t + \alpha_3 \text{ocup}_{t+1} \times \text{mg}_t) \\
+                                   & +~ (1 - \text{neg}_t) \times (\beta_0 + \beta_1 \text{ocup}_{t+1} + \beta_2 \text{mg}_t + \beta_3 \text{ocup}_{t+1} \times \text{mg}_t)  \\
+ & +~ \text{error}_{t+1}
+\end{split}
+\end{equation}
+* Three obstacles, attempt to separate
+1. Reform coincided with party system collapse
+2. Self-selection
+3. Routine coalitions
+** Willing v able
+|               | static ambition |                |
+|               | 0               | 1              |
+|---------------+-----------------+----------------|
+| renominated 0 | $a$ retired     | $b$ pushed out |
+|             1 | $c$ (empty)     | $d$ reran      |
+- $a$ and $b$ confounded
+- Pre-2018 $d$  also empty
+|                 | Pre-2018  |         |   |                 | Post-2018 |         |
+| Staggered       | Incumbent |         |   | Staggered       | Incumbent |         |
+| reform kick-off | out       | ran     |   | reform kick-off | out       | ran     |
+|-----------------+-----------+---------+---+-----------------+-----------+---------|
+| no              | $a1$      | $b1$    |   | no              | $a2$      | $b2$    |
+|                 |           | (empty) |   |                 |           | (empty) |
+|-----------------+-----------+---------+---+-----------------+-----------+---------|
+| yes             | c1        | d1      |   | yes             | $c2$      | $d2$    |
+|                 | (empty)   | (empty) |   |                 |           |         |
 * Results 1997--2025
 * Results 2018--2025 pre- post-
+* Tests
 * Wrap-up
+** Info
+\url{https://github.com/emagar/mun-reel}
+** ¡Gracias!
+* Extra slides

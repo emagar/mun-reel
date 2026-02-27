@@ -1,8 +1,9 @@
 #+STARTUP: showall
-#+TITLE:     Las elecciones en EE.UU.
-#+AUTHOR:    Eric Magar
+#+TITLE:     Is reelection an antidote to the incumbency curse?
+#+SUBTITLE:     Evidence from Mexican municipal races 1997--2025
+#+AUTHOR:    Eric Magar \newline ITAM
 #+EMAIL:     emagar@itam.mx
-#+DATE:      4-11-2024
+#+DATE:      Tec de Monterrey's PoliSci Conference \newline 27-2-2026
 #+OPTIONS:   H:2 num:t toc:f \n:nil @:t ::t |:t ^:t -:t f:t *:t <:t
 #+OPTIONS:   TeX:t LaTeX:t skip:nil d:nil todo:t pri:nil tags:not-in-toc
 #+INFOJS_OPT: view:nil toc:nil ltoc:t mouse:underline buttons:0 path:https://orgmode.org/org-info.js
@@ -14,11 +15,12 @@
 #+LaTeX_CLASS: beamer
 #+LaTeX_CLASS_OPTIONS: [bigger]
 
-# #+BEAMER_THEME: Rochester [height=20pt]
-#+BEAMER_THEME: Pittsburgh
-#+BEAMER_COLOR_THEME: dove
-# #+BEAMER_COLOR_THEME: lily
+#+BEAMER_THEME: Rochester [height=20pt]
+# #+BEAMER_THEME: Pittsburgh
+# #+BEAMER_COLOR_THEME: dove
+#+BEAMER_COLOR_THEME: lily
 # #+BEAMER_COLOR_THEME: seagull
+# #+BEAMER_COLOR_THEME: seahorse
 
 # setting this to 2 uses one star as sections two stars as new slide
 #+BEAMER_FRAME_LEVEL: 2
@@ -60,117 +62,327 @@
 
 \setbeamercovered{transparent}
 
-* Qué está en juego
-** Concurren en /Election Day:/
-*** Federales
-- \alert{presidente y vicepresidente}
-- 435 representantes
-- \alert{senador en 33 estados}
-*** Estatales
-- 11 gobernadores
-- 43 asambleas bicamerales (+1)
-- otros ejecutivos en 24 estados
-- iniciativas populares en 41 estados
-*** Locales
-- mayors, concejales, jueces, sheriffs, revocatorias... 
-** República mixta: democracia con frenos
-*** Elección *directa* de la House
-- Se renueva en su totalidad cada 2 años
-*** Elección *indirecta* del presidente
-- Votantes $\rightarrow$ Colegio Electoral $\rightarrow$ presidente cada 4 años
-*** Senadores *nombrados* por los estados
-- Electos popularmente desde 1913
-- Renovación por tercios cada 2 años
-** Descentralización electoral
-- Constitución: las asambleas estatales deciden el modo como se elijen a sus representantes
-- La conducción electoral corre a cargo de los condados
-- Restricciones federales minimalistas
-  - Voting Rights Act (1965)
-** 
+* Motivation
+** Motivation
+*** Does winning office improve a party's \newline future electoral fortunes?
+ \pause
+# - Not in Mexico 1997--2010: \newline incumbent party's Pr(win) \alert{is 0.2 smaller} than runner-up's  (Lucardi--Rosas 2016)
+# - Not in Mexico 1997--2010: \newline Pr(win|incumbent party) -- Pr(win|runner-up) $\approx$ --0.2  (Lucardi--Rosas 2016)
+\bigskip
+- Not in Mexico (Lucardi--Rosas 2016)
+- Coalitions started from scratch at each cycle? \newline (Díaz Cayeros et al. 2016)
+- ``Incumbency curse'' (also in Brazil, India, ...)
+** Lucardi--Rosas
+Marginal municipal races 1997--2010, regression discontinuity
+
+\bigskip
+*** plot                                                    :B_ignoreheading:
+    :PROPERTIES:
+    :BEAMER_env: ignoreheading
+    :END:
 \centering
-\includegraphics[width=.8\textwidth]{./pics/vot-equip2000.jpg}
-** Equipo electoral 2024
-\centering
-\includegraphics[width=.7\textwidth]{./pics/vot-equip2024.png}
-* El colegio electoral
-** Los estados tienen electores en proporción de su población
-\centering \includegraphics[width=.65\textwidth]{./pics/elec-coll2.png}
-** Party block vote
-- El partido más votado obtiene la totalidad de electores del estado
-- Excepto Nebraska y Maine, que los votan por distritos
-** 
-\includegraphics[width=.65\textwidth]{./pics/oregon.png}
-** 
-\includegraphics[height=\textheight]{./pics/new-mexico.png}
-** Elección presidencial "directa"
-- Electores votan libremente en el Colegio (/unpledged/)
-- Sin mayoría del Colegio, House nombra al presidente
-\bigskip \pause Pero
-- Los partidos secuestraron al Colegio s. XIX
-- /Pledged electors/
-** Elecciones presidenciales desde 1788
-- En 54 triunfó el ganador del voto popular (92%)
-- En 5 ganó un perdedor del voto popular (8%) 
-  - 1824 (Adams Jr.)
-  - 1876 (Hayes)
-  - 1888 (Harrison)
-  - 2000 (Bush Jr.)
-  - 2016 (Trump) \pause
-  - 2024?
-# \includegraphics[width=\textwidth]{./pics/pop-vote-up-to-2020.png} \\
-# \flushright \footnotesize wikipedia.org
-** Cook ratings Nov. 2024
-\centering
-\includegraphics[width=.8\textwidth]{./pics/cook-nov-2024.png}
-** Los 7 volados
-*** Si $\forall$ /likely+solid/ votan su color
-- Harris necesita 44 votos
-- Trump necesita 51 votos
-\bigskip \centering
-\includegraphics[width=.6\textwidth]{./pics/tossup-map.png}
-** Brechas a 270
-\includegraphics[width=\textwidth]{./pics/tossups-snake.png}
-** Encuestas
-- Pennsylvania: Trump<1
-- Georgia: Trump+1
-- North Carolina: Trump<1
-- Michigan: Harris<1
-- Arizona: Trump+3
-- Wisconsin: Harris+1
-- Nevada: Trump<1
-** Brecha a 270
-\includegraphics[width=.6\textwidth]{./pics/tossups-in-ec.png}
-** Nate Cohn /NYT/
-\includegraphics[width=\textwidth]{./pics/cohn-13oct.png}
-* Elecciones senatoriales
-** El Senado
-*** Actual
-| \color{blue}{51+VP} | \color{red}{49} |
-\centering 2 Dems centristas independientes
+\includegraphics[width=\textwidth]{../../plots/luro-fig1.png} \pause
+*** Study antedates last decade's \alert{reelection} reform
+\rightarrow Could this change the curse into an incumbency advantage? \newline  (Erikson 1971, ...)
+* The removal of single-term limits
+** Electoral reform
+*** Between 2018 and 2030:                                          :B_block:
+    :PROPERTIES:
+    :BEAMER_env: block
+    :END:
+# #+ATTR_BEAMER: :overlay +-
+- Two-term limits for municipal officers \pause
+- Staggered removal of single-term limits: \newline 23 states in 2018, 3 in 2019, 2 in 2021, 2 in 2024 \newline (and 2 non-reformers) \pause
+- Many municipal presidents on the ballot 
+# **** Table                                                  :B_ignoreheading:
+#      :PROPERTIES:
+#      :BEAMER_env: ignoreheading
+#      :END:
+#   \centering \footnotesize
+#   \begin{tabular}{ccc}
+#     Kick-off        & $N$ states  & States       \\ \hline
+#     2018            &          23 & All others   \\
+#     2019            &           3 & Ags BC Dgo   \\
+#     2021            &           2 & CdMx Pue     \\
+#     2024            &           2 & Nay Tla      \\
+#     Non-reformers   &           2 & Hgo Ver      \\ \hline
+#   \end{tabular} 
+**** Table                                                  :B_ignoreheading:
+    :PROPERTIES:
+    :BEAMER_env: ignoreheading
+    :END:
+  \centering \footnotesize
+\bigskip
+
+  \begin{tabular}{crrrrrr}
+               & Incumbent         & Term       & Open        & Pre-          &       &      \\ [-0.4ex]
+    Cycle      &      ran          & limit      & seat        & kick-off      & Total &    N \\ [1ex] \hline \\ [-1.8ex]
+    2018--2019 &                32 &          0 &          54 &            14 &   100 & 1,660 \\
+    2021--2022 &                36 &         16 &          44 &             5 &   100 & 1,741 \\
+    2024--2025 &                45 &         19 &          36 &             0 &   100 & 1,743 \\ [0.5ex] 
+    Total      &                38 &         12 &          44 &             6 &   100 & 5,144 \\
+    \\ [-2ex] \hline
+  \end{tabular}
+** Minimal effects?
+Motolinia (2026) state legislators
+# **** a column                                                      :B_column:
+#     :PROPERTIES:
+#     :BEAMER_col: 0.45
+#     :END:
+# - Speeches 500k 
+# - Roll call votes 10k
+# **** a column                                                      :B_column:
+#     :PROPERTIES:
+#     :BEAMER_col: 0.55
+#     :END:
+# - Committee assignments 1k 
+# - casework reports 1k
+# *** Relative to rest, members who sought reelection
+*** Relative to rest, members who sought reelection
+- 2% likelier to mention pork in speeches
+- spent 15% more in casework
+- twice likelier to sit in pork committees
+- but no change in party discipline \pause
+*** Might this be different among \alert{executive} officers?
+* Model
+** Controlling incumbents on the ballot
+*** Switching-regime model:                                         :B_block:
+    :PROPERTIES:
+    :BEAMER_env: block
+    :END:
+\footnotesize
+\begin{equation*}
+\begin{split}
+\text{logit}\bigl(p_{t+1}\bigr) =  & ~~~~~~~~~~~\text{neg}_t~ \times (\alpha_0 + \alpha_1 \text{ocup}_{t+1} + \alpha_2 \text{mg}_t + \alpha_3 \text{ocup}_{t+1} \times \text{mg}_t) \\
+                                   & +~ (1 - \text{neg}_t) \times (\beta_0 + \beta_1 \text{ocup}_{t+1} + \beta_2 \text{mg}_t + \beta_3 \text{ocup}_{t+1} \times \text{mg}_t)  \\
+ & +~ \text{error}_{t+1}
+\end{split}
+\end{equation*} \pause
+*** Incumbency curse hypotheses:
+# \begin{equation*}
+# \begin{split}
+# $\alpha_0>&\beta_0$ \\
+# $\alpha_0+\alpha_1>&\beta_0+\beta_1$
+# \end{split}
+# \end{equation*}
+|                     <r> |                 <c>                 |
+| municipal president out |         $\alpha_0>\beta_0$          |
+|                     ran | $\alpha_0+\alpha_1>\beta_0+\beta_1$ |
+** Three obstacles
+1. 2018: reform coincided with party system collapse
+2. Self-selection
+3. Routine coalitions \pause
+*** Willing and able? $ab$ confounded
+|           <r> | <l>               | <l>            |
+|               | static ambition   |                |
+|               | 0                 | 1              |
+|---------------+-------------------+----------------|
+| renominated 0 | $a$ retired       | $b$ pushed out |
+|             1 | $c$ $\varnothing$ | $d$ reran      |
 \pause
-*** Expectativas
-|              <r> |   |                  |                 |                 |                 |                |   |                 |
-|      no renuevan |   |                  |                 |                 |                 |                |   | no renuevan     |
-| \color{blue}{28} |   | \color{blue}{14} | \color{cyan}{6} | \color{gray}{1} | \color{pink}{4} | \color{red}{9} |   | \color{red}{38} |
-\pause
-*** a column
-  :PROPERTIES:
-  :BEAMER_col: 0.55
-  :END:      
-  \centering
-  \color{gray}{VP?}  \color{red}{51?}
-*** a column
-  :PROPERTIES:
-  :BEAMER_col: 0.45
-  :END:      
-  \includegraphics[width=\textwidth]{./pics/sen-map.png}
-# * Elecciones de integrantes de la House
-# ** La cámara democrática
-# - Incumbency advantage
-# - Margenes de victoria 2022
-** Info
-\includegraphics[width=.2\textwidth]{./pics/scr-bp.png}
-** ¡Gracias!
+*** Three distinct subsets of observations
+- pre-reform (and pre-AMLO): $ab_1$ 
+- pre-kick-off: $ab_2$
+- post-kick-off: $ab_3$ & $d_3$
+# ***                                                         :B_ignoreheading:
+#     :PROPERTIES:
+#     :BEAMER_env: ignoreheading
+#     :END:
+# \scriptsize
+# |                 | Pre-2018  |         |   |                 | Since 2018 |         |
+# | Staggered       | Incumbent |         |   | Staggered       | Incumbent |         |
+# | reform kick-off | out       | ran     |   | reform kick-off | out       | ran     |
+# |-----------------+-----------+---------+---+-----------------+-----------+---------|
+# | no              | $a_1$     | $b_1$   |   | no              | $a_2$     | $b_2$   |
+# |                 |           | (empty) |   |                 |           | (empty) |
+# |-----------------+-----------+---------+---+-----------------+-----------+---------|
+# | yes             | $c_1$     | $d_1$   |   | yes             | $c_2$     | $d_2$   |
+# |                 | (empty)   | (empty) |   |                 |           |         |
+
+* Results
+** Methodology
+- Marginal ($\pm10\%$) municipal elections 1997--2025
+- OLS and MCMC methods of estimation
+- Use the different subsets
+** OLS estimations
+\centering
+\includegraphics[width=.9\columnwidth]{../../plots/0-ols-table.png}
+** Replication of Lucardi--Rosas 1997--2017
+\centering
+  \begin{tabular}{cc}
+  \includegraphics[width=.4\columnwidth]{../../plots/left1REPLICAmcmc.pdf} &
+  \includegraphics[width=.4\columnwidth]{../../plots/pan1REPLICAmcmc.pdf} \\
+  \includegraphics[width=.4\columnwidth]{../../plots/pri1REPLICAmcmc.pdf} \\
+  \end{tabular}
+** 2018--2025 pre-kick-off
+\centering
+  \begin{tabular}{cc}
+  \includegraphics[width=.4\columnwidth]{../../plots/left2PREKICKmcmc.pdf} &
+  \includegraphics[width=.4\columnwidth]{../../plots/pan2PREKICKmcmc.pdf} \\
+  \includegraphics[width=.4\columnwidth]{../../plots/pri2PREKICKmcmc.pdf} \\
+  \end{tabular}
+** 2018--2025 post-kick-off
+\centering
+  \begin{tabular}{cc}
+  \includegraphics[width=.4\columnwidth]{../../plots/left3POSTKICKmcmc.pdf} &
+  \includegraphics[width=.4\columnwidth]{../../plots/pan3POSTKICKmcmc.pdf} \\
+  \includegraphics[width=.4\columnwidth]{../../plots/pri3POSTKICKmcmc.pdf} \\
+  \end{tabular}
+** Pooling 1997--2025
+\centering
+  \begin{tabular}{cc}
+  \includegraphics[width=.4\columnwidth]{../../plots/left4ALLmcmc.pdf} &
+  \includegraphics[width=.4\columnwidth]{../../plots/pan4ALLmcmc.pdf} \\
+  \includegraphics[width=.4\columnwidth]{../../plots/pri4ALLmcmc.pdf} \\
+  \end{tabular}
+** Tests: share of posterior draw conforming with curse hyps. 
+  \centering \scriptsize
+  \begin{tabular}{lccr}
+                  &             incumbent ran                   &          not          &       \\
+Party & ($\alpha_0 + \alpha_1) > (\beta_0 + \beta_1$) & ($\alpha_0 > \beta_0$) & $N$      \\[-1.5ex] \\ \hline \\[-1.5ex] 
+\multicolumn{3}{l}{~\textbf{1997--2017 all municipalities}} \\
+Left              &                    ---                      &         1.000         & 2,869 \\
+PAN               &                    ---                      &         1.000         & 3,656 \\
+PRI               &                    ---                      &         1.000         & 5,877 \\ \\[-1.5ex]
+\multicolumn{3}{l}{~\textbf{2018--2025 pre-kick-off municipalities}} \\
+Morena            &                    ---                      &         0.916         &   121 \\
+PAN               &                    ---                      &         0.876         &   151 \\
+PRI               &                    ---                      &         0.858         &   151 \\ \\[-1.5ex]
+\multicolumn{3}{l}{~\textbf{2018--2025 post-kick-off municipalities}} \\
+Morena            &                    0.219                    &         0.984         &   906 \\
+PAN               &                    0.488                    &         0.677         & 1,816 \\
+PRI               &                    0.177                    &         0.999         & 1,840 \\ \\[-1.5ex]
+\multicolumn{3}{l}{~\textbf{1997--2025 all municipalities}} \\
+Left              &                    0.225                    &         1.000         & 3,896 \\
+PAN               &                    0.504                    &         1.000         & 5,623 \\
+PRI               &                    0.189                    &         1.000         & 7,868 \\[-1.5ex] \\ \hline
+  \end{tabular}
+** Wrap-up
+***                                                         :B_ignoreheading:
+    :PROPERTIES:
+    :BEAMER_env: ignoreheading
+    :END:
+- Before kick-off: incumbency curse permeated post-AMLO
+- After: an incumbent running mitigated/inverted it
+- Unlike state assemblies, reform effect is sizeable among municipal executives \newline $\rightarrow$ mayors with key sources of patronage in spoils system 
+- Did counter-reformers kill an insurance policy against negative swings?
+# *** Info
+# [[https://github.com/emagar/mun-reel][\ExternalLink \url{https://github.com/emagar/mun-reel}]] 
+
+\centering \bigskip \pause
+
+\textbf{¡Gracias!}
+# * Qué está en juego
+# ** Concurren en /Election Day:/
+# *** Federales
+# - \alert{presidente y vicepresidente}
+# - 435 representantes
+# - \alert{senador en 33 estados}
+# *** Estatales
+# - 11 gobernadores
+# - 43 asambleas bicamerales (+1)
+# - otros ejecutivos en 24 estados
+# - iniciativas populares en 41 estados
+# *** Locales
+# - mayors, concejales, jueces, sheriffs, revocatorias... 
+# ** República mixta: democracia con frenos
+# *** Elección *directa* de la House
+# - Se renueva en su totalidad cada 2 años
+# *** Elección *indirecta* del presidente
+# - Votantes $\rightarrow$ Colegio Electoral $\rightarrow$ presidente cada 4 años
+# *** Senadores *nombrados* por los estados
+# - Electos popularmente desde 1913
+# - Renovación por tercios cada 2 años
+# ** Descentralización electoral
+# - Constitución: las asambleas estatales deciden el modo como se elijen a sus representantes
+# - La conducción electoral corre a cargo de los condados
+# - Restricciones federales minimalistas
+#   - Voting Rights Act (1965)
+# ** 
+# \centering
+# \includegraphics[width=.8\textwidth]{./pics/vot-equip2000.jpg}
+# ** Equipo electoral 2024
+# \centering
+# \includegraphics[width=.7\textwidth]{./pics/vot-equip2024.png}
+# * El colegio electoral
+# ** Los estados tienen electores en proporción de su población
+# \centering \includegraphics[width=.65\textwidth]{./pics/elec-coll2.png}
+# ** Party block vote
+# - El partido más votado obtiene la totalidad de electores del estado
+# - Excepto Nebraska y Maine, que los votan por distritos
+# ** 
+# \includegraphics[width=.65\textwidth]{./pics/oregon.png}
+# ** 
+# \includegraphics[height=\textheight]{./pics/new-mexico.png}
+# ** Elección presidencial "directa"
+# - Electores votan libremente en el Colegio (/unpledged/)
+# - Sin mayoría del Colegio, House nombra al presidente
+# \bigskip \pause Pero
+# - Los partidos secuestraron al Colegio s. XIX
+# - /Pledged electors/
+# ** Elecciones presidenciales desde 1788
+# - En 54 triunfó el ganador del voto popular (92%)
+# - En 5 ganó un perdedor del voto popular (8%) 
+#   - 1824 (Adams Jr.)
+#   - 1876 (Hayes)
+#   - 1888 (Harrison)
+#   - 2000 (Bush Jr.)
+#   - 2016 (Trump) \pause
+#   - 2024?
+# # \includegraphics[width=\textwidth]{./pics/pop-vote-up-to-2020.png} \\
+# # \flushright \footnotesize wikipedia.org
+# ** Cook ratings Nov. 2024
+# \centering
+# \includegraphics[width=.8\textwidth]{./pics/cook-nov-2024.png}
+# ** Los 7 volados
+# *** Si $\forall$ /likely+solid/ votan su color
+# - Harris necesita 44 votos
+# - Trump necesita 51 votos
+# \bigskip \centering
+# \includegraphics[width=.6\textwidth]{./pics/tossup-map.png}
+# ** Brechas a 270
+# \includegraphics[width=\textwidth]{./pics/tossups-snake.png}
+# ** Encuestas
+# - Pennsylvania: Trump<1
+# - Georgia: Trump+1
+# - North Carolina: Trump<1
+# - Michigan: Harris<1
+# - Arizona: Trump+3
+# - Wisconsin: Harris+1
+# - Nevada: Trump<1
+# ** Brecha a 270
+# \includegraphics[width=.6\textwidth]{./pics/tossups-in-ec.png}
+# ** Nate Cohn /NYT/
+# \includegraphics[width=\textwidth]{./pics/cohn-13oct.png}
+# * Elecciones senatoriales
+# ** El Senado
+# *** Actual
+# | \color{blue}{51+VP} | \color{red}{49} |
+# \centering 2 Dems centristas independientes
+# \pause
+# *** Expectativas
+# |              <r> |   |                  |                 |                 |                 |                |   |                 |
+# |      no renuevan |   |                  |                 |                 |                 |                |   | no renuevan     |
+# | \color{blue}{28} |   | \color{blue}{14} | \color{cyan}{6} | \color{gray}{1} | \color{pink}{4} | \color{red}{9} |   | \color{red}{38} |
+# \pause
+# *** a column
+#   :PROPERTIES:
+#   :BEAMER_col: 0.55
+#   :END:      
+#   \centering
+#   \color{gray}{VP?}  \color{red}{51?}
+# *** a column
+#   :PROPERTIES:
+#   :BEAMER_col: 0.45
+#   :END:      
+#   \includegraphics[width=\textwidth]{./pics/sen-map.png}
+# # * Elecciones de integrantes de la House
+# # ** La cámara democrática
+# # - Incumbency advantage
+# # - Margenes de victoria 2022
+# ** Info
+# \includegraphics[width=.2\textwidth]{./pics/scr-bp.png}
+# ** ¡Gracias!
 # * Qué es, qué busca
 # ** /Social Choice Theory/
 # Platón \emph{vs} Aristóteles \emph{vs} Rousseau
