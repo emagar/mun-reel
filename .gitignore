@@ -1,1 +1,9 @@
 *.*~
+
+# tex files
+*.bbl 
+*.aux 
+*.out 
+*.log
+*.blg
+

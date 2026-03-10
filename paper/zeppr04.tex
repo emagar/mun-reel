@@ -1,0 +1,602 @@
+\documentclass[letter,12pt]{article}
+\usepackage[letterpaper,right=1.25in,left=1.25in,top=1in,bottom=1in]{geometry}
+\usepackage{setspace}
+
+\usepackage[utf8]{inputenc}   % allows input of special characters from keyboard (input encoding)
+\usepackage[T1]{fontenc}      % what fonts to use when printing characters       (output encoding)
+\usepackage{amsmath}          % facilitates writing math formulas and improves the typographical quality of their output
+\usepackage[hyphens]{url}     % adds line breaks to long urls
+\renewcommand{\UrlFont}{\ttfamily\small} % shrinks url font 1 step down
+\usepackage[pdftex]{graphicx} % enhanced support for graphics
+\usepackage{tikz}             % Easier syntax to draw pgf files (invokes pgf automatically)
+\usetikzlibrary{arrows}
+
+\usepackage{mathptmx}           % set font type to Times
+\usepackage[scaled=.90]{helvet} % set font type to Times (Helvetica for some special characters)
+\usepackage{courier}            % set font type to Times (Courier for other special characters)
+
+\usepackage{rotating}         % sideway tables and figures that take a full page
+\usepackage{caption}          % allows multipage figures and tables with same caption (\ContinuedFloat)
+
+\usepackage{dcolumn}          % needed for apsrtable and stargazer tables from R to compile
+\usepackage{arydshln}         % dashed lines in tables (hdashline, cdashline{3-4}, 
+                              %see http://tex.stackexchange.com/questions/20140/can-a-table-include-a-horizontal-dashed-line)
+                              % must be loaded AFTER dcolumn, 
+                              %see http://tex.stackexchange.com/questions/12672/which-tabular-packages-do-which-tasks-and-which-packages-conflict
+
+\usepackage{amssymb}          % has nicer empty set \varnothing, among much much more
+
+%% FOR SPANISH FORMATTING (HYPHENATION ETC.)
+\usepackage[spanish]{babel}
+\addto\captionsspanish{\renewcommand{\figurename}{Diagrama}} % cambia Figura por Diagrama
+\decimalpoint  % disable spanish's default comma decimal separator
+
+\usepackage[longnamesfirst, sort]{natbib}\bibpunct[]{(}{)}{,}{a}{}{;} % handles biblio and references 
+%% \AtBeginDocument{\renewcommand\harvardand{y}} % change 'author and author' by Spanish 'author y author'
+
+\newcommand{\mc}{\multicolumn}
+
+%% TO ADD NOTES IN TEXT, PUT % BEFORE THE ONE YOU WANT DISBALED
+%\usepackage[disable]{todonotes}                            % notes not showed
+\usepackage[colorinlistoftodos, textsize=small]{todonotes} % show notes
+\newcommand{\eric}[1]{\todo[color=red!15, inline]{\textbf{Eric:} #1}}
+
+% Format epigraph
+\usepackage{epigraph}
+\setlength\epigraphwidth{.8\textwidth}
+\setlength\epigraphrule{0pt} % no rule
+
+% multicolumns in appendix
+\usepackage{multicol}
+
+% change text color
+\usepackage{xcolor}
+
+% for code blocks
+\usepackage{listings}
+
+\begin{document}
+
+\title{Antidote to the incumbency curse: \\ Mexico's reelection reform and municipal races 1997--2025\thanks{I am grateful to Francisco Garfias, Susan Stokes, and to participants at Tec de Monterrey's 4th Political Science Conference for suggestions on a preliminary version of the paper; to Gabino Martínez Díaz and Rodrigo Santibáñez Razo for research assistance; and for the generous support of the Asociación Mexicana de Cultura A.C. The author bears full responsibility for errors and limitations in the study.}}
+\author{Eric Magar  \\ ITAM \\ \url{emagar@itam.mx}}
+\date{\today}
+\maketitle
+
+% \begin{center} \textbf{$\rightarrow$~~Preliminary draft~~$\leftarrow$} \\ (please inquire for new version)  \end{center}
+
+\begin{abstract}
+\noindent Recent research uncovers systematic evidence of an incumbency curse in Mexican elections. The pattern resembles those found in other middle income democracies. A study of marginal municipal races between 1997 and 2010 revealed a discontinuity in the likelihood of winning the next election, estimating a .20 drop in the probability of reelecting in time t+1 the party that barely won in time t relative to the party that barely lost. This paper replicates the analysis by extending the data coverage to the following decade, when Mexico removed single-term limits for municipal governments. I find that the incumbency curse holds for races with an open seat. But when the incumbent mayor was on the ballot, the discontinuity is systematically reversed for every party. An incumbent mayor with static ambition therefore shields municipal parties from highly likely defeat.
+\end{abstract}
+
+%% Comentarios Susan Stokes: 27feb2026
+%% - elaborar el proceso e historia del cambio institucional. La duración 12 años del régimen reeleccionista la leyó como one-shot.
+%%   - EMM en esta misma línea, que sean reformas federales abona por la naturaleza exógena del cambio.
+%% - Su lectura: disadvantage for the incumbent puzzling from US perspective --- elaborar esto.
+%% - Libro de Luis Schiumerini sobre incumbency en LA
+%% - Develop expectations, suggested effects of the scope of the office and responsibility should drive curse or advantage
+%%   - EMM my take si pudiera separar algunos que se retiraron vs algunos pushed put, podría contener el efecto de selección.
+%% - Su lectura: por selection bias, podría estar subestimando el efecto de la reforma (EMM no al revés?)
+  
+\newpage 
+
+\onehalfspacing
+
+\section{Introducción}
+
+\noindent Cuando un partido asume las riendas del gobierno ¿puede esperarse que mejoren sus fortunas electorales futuras? ¿O podrían, paradójicamente, empeorar sistemáticamente?
+
+El caso emblemático y mejor estudiado, el del Congreso estadunidense, abona por la mejora sustancial de las fortunas. La ventaja del ocupante (\emph{incumbency advantage}) es tal que ahuyenta a los competidores más serios en espera de mejores tiempos, resultando márgenes de victoria holgados para el ocupante y tasas de reelección que superan 90 por ciento elección tras elección.\footnote{\citet{erikson1971incumbency, mayhew1974vanishingMg, jacobson.1987.runningScared, cox.katz.1996, ansolabehere.snyder.IncAdv2002, gelman.king.1991incumbency}.} Después de 1955, los Republicanos tardaron el resto del siglo XX en su casi totalidad para arrebatarle la mayoría de la Cámara de Representantes a los Demócratas. 
+
+Me enfocaré en los gobiernos municipales. Las asignaciones presupuestales, los nombramientos administrativos y la regulación mediante bandos municipales son algunos de los recursos para, desde el Ayuntamiento, recompensar a la coalición electoral. Canalizando beneficios sustantivos hacia los grupos que la conforman, se abona en mantener su lealtad al partido en elecciones futuras \citep{cox.mccubbins.1986, stokes.Argentina2005, diaz-estevez-magaloni-Poverty-book.2016}. Aunque también es concebible que dichos grupos hayan tejido vínculos no con el partido sino con una facción o camarilla del mismo, e incluso que la relación sea de naturaleza personal \citep{cain.etal.1987}. En tales casos, cualquier cambio al equilibrio de las facciones podría dejar en entredicho su lealtad futura al partido.
+
+\citet{lucardi.rosas.Incumbency.2016} investigaron esta cuestión para México, inspirados en los casos de Brasil, India, Rumanía y Zambia. En todos ellos, la ciencia social documenta un \emph{empeoramiento} sistemático de la probabilidad de victorias futuras del partido gobernante,\footnote{\citet{brambor.ceneviva.BrasilReeleccionMunic.2012, klasnja.titiunik.IncumbCurse.2023, uppal.IncumbencyIndia.2009}.} particularmente en el nivel subnacional. Su análisis de elecciones municipales entre 1997 y 2010 corroboró que México sigue el mismo patrón: gobiernas hoy en perjuicio de ganar nuevamente mañana.
+
+Este artículo presenta resultados preliminares, incorporando una veta ausente en el estudio: la posibilidad de que en presidente municipal busque la reelección. Extendiendo el modelo Lucardi--Rosas al periodo posterior a la adopción de esta institución en México y se descubre que la maldición del ocupante está condicionada por el retiro del presidente saliente. La maldición parece desvanecerse, para todos los partidos grandes, cuando el alcalde tiene lo que \citet{schlesinger.1966} llama ambición estática---esto es, el deseo de repetir en el cargo consecutivamente. El argumento se desarrolla del siguiente modo. La sección segunda elaborará la reforma reeleccionista de 2018 y su reciente contrarreforma. Después elaboraré las elecciones marginales, el recurso que explota el diseño de investigación para medir el efecto de la reforma. La cuarta sección especificará un modelo que replica Lucardi--Rosas pero controlando la reelección municipal consecutiva. Después ...
+
+\eric{Revisar esto \citet{schiumerini.Incumbency2025, schiumerini.Commodity2022}.}
+
+\section{La reforma electoral} 
+
+Para sorpresa de todos, los reformadores electorales eliminaron la eterna prohibición constitucional de reelección consecutiva para presidentes y regidores municipales a partir de 2018 \citep{magar.el.dataset.2026}. A partir de ese año, cada estado podía optar por permitirle a sus gobernantes municipales buscar la reelección consecutiva por exactamente un periodo adicional. A excepción de Hidalgo y Veracruz, todos los estados lo permitieron, aunque en fechas diferentes (vea el cuadro \ref{T:reel}. Veintitrés estados dieron el banderazo inicial en 2018, quitándole la prohibición a un total de 1,382 presidentes municipales cuyos mandatos concluían ese año. Tres estados la dieron en 2019, dos en 2021 y dos más en 2024. 
+
+%% Year the reform kicked in. Column N reports the number of units electing municipal authorities per cycle (i.e., excluding /usos y costumbres/ municipalities). 
+%% |    | edo |   yr |        N |
+%% |----+-----+------+----------|
+%% |  1 | ags | 2019 |       11 |
+%% |  2 | bc  | 2019 |     5--7 |
+%% |  3 | bcs | 2018 |        5 |
+%% |  4 | cam | 2018 |       13 |
+%% |  5 | coa | 2018 |       38 |
+%% |  6 | col | 2018 |       10 |
+%% |  7 | cps | 2018 | 124--125 |
+%% |  8 | cua | 2018 |       67 |
+%% |  9 | df  | 2021 |       16 |
+%% | 10 | dgo | 2019 |       39 |
+%% | 11 | gua | 2018 |       46 |
+%% | 12 | gue | 2018 |   80--83 |
+%% | 13 | hgo |    0 |       84 |
+%% | 14 | jal | 2018 |      125 |
+%% | 15 | mex | 2018 |      125 |
+%% | 16 | mic | 2018 |      112 |
+%% | 17 | mor | 2018 |       33 |
+%% | 18 | nay | 2024 |       20 |
+%% | 19 | nl  | 2018 |       51 |
+%% | 20 | oax | 2018 |      152 |
+%% | 21 | pue | 2021 |      217 |
+%% | 22 | que | 2018 |       18 |
+%% | 23 | qui | 2018 |       11 |
+%% | 24 | san | 2018 |       58 |
+%% | 25 | sin | 2018 |   18--20 |
+%% | 26 | son | 2018 |       72 |
+%% | 27 | tab | 2018 |       17 |
+%% | 28 | tam | 2018 |       43 |
+%% | 29 | tla | 2024 |       60 |
+%% | 30 | ver |    0 |      212 |
+%% | 31 | yuc | 2018 |      106 |
+%% | 32 | zac | 2018 |       58 |
+
+\begin{table}
+  \centering
+  \begin{tabular}{cccc}
+    Year kick-off &  $N$ states &  States & $N$ munic per cycle   \\
+    %Banderazo inicial  & $N$ estados & Estados    & $N$ municipios por ciclo \\ \hline
+    2018            &          23 & Los demás  &               1382--1388 \\
+    2019            &           3 & Ags BC Dgo &                   55--57 \\
+    2021            &           2 & CdMx Pue   &                      233 \\
+    2024            &           2 & Nay Tla    &                       80 \\
+    Sin reforma     &           2 & Hgo Ver    &                      296 \\ \hline
+  \end{tabular}
+  \caption{La reforma electoral reeleccionista municipal. El banderazo inicial es el año a partir del cual un ocupante pudo estar en la boleta en busca de la reelección. El total de observaciones por ciclo es variable porque se crearon varios municipios nuevos en el periodo. Fuente: \citet{magar.el.dataset.2026}.}\label{T:reel}
+\end{table}
+
+Los reformadores nunca abrazaron con mucho entusiasmo la institución de la reelección. Además de limitarla a un solo periodo consecutivo adicional, también impusieron que debiera renominarlos el mismo partido con quien ganaron originalmente. Así, formalmente, el partido mantuvo la posibilidad de vetar a un alcalde ambicioso.\footnote{Por qué digo formalmente: la reforma permitió el transfuguismo, siempre y cuando fuera temprano en el mandato. Sin embargo, a pesar de la restricción, muchos presidentes aparecieron en la boleta de otro partido o coalición. En ausencia de una instancia que oficialice el transfuguismo municipal en tiempo real, como si la hay en asambleas, los reguladores electorales dieron por buenas las justificaciones de los alcaldes.} Y recientemente se contrarreformó la constitución para restituir la prohibición de siempre, en todos los ámbitos, a partir de 2030.
+
+\citet{motolinia-reel-book2026} es el estudio más ambicioso de este breve paréntesis reeleccionista mexicano. Inspirada por la literatura, se ocupa de la reelección legislativa, estudiando el caso de los Congresos locales de México. El enfoque subnacional le permite aprovechar los calendarios diferenciados en el banderazo inicial para afinar su estrategia empírica. Recabó y analizó un volumen monumental de evidencia sobre los diputados locales (más de medio millón de discursos al pleno de la asamblea, alrededor de diez mil votaciones nominales, la integración de comisiones ordinarias así como los reportes de gasto en gestoría de miles de legisladores, y mucho más). Comparados con los demás diputados, quienes buscaron la reelección consecutiva duplicaron la probabilidad de integrarse a comisiones con jurisdicción sobre políticas particularistas (\emph{pork}); hicieron 2 por ciento más menciones a proyectos tipo \emph{pork} para el distrito desde la tribuna; y reportaron presupuestos de gestoría 15 por ciento mayores. Las métricas de unidad partidista, en cambio, no registran diferencias---los incentivos cruzados que teoriza parecen anularse mutuamente. 
+
+Los efectos que detecta son significativos, pero pequeños. Quizás faltó tiempo para que los cambios instatucionales madurasen. O quizás la reforma simplemente no tuvo efectos de importancia. La contrarreforma impedirá saberlo.
+
+Este artículo estudia el ámbito de los presidentes municipales. Poco, pero recaudan. Relativamente chico, pero ejercen un presupuesto. Y limitadas, pero tienen ciertas facultades regulatorias en el municipio. En resumidas cuentas, estos poderes ejecutivos crean ganadores y perdedores en sus municipios. Y eso podrían usarlo para cimentar el voto personal \citep{cain.etal.1987,carey.shugart.1995}. Demostraré que los efectos de la institución reeleccionista que, en el mejor de los casos, aparecen tenues para el poder legislativo, operaron notable y sistemáticamente entre los ejecutivos municipales mexicanos. 
+
+\section{Las elecciones marginales y la maldición del ocupante}
+
+A la literatura que inspira este trabajo le interesan las contiendas marginales, aquellas que se deciden por un margen de votos pequeño \citep{mayhew1974vanishingMg,cox.1999}. A pesar de celebrarse en plazas, fechas y circunstancias muy diferentes, las elecciones marginales comparten una característica que las hace comparables: al ganador lo decide la diosa fortuna.
+
+Para verlo, considere dos candidatos que llegan a los comicios en igualdad de fuerzas: proyectan confianza a grupos numéricamente parejos de votantes, sus aciertos y errores de campaña se anulan mutuamente, tienen el mismo músculo movilizador en la jornada electoral, etc. Lo que se anticipa en las urnas es un empate, y lo romperán eventos fortuitos: el banquete que intoxicó a los invitados de una boda y no salieron a votar, la casilla inesperadamente anulada por irregularidades o los votantes confundidos por el diseño de boleta.\footnote{Un caso memorable fue el condado de Palm Beach, Florida en la elección presidencial de 2000 (vea \citet{nyt-cohn-palmbeach.2024}). La boleta fue mal diseñada y de tal suerte el votante Gore distraído o con mala visión era fácil presa de sufragar, involuntariamente, por el tercer candidato Buchanan. A Gore bien pudo costarle la presidencia. En México, las coaliciones parciales abren margen para errores asimétricos de misma naturaleza: votantes que, sin quererlo, anulan su voto apoyando a la coalición en plazas donde no la hubo.}
+
+El análisis de municipios marginales se aproxima a un experimento controlado. En el caso presente, un diseño cuasi-experimental para medir el efecto de gobernar o ser oposición, como tratamiento aleatorizado, en la fortuna electoral futura del partido. Que la probabilidad de ganar municipios marginales sea sistemáticamente mayor donde el partido antes perdió que donde antes ganó evidenciaría una \emph{desventaja del ocupante municipal}.
+
+Lucardi y Rosas descubren un patrón de esta índole para los partidos municipales mexicanos, sin excepción. El cuadro \ref{F:luro-res} lo retrata (es una foto de su Fig. 1, p. 70). El eje X mide mg$_t$, el margen porcentual que separó al ganador de su principal contendiente en la elección municipal del año $t$. Los casos donde el partido fue el principal contendiente presentan márgenes negativos, los casos donde ganó, márgenes positivos. El eje Y mide $p_{t+1}$, la probabilidad de que el partido gane la elección siguiente. Un partido a la vez, clasifican las elecciones municipales del periodo 1997--2010 en tres grupos: a) las que el partido ganó marginalmente,\footnote{En su análisis, Lucardi y Rosas consideran un rango de $\pm 15\%$ como criterio de selección. Desde \citet{mayhew1974vanishingMg} es más común considerar como marginales aquellas contiendas que se deciden por margen de votación de un solo dígito, $\pm 10\%$. Retomo aquí este criterio.} que aparecen en el costado derecho de los diagramas, a partir de la raya vertical central; b) las que perdió marginalmente aparecen en el izquierdo, con márgenes negativos; y c) todas las que no fueron marginales, que descartan de su análisis.
+
+\begin{figure}
+  \centering
+  \includegraphics[width=\columnwidth]{../plots/luro-fig1.png}
+  \caption{Resultados Lucardi--Rosas: la probabilidad de reelegir al partido municipal}\label{F:luro-res}
+\end{figure}  
+
+Estiman $p_{t+1}$, condicionada a mg$_t$, para las muestras izquierda y derecha por separado. Destaca la brecha en las ordenadas al origen de las líneas de regresión discontinuas. La probabilidad estimada de reelegir al PRD y al PAN en $t+1$ fue del orden de .2 cuando ganaron por un poquito en el año $t$; pero de .4 cuando perdieron por poquito en el año $t$. La brecha del PRI es aún más amplia, con probabilidades de .3 y .6, respectivamente.
+
+Una paradoja de la democracia electoral mexicana: como si les cayera una maldición en el palacio del Ayuntamiento, los tres partidos de la era de la partidocracia duplicaron sus expectativas de triunfo próximo en la urnas con tan solo permanecer en la oposición. 
+
+\section{Un modelo con reelección consecutiva}
+
+Poco después del periodo que analizaron Lucardi--Rosas sucedió la reforma reeleccionista con potencial para cimbrar las elecciones municipales de México. A partir de los comicios de 2018 quedó progresivamente eliminada la prohibición de reelección consecutiva de autoridades municipales.
+
+Si, como se planteó arriba, el obstáculo del partido municipal ha radicado en convencer a la coalición electoral de que otro mandato suyo ``bajo nueva administración'' mantendría la redistribución pasada, entonces los reformadores habrían incidido directa y frontalmente en el problema. Porque, por la vía del voto personal \citep{cain.etal.1987}, la repostulación del alcalde debería mitigar la desconfianza. Y, quizás, ponerle fin a la maldición del ocupante.
+
+% $I\kern-0.15em P(\text{gana}_{t+1})$
+
+Para dilucidar esta hipótesis replico el modelo Lucardi--Rosas pero controlando la ambición estática. Para analizar la probabilidad $p_{t+1}$ estimo el modelo de régimen cambiante siguiente:
+
+\begin{equation}\label{E:model}
+\begin{split}
+\text{logit}\bigl(p_{t+1}\bigr) =~  & ~~~~~~~~~~~~~\text{neg}_t~ \times (\alpha_0 + \alpha_1 \text{inc}_{t+1} + \alpha_2 \text{mg}_t + \alpha_3 \text{inc}_{t+1} \times \text{mg}_t) \\
+                                   & +~ (1 - \text{neg}_t) \times (\beta_0 + \beta_1 \text{inc}_{t+1} + \beta_2 \text{mg}_t + \beta_3 \text{inc}_{t+1} \times \text{mg}_t)  \\
+ & +~ \text{error}_{t+1}
+\end{split}
+\end{equation}
+
+\noindent donde mg$_t$ es la variable independiente que ya vimos. La acompañan del lado derecho dos indicadores dicotómicos y un disturbio aleatorio. La variable neg$_t$ adopta el valor uno cuando $\text{mg}_t < 0$ y el cero cuando $\text{mg}_t>0$. En la especificación, $\text{neg}_t$ indica el cambio de régimen de estimación (la discontinuidad): los parámetros $\beta$ capturan efectos cuando el partido entró al gobierno en $t$, los $\alpha$ cuando quedó fuera en ese año.
+
+% Al restringir los casos de estudio a las elecciones marginales solamente ($-.10 < \text{margen}_t < .10$), el cambio de régimen se interpreta como un tratamiento aleatorizado: un empate resuelto al azar.
+
+Y el indicador inc$_{t+1}$ adopta el valor uno cuando el presidente municipal ocupante compite por reelegirse en $t+$1, cero cuando no. Permite un cambio de ordenada al origen para elecciones con/sin ocupante en la boleta. Su interacción multiplicativa con el margen en la ecuación \ref{E:model} estima también un posible cambio de pendiente.
+
+\section{Los datos y sus subconjuntos}
+
+\noindent Anticipo tres obstáculos para la estimación del efecto de la reforma en la probabilidad de reelección del partido municipal. Uno se asocia con la autoselección de los competidores, otro con el colapso del sistema de partidos de la transición democrática, el tercero con la ubicuidad de las coaliciones electorales.
+
+\subsection{Self-selection}
+
+\begin{table}
+  \centering
+  %|        Año | Pre-banderazo | Alcalde contendió | Silla vacía | Term-limit | Total |      |
+  %|       2018 |           227 |               508 |        1092 |          0 |       | 1600 |
+  %|       2019 |             5 |                26 |          29 |          0 |       |   60 |
+  %| 2018--2019 |           232 |               534 |        1121 |          0 |       | 1660 |
+  %|       2021 |            80 |               605 |         735 |        268 |       | 1688 |
+  %|       2022 |             0 |                17 |          27 |          9 |       |   53 |
+  %| 2021--2022 |            80 |               622 |         762 |        277 |       | 1741 |
+  %|       2024 |             0 |               777 |         606 |        321 |       | 1704 |
+  %|       2025 |             0 |                16 |          18 |          5 |       |   39 |
+  %| 2024--2025 |             0 |               793 |         624 |        326 |       | 1743 |
+  \begin{tabular}{crrrrrrr}
+               & \mc{3}{c}{Post-kick-off}&          &           &       &       \\ \\ [-1.8ex]\cline{2-4} \\ [-1.8ex]
+               &      (1) &   (2) &  (3) &      (4) &       (5) & \mc{2}{c}{(6)}\\
+               & Incum-   & Term  & Open & Pre-     & Non       &       &       \\ [-0.4ex]
+    Years      & bent ran & limit & seat & kick-off & reformers & Total &  $N$  \\ [1ex] \hline \\ [-1.8ex]
+    2018--2020 &       30 &     0 &   51 &       13 &         5 &   100 & 1,745 \\
+    2021--2023 &       32 &    14 &   39 &        4 &        11 &   100 & 1,955 \\
+    2024--2026 &       38 &    16 &   31 &        0 &        15 &   100 & 2,039 \\ 
+    Total      &       34 &    11 &   39 &        5 &        10 &   100 & 5,739 \\
+    %%            & Pre-          & Ocupante          & Silla       & Term       &       &      \\ [-0.4ex]
+    %% Años       & banderazo     & contendió         & vacía       & limit      & Total &    N \\ [1ex] \hline \\ [-1.8ex]
+    %% 2018--2019 &            14 &                32 &          54 &          0 &   100 & 1,660 \\
+    %% 2021--2022 &             5 &                36 &          44 &         16 &   100 & 1,741 \\
+    %% 2024--2025 &             0 &                45 &          36 &         19 &   100 & 1,743 \\ 
+    %% Total      &             6 &                38 &          44 &         12 &   100 & 5,144 \\
+    \\ [-2ex] \hline
+  \end{tabular}
+  \caption{Tickets with and without incumbent municipal presidents 2018--2025. Columns 2--5 distinguish the cases with no incumbent running. Sources: \citet{magar.el.dataset.2026}.}\label{T:incballot}
+\end{table}
+
+\noindent El primer obstáculo es que los presidentes municipales tienen un grado de agencia en la decisión de buscar la reelección consecutiva o desistir de ello. El cuadro \ref{T:incballot} muestra que 38 por ciento de los ocupantes en el periodo se repostularon en busca de la reelección. Si bien esta cifra denota entusiasmo por la reforma entre gobernantes municipales, también reporta que 44 por ciento de ellos no contendió a pesar de tener la oportunidad. Esta autoselección debería magnificar el efecto en la probabilidad que interesa medir. Para verlo imaginemos dos clases de alcaldes, los que anticipan una campaña de reelección imposible, y los que anticipan una campaña sin mayores dificultades. Si estas expectativas fuesen acertadas y todos compitieran, el primer grupo obtendría resultados sensiblemente menos favorables, y tasas de derrota mucho mayores, que el segundo. Lo cual debería también orillarlos a retirarse con más probabilidad que los segundos, ampliando márgenes y tasas de reelección.
+
+Este fenómeno resulta problemático para quien busque una estrategia de identificación del efecto causal del fin de la prohibición (el tratamiento) \emph{sin} dicho efecto de autoselección.\footnote{Y podrían mitigarlo un indicadores empíricos---que no tengo---para distinguir retiros voluntarios, del tipo recién discutido, de aquéllos por motivos ortogonales a las expectativas, como cuando el partido veta con éxito a un alcalde en su ambición reeleccionista.} A mí, en cambio, me interesa medirlos juntos, porque la reelección consecutiva es una institución diseñada precisamente para permitir que quien tenga ventajas, quien haya cultivado a su coalición electoral, de hecho \emph{pueda autoseleccionarse} para volver a contender. Desde la óptica de mi argumento, el primero simplemente no es un obstáculo: la autoselección es algo busco capturar empíricamente.
+
+%% \begin{table}
+%%   \centering
+%%   \begin{tabular}{r|lc|lc|}
+%%                   & \mc{4}{c}{Tiene ambición estática}                 \\
+%%                   & \mc{2}{c}{No}       &    \mc{2}{c}{Sí}             \\ \hline
+%%     Renominado No & $a$ & se retira     & $b$ & lo retiran             \\ \cline{2-5}
+%%                Sí & $c$ & $\varnothing$ & $d$ & compite de nuevo \\ \hline
+%%   \end{tabular}
+%% %%  \caption{Self-selection is confouded. The study cannot separate observations in cells $a$ and $b$, which presumably correlate with party performance.}\label{T:matrix}
+%%   \caption{La auto-selección confundida. El estudio no puede distinguir observaciones en las celdas $a$ y $b$, que se correlacionan con desempe partidista.}\label{T:matrix}
+%% \end{table}
+
+%% La matriz de 2-por-2 del cuadro \ref{T:matrix} ilustra el primer obstáculo, cruzando el deseo de buscar la reelección consecutiva (la ambición estática de Schlesinger) con el éxito en ser renominado para contender. El cuadro supone que quienes no aspiran a reelegirse declinarían la nominación, si se las diera el partido---y la celda $c$ está vacía. (Podría no ser así, siempre es concebible que alguien te haga recapacitar cuando declinas... omito esta complicación.) Lo que sí contempla el cuadro es la posibilidad de que quien aspire a la reelección no consiga la nominación, lo que llamo `ser retirado' (celda $b$), distinto de `retirarte' (celda $a$). El obstáculo radica en que la evidencia no permite distinguir observaciones en las celdas $a$ y $b$.  
+
+\subsection{El efecto AMLO}
+
+\begin{table}
+  \centering
+  \begin{tabular}{@{\extracolsep{5pt}}lrrrrrrrr}
+    & &                        & \mc{4}{c}{2018--2025}  \\ \cline{4-7}
+    & \mc{2}{c}{(1)} & \mc{2}{c}{(2)} & \mc{2}{c}{(3)} & \mc{2}{c}{(4)} \\
+ & \mc{2}{c}{1997--2017} & \mc{2}{c}{Pre-kick-off} & \mc{2}{c}{Post-kick-off} & \mc{2}{c}{1997--2025} \\ \cline{2-3} \cline{4-5} \cline{6-7} \cline{8-9}
+%% & \mc{2}{c}{1997--2017} & \mc{2}{c}{Pre-banderazo} & \mc{2}{c}{Post-banderazo} & \mc{2}{c}{1997--2025} \\ \cline{2-3} \cline{4-5} \cline{6-7} \cline{8-9}
+ Partido    & opos. & ocup. & opos. & ocup. & opos. & ocup. & Total &     N \\ [1ex] \hline \\ [-1.8ex]
+ Izquierda  & 35.0 & 38.7 & 1.6 & 1.5 & 11.7 & 11.5 & 100.0 & 3,896 \\
+ PAN        & 32.1 & 32.9 & 1.4 & 1.3 & 15.1 & 17.2 & 100.0 & 5,623 \\
+ PRI        & 39.6 & 35.1 & 0.9 & 1.0 & 12.0 & 11.3 & 100.0 & 7,868 \\ 
+    \\ [-2ex] \hline
+  \end{tabular}
+  \caption{Tres subconjuntos de elecciones marginales en 1997--2025 para las estimaciones. Antes de 2015, la izquierda es el PRD, desde 2018 es Morena, y entre esos años es cualquiera de ambos. Fuentes: \citet{magar.el.dataset.2026}.}\label{T:data}
+\end{table}
+
+\noindent El colapso del sistema de partidos, en cambio, sí podría dificultar la medición del efecto de la nueva institución, porque la elección crítica de 2018 coincidió con el banderazo primero. Podría atribuirse los cambios en desempeño al fin de la prohibición reeleccionista, al surgimiento de Morena, partido que consiguió realinear al electorado mexicano, o a ambos. Como Motolinía, aprovecharé los banderazos cronológicamente diferenciados como palanca para la separación, analizando subconjuntos distintos de observaciones. El cuadro \ref{T:data} los resume.
+
+Para todas mis estimaciones seleccionaré exclusivamente las elecciones municipales marginales ($\pm10\%$) en el periodo de elecciones democráticas desde el año 1997. La columna (4) reporta el número de observaciones para cada partido. Empezaré haciendo una estimación general de los modelos con este conjunto de elecciones 1997--2025, que incluye (que confunde) el sistema tripartita de la democratización y el sistema obradorista que lo remplazó. El número de observaciones de la izquierda, el PAN y el PRI es variable porque se toman aquellos municipios que cada uno de los partidos, en el ciclo anterior, o bien ganó marginalmente o bien quedó en segundo lugar marginalmente. El obstáculo se asoma claro en en el caso de la izquierda, ya que debí seleccionar dos partidos: desde 2018 se trata de Morena, antes de 2015 del PRD, y entre 2015 y 2017 cualquiera de estos dos partidos.\footnote{Hay tres observaciones entre 2015 y 2017 en donde el ganador y el segundo lugar correspondieron a Morena y el PRD. Quité estas tres observaciones de la muestra. Sólo fueron tres porque la descoordinación que ocasionó Morena en la izquierda electoral a partir de 2015 los dejó a ambos, en muchos casos, por debajo del margen, otorgándole victorias artificiales al PRI.}
+
+Para intentar sortear este obstáculo, estimaré después los modelos modelos para el periodo 2018--2025, el sistema obradorista de partidos. Analizaré por separado dos subconjuntos mutuamente excluyentes de observaciones. El primero corresponde a los estados que, pasada la elección crítica de AMLO, aún no daban el banderazo de salida para la reelección municipal (la columna 2). Permitirán corroborar si los patrones de Lucardi--Rosas se replican, en ausencia de institución reeleccionista, tras la elección de AMLO en 2018, que fue concurrente con las municipales. El segundo subconjunto corresponde a los estados que ya dieron el banderazo reeleccionista, y es donde se esperaría un posible cambio como consecuencia de la nueva institución (columna 3).
+
+(Finalmente, el apéndice también replica la estimación para el periodo 1997--2017 (columna 1), en aras de corroborar que mi estudio encuentra patrones idéndicos a Lucardi--Rosas.)
+
+\subsection{Las coaliciones}
+
+\noindent El tercer obstáculo resulta de las frecuentes coaliciones pre-electorales que hacen los partidos. \citet{magar.el.dataset.2026} y \citet{spoon.pulido.PRI-PVEM2017} ofrecen más detalle. Proscritas en el priato clásico, la democratización las convirtió en algo común con relativa rapidez. Para el ciclo 2006--2008, por ejemplo, cuatro de cada cinco elecciones municipales tuvieron una o más coaliciones, y la proporción mantiene hasta hoy.
+
+Se trataba originalmente de coaliciones entre un partido mayor (el PRI, PAN o PRD) y uno o más partidos oportunistas (PVEM, PT, etc.), en aras de remozar el voto y las oportunidades de victoria del mayor. Pero desde 2010 se volvieron comunes las coaliciones anti-PRI entre el PAN y el PRD. Y posterior a 2018, las coaliciones anti-Morena entre el PAN, el PRI y el PRD.
+
+La dificultad para el analista es de atribución: ¿a cuál de los partidos coaligados debe corresponderle la victoria o la derrota? La selección de elecciones municipales marginales requiere un indicador de los partidos que se colocaron en primero y segundo lugares. Parece seguro otorgarle el triunfo al partido mayor cuando éste se coaligó solo con partidos menores. Pero surgen dudas tratándose de coaliciones con más de un partido mayor. Considere por ejemplo el municipio de Durango, que la coalición PAN-PRD ganó en 2016. En 2019 el PAN se alzó con la victoria solo, en 2022 lo hizo la coalición PAN-PRI-PRD, y en 2025 reeligió a Toño Ochoa en la presidencia pero con una coalición PAN-PRI. Una lectura literal indicaría que el PRD ganó en 2016 y en 2022, perdió los otros años. Si, en cambio, aportáramos conocimiento del sistema de partidos duranguense, descontaríamos al PRD del estado por tratarse de un partido muy menor. Si, además, incorporasemos el hecho de que Toño Ochoa ha sido un connotado panista, probablemente descontaríamos también al PRI en las victorias de 2022 y 2025.
+
+Por desgracia no tengo esta información para llevar a cabo un análisis sistemático de miles de elecciones municipales. Las estimaciones que presento abajo hacen una lectura literal de las coaliciones. En iteraciones próximas del artículo usaré criterios de clasificación más finos (como son los convenios de coalición, el partido del gobernador, la votación histórica de los partidos en cada plaza, etc.) para intentar demostrar que mis hallazgos no son resultado de esta particular codificación de las coaliciones entre partidos mayores. 
+
+\section{Resultados}
+
+\noindent Presento primero los patrones de la estimación del periodo completo para luego tejer más fino. (Para estos primeros modelos usé una estimación bayesiana, con método MCMC, y los diagramas usan una muestra de la distribución posterior---para la versión final de los demás modelos usaré esta misma metodología en paralelo con la estimación OLS estándar de los modelos.) Como en Lucardi--Rosas, la maldición del ocupante aparece en la parte marrón de los diagramas para la izquierda, el PAN y el PRI, patrones análogos los que vimos arriba. La parte marrón corresponde a las elecciones municipales donde el ocupante no contiende, y es notable la brecha en ordenadas al origen.
+
+\begin{figure}
+  \centering
+  %% \begin{tabular}{ccc}
+  %% \includegraphics[width=.31\columnwidth]{../plots/left4ALLmcmc.pdf} &
+  %% \includegraphics[width=.31\columnwidth]{../plots/pan4ALLmcmc.pdf} &
+  %% \includegraphics[width=.31\columnwidth]{../plots/pri4ALLmcmc.pdf} \\
+  %% \end{tabular}
+  \begin{tabular}{cc}
+  \includegraphics[width=.48\columnwidth]{../plots/left4ALLmcmc.pdf} &
+  \includegraphics[width=.48\columnwidth]{../plots/pan4ALLmcmc.pdf} \\
+  \includegraphics[width=.48\columnwidth]{../plots/pri4ALLmcmc.pdf} \\
+  \end{tabular}
+  \caption{Simulaciones con datos del periodo 1997--2025. Método MCMC de estimación de la equación 1.}\label{F:full}
+  %\caption{Simulations with the full 1997--2025 data. MCMC method of estimation of Equation (1).}
+\end{figure}
+
+% Destaca la amplitud de su brecha de ordenadas al origen marrón, de alrededor de 40 en vez de 20 puntos, así como las pendientes más pronunciadas. La erosión del partido presidencial en elecciones intermedias, en especial después de una elección crítica como fue 2018, dejó especialmente vulnerables los triunfos de Morena en municipios que AMLO arrastró a una victoria muy marginal. Un margen de +1 punto porcentual en vez de +5 redujo la probabilidad de reelección del Morena de 0.4 a 0.2; un margen de --1, en cambio, la elevó hasta 0.6.
+
+La parte verde del diagrama, en cambio, corresponde a las elecciones municipales en donde el presidente ocupante buscó la reelección consecutiva. Destacan tres patrones. 
+
+\begin{enumerate}
+
+\item Es notable como la brecha en ordenadas al origen se invierte. En términos estadísticos, más bien se diluye: si estimaramos una sola línea de regresión verde para los márgenes negativo y positivo, daría resultados casi idénticos a los reportados.%\footnote{En 100 por ciento de las muestras posteriores hay una brecha maldita para el partido del alcalde sin ocupante en la boleta ($\beta_0 < \alpha_0$). En cambio, hay una brecha invertida con ocupante en la boleta ($\beta_0 + \beta_1 > \alpha_0 + \alpha_1$) en entre 15 y 20 por ciento de la muestra posterior.}
+
+\item En el cuadrante derecho de cada diagrama se distingue, a pesar del ruido en la nube de puntos verdes, que la ambición estática duplica la probabilidad de que el PAN y la izquierda ganen en $t+$1. Para el PRI, que pasada la reforma perdió también su estatus de partido municipal dominante, las nubes se confunden.
+
+\item Los cuadrantes izquierdos son la contraparte de la estabilidad relativa que aporta la reelección consecutiva. A los tres partidos les resulta más difícil derrotar a un alcalde opositor en la boleta. 
+
+\end{enumerate}
+
+\begin{figure}
+  \centering
+  \begin{tabular}{cc}
+    \textbf{Pre-banderazo} & \textbf{Post-banderazo} \\
+  \includegraphics[width=.4\columnwidth]{../plots/left2PREKICKmcmc.pdf} &
+  \includegraphics[width=.4\columnwidth]{../plots/left3POSTKICKmcmc.pdf} \\
+  \includegraphics[width=.4\columnwidth]{../plots/pan2PREKICKmcmc.pdf} &
+  \includegraphics[width=.4\columnwidth]{../plots/pan3POSTKICKmcmc.pdf} \\
+  \includegraphics[width=.4\columnwidth]{../plots/pri2PREKICKmcmc.pdf}  &
+  \includegraphics[width=.4\columnwidth]{../plots/pri3POSTKICKmcmc.pdf} \\
+  \end{tabular}
+  \caption{Simulaciones con datos del periodo 2018--2025. Método MCMC de estimación de la equación 1.}\label{F:2018-25}
+  %\caption{Simulations with the full 1997--2025 data. MCMC method of estimation of Equation (1).}
+\end{figure}
+
+Lo relevante: como la maldición del partido ocupante desaparece cuando el presidente compite por reelegirse. El cuadro \ref{T:posteriors} reporta muestras de la distribución posterior de algunos parámetros de interés del modelo. En todos los casos se invierte el sentido de la brecha antiocupante, aunque con evidencia mixta. Con silla vacía, $\beta_0 < \alpha_0$ en la totalidad de 1,500 muestras posteriores de las estimaciones. En cambio, al perseguir el presidente municipal la reelección, $\beta_0 + \beta_1 < \alpha_0 + \alpha_1$ en sólo la quinta parte o menos de la muestra posterior. La brecha se invierte cuatro de cada cinco veces. No es poca cosa. Un alcalde en la boleta es una póliza de seguro contra \emph{swings} partidistas negativos.
+
+\begin{table}
+  \centering
+  \begin{tabular}{clccr}
+   &                   &   Curse gap when no        &         Curse gap when                     &       \\
+   &                   & incumbent was in the ticket &        incumbent was in the ticket          &       \\ 
+   & Party   & ($\alpha_0 > \beta_0$) & ($\alpha_0 + \alpha_1) > (\beta_0 + \beta_1$) & $N$      \\[-1.5ex] \\ \hline \\[-1.5ex] 
+   %% &                   &      brecha sin       &                 brecha con                  &       \\
+   %% &                   & ocupante en la boleta &            ocupante en la boleta            &       \\ 
+   %% & Partido & ($\alpha_0 > \beta_0$) & ($\alpha_0 + \alpha_1) > (\beta_0 + \beta_1$) & $N$      \\[-1.5ex] \\ \hline \\[-1.5ex] 
+   & \mc{3}{l}{~\textbf{1997--2017 all municipalities}} \\
+   %% & \mc{3}{l}{~\textbf{1997--2017 todos los municipios}} \\
+$a$& Left              &         1.000         &                    ---                      & 2,869 \\
+$b$& PAN               &         1.000         &                    ---                      & 3,656 \\
+$c$& PRI               &         1.000         &                    ---                      & 5,877 \\ \\[-1.5ex]
+   & \mc{3}{l}{~\textbf{2018--2025 pre-kick-off municipalities}} \\
+   %% & \mc{3}{l}{~\textbf{2018--2025 municipios pre-banderazo}} \\
+$d$& Morena            &         0.916         &                    ---                      &   121 \\
+$e$& PAN               &         0.876         &                    ---                      &   151 \\
+$f$& PRI               &         0.858         &                    ---                      &   151 \\ \\[-1.5ex]
+   & \mc{3}{l}{~\textbf{2018--2025 non-reform municipalities (Hidalgo \& Veracruz)}} \\
+   %% & \mc{3}{l}{~\textbf{2018--2025 municipios de Hidalgo y Veracruz}} \\
+$g$& Morena            &         0.889         &                    ---                      &   111 \\
+$h$& PAN               &         0.075         &                    ---                      &   199 \\
+$i$& PRI               &         0.605         &                    ---                      &   169 \\ \\[-1.5ex]
+   & \mc{3}{l}{~\textbf{2018--2025 post-kick-off municipalities}} \\
+   %% & \mc{3}{l}{~\textbf{2018--2025 municipios post-banderazo}} \\
+$j$& Morena            &         0.984         &                    0.219                    &   906 \\
+$k$& PAN               &         0.677         &                    0.488                    & 1,816 \\
+$l$& PRI               &         0.999         &                    0.177                    & 1,840 \\ \\[-1.5ex]
+   & \mc{3}{l}{~\textbf{1997--2025 all municipalities}} \\
+   %% & \mc{3}{l}{~\textbf{1997--2025 todos los municipios}} \\
+$m$& Left              &         1.000         &                    0.225                    & 3,896 \\
+$n$& PAN               &         1.000         &                    0.504                    & 5,623 \\
+$o$& PRI               &         1.000         &                    0.189                    & 7,868 \\[-1.5ex] \\ \hline
+  \end{tabular}
+  \caption{Hypothesis tests. Cells report the proportion of the posterior sample meeting the hypothesized inequality.}\label{T:posteriors}
+  %% \caption{Pruebas de hipótesis. Las celdas reportan la proporción de la muestra posterior que cumple la hipótesis.}\label{T:posteriors}
+\end{table}
+
+La estimación de modelos con subconjuntos de datos para el periodo 2018--2015 aparece en el cuadro \ref{T:regs} y el diagrama \ref{F:regplot}. Aún son modelos muy preliminares, pero distinguen elecciones municipales marginales en estados que aún no daban el banderazo inicial (modelos 1, 2 y 3) y en estados que ya lo dieron (modelos 4, 5 y 6). Se trata de modelos de probabilidad lineal de la ecuación 1.\footnote{Esto es, se trata de regresiones lineales con una variable dependiente dicotómica. En mi experiencia, las estimaciones de estos modelos siempre coinciden con las estimaciones más finas de modelos logit, y permiten una lectura directa de los efectos marginales. La intención es cambiarlos por modelos logit y hacer estimaciones bayesianas como las que reporté más arriba.} 
+
+\begin{table}
+  \centering
+  \begin{tabular}{@{\extracolsep{5pt}}lcccccc}
+    \\[-1.8ex]\hline 
+    \hline \\[-1.8ex] 
+    %% & \mc{3}{c}{Pre-banderazo inicial} & \mc{3}{c}{Post-banderazo inicial} \\ \cline{2-4} \cline{5-7}
+    & \mc{3}{c}{Pre-kick-off} & \mc{3}{c}{Post-kick-off} \\ \cline{2-4} \cline{5-7}
+    & (1) & (2) & (3) & (4) & (5) & (6) \\ 
+    Variable  & Morena & PAN & PRI & Morena & PAN & PRI \\
+    \hline \\[-1.8ex] 
+    \mc{2}{l}{\textbf{When $\text{neg}_t=1$}} & & & & & \\
+    Intercept & 0.338$^{***}$ & 0.303$^{***}$ & 0.451$^{***}$ &  0.450$^{***}$ & 0.284$^{***}$ & 0.390$^{***}$ \\
+    &       (0.100) &       (0.092) &       (0.097) &        (0.047) &       (0.034) &       (0.034) \\
+    & & & & & & \\ [-2.5ex]
+    inc$_{t+1}$  &               &               &               & $-$0.230$^{*}$ &  0.169$^{**}$ &      $-$0.081 \\
+    &               &               &               &        (0.127) &       (0.070) &       (0.065) \\
+    & & & & & & \\ [-2.5ex]
+    mg$_{t}$  &   3.438$^{*}$ &         0.128 &   3.186$^{*}$ &       $-$0.339 &      $-$0.589 &  1.483$^{**}$ \\
+    &       (1.921) &       (1.742) &       (1.893) &        (0.905) &       (0.627) &       (0.625) \\
+    & & & & & & \\ [-2.5ex]
+    mg$_{t}\times$inc$_{t+1}$ &               &               &               &          0.859 &         1.301 &      $-$0.076 \\
+    &               &               &               &        (2.305) &       (1.304) &       (1.205) \\
+    \mc{2}{l}{\textbf{When $\text{neg}_t=0$}} & & & & & \\
+    Intercept &   0.174$^{*}$ &   0.154$^{*}$ & 0.292$^{***}$ &  0.311$^{***}$ & 0.263$^{***}$ & 0.250$^{***}$ \\
+    &       (0.094) &       (0.084) &       (0.102) &        (0.050) &       (0.034) &       (0.033) \\
+    & & & & & & \\ [-2.5ex]
+    inc$_{t+1}$    &               &               &               &          0.012 & 0.193$^{***}$ &  0.143$^{**}$ \\
+    &               &               &               &        (0.112) &       (0.073) &       (0.071) \\
+    & & & & & & \\ [-2.5ex]
+    mg$_{t}$     &   3.480$^{*}$ &         1.059 &         0.409 &  2.952$^{***}$ &         0.987 &         0.559 \\
+    &       (1.874) &       (1.756) &       (1.999) &        (0.932) &       (0.628) &       (0.602) \\
+    & & & & & & \\ [-2.5ex]
+    mg$_{t}\times$inc$_{t+1}$  &               &               &               &       $-$1.537 &         0.374 &      $-$0.036 \\
+    &               &               &               &        (2.049) &       (1.338) &       (1.296) \\
+    & & & & & & \\ [-2.5ex]
+    \hline \\[-1.8ex] 
+    R$^2$          &         0.311 &         0.258 &         0.325 &          0.451 &         0.361 &         0.315 \\
+    Observations   &           121 &           151 &           151 &            906 &         1,816 &         1,840 \\
+    & & & & & & \\ [-2.5ex]
+    %% \hline \\[-1.8ex]
+    %% \mc{3}{l}{Wald tests (p-values)} \\
+    %% $\alpha_0 = \beta_0$ & 0.067 & 0.069 & 0.004 & $<$0.001 & $<$0.001 & $<$0.001 \\
+    %% $\alpha_0 + \alpha_2 = \beta_0 + \beta_2$ & & & & $<$0.001 & $<$0.001 & $<$0.001 \\
+    %% \\[-1.8ex]
+    \hline 
+    \hline \\[-1.8ex] 
+  \end{tabular}
+  \caption{Six marginal election models in the 2018--2025 period. `Pre-kick-off' models include only municipalities in states where the reelection reform was not yet adopted, `post-kick-off' only municipalities in the remainder states. The dependent variable in all models is the party's reelection indicator in $t+1$, fitting linear probability models with OLS. \textit{Note:} $^{*}$p$<$0.1; $^{**}$p$<$0.05; $^{***}$p$<$0.01.}\label{T:regs}
+%%  \caption{Seis modelos de elecciones marginales para el periodo 2018--2025. Los modelos `pre-banderazo' incluyen sólo municipios en estados donde aún no entraba en vigor la reforma reeleccionista, los `post-banderazo' sólo municipios donde ya estaba en vigor. La variable dependiente en todos los casos es el indicador de reelección del partido en $t+1$, estimando modelos de probabilidad lineal con OLS. \textit{Nota:} $^{*}$p$<$0.1; $^{**}$p$<$0.05; $^{***}$p$<$0.01.}\label{T:regs}
+\end{table}
+
+%% #+CAPTION: Fortunas del partido municipal en elecciones marginales con/sin ocupante en la boleta
+%% #+NAME:   fig:2
+%% | file:../assets/img/left-97-23-mcmc.png | file:../assets/img/left-18-23-mcmc.png |
+%% | file:../assets/img/pan-97-23-mcmc.png  | file:../assets/img/pan-18-23-mcmc.png  |
+%% | file:../assets/img/pri-97-23-mcmc.png  | file:../assets/img/pri-18-23-mcmc.png  |
+
+No me detendré ahora a discutir las estimaciones que reporta el cuadro para centrarme en las simulaciones del diagrama \ref{F:regplot}. Los resultados aún no reportan la confiabilidad, solo las estimaciones puntuales, pero corroboran los patrones de más arriba. En el periodo desde 2018, en elecciones marginales pre-banderazo reformista, las brechas anti-partido ocupante son patentes del lado izquierdo del diagrama. La columna derecha, de elecciones marginales post-baderazo, muestran patrones más diferenciados, pero se aprecia un desvanecimiento (para el PAN) o hasta una reversión (para el PRI y sobretodo Morena) de la maldición del partido ocupante cuando el presidente está en la boleta. 
+
+\begin{figure}
+  \centering
+  \resizebox{.8\textwidth}{!}{
+    \begin{tabular}{cc}
+      \includegraphics[width=.45\columnwidth]{../plots/leftPREKICKlpm.pdf} &
+      \includegraphics[width=.45\columnwidth]{../plots/leftPOSTKICKlpm.pdf} \\
+      \includegraphics[width=.45\columnwidth]{../plots/panPREKICKlpm.pdf} &
+      \includegraphics[width=.45\columnwidth]{../plots/panPOSTKICKlpm.pdf} \\
+      \includegraphics[width=.45\columnwidth]{../plots/priPREKICKlpm.pdf} &
+      \includegraphics[width=.45\columnwidth]{../plots/priPOSTKICKlpm.pdf} \\
+    \end{tabular}
+  }
+  %^\caption{The effect of the election margin on the future probability of reelection}\label{F:regplot}
+  \caption{El efecto del margen electoral en la probabilidad de reelección partidista futura. Simulaciones con los modelos 1, 2 y 3 en la columna izquierda, con los modelos 4, 5 y 6 en la columna derecha.}\label{F:regplot}
+\end{figure}  
+
+\section{Conclusión}
+
+\noindent Por escribirse.
+
+\newpage
+
+\section{Appendix}
+
+\subsection{Model for MCMC estimation}
+
+\begin{scriptsize}
+\begin{verbatim}
+library(R2jags)
+logitModel <- function() {
+    ### linear probability model with logit link
+    for (n in 1:N){                ## loop over observations
+        depvar[n] ~ dbern(p[n]);   
+        logit(p[n]) <- inprod(beta[],X[n,]);
+    }
+    ############################
+    ## NON-INFORMATIVE PRIORS ##
+    ############################
+    for (k in 1:K){                ## loop over regressors
+        beta[k] ~ dnorm(0, .0001);
+    }
+}
+depvar <- data$dwin
+N <- length(depvar)
+X <- data.frame(
+    dneg=data$dneg       , dnegxincball=data$dnegxincball
+  , dnegxmg=data$dnegxmg , dnegxmgxincball=data$dnegxmgxincball
+  , dpos=data$dpos       , dposxincball=data$dposxincball
+  , dposxmg=data$dposxmg , dposxmgxincball=data$dposxmgxincball
+    )
+##
+K <- ncol(X)
+X <- as.matrix(X)
+### Data, initial values, and parameter vector for jags
+dl.data <- list("N", "K", "depvar", "X")
+dl.inits <- function (){
+    list (
+    beta=rnorm(K)
+    )
+}
+dl.parameters <- c("beta")
+##
+## estimate
+fitjags <- jags (data=dl.data, inits=dl.inits, dl.parameters,
+                  model.file=logitModel, n.chains=3,
+                  n.iter=100000, n.thin=100
+                  )
+traceplot(fitjags) ## visually inspect posterior parameter convergence
+\end{verbatim}
+\end{scriptsize}
+
+\subsection{Summary of MCMC estimates}
+
+\begin{sidewaystable}
+  \centering
+  \resizebox{.7\textwidth}{!}{
+\begin{tabular}{c|rcr|rcr|rcr}
+          &  \mc{3}{c}{Left} & \mc{3}{c}{PAN} & \mc{3}{c}{PRI} \\
+          &   point   & .95-interval & $\hat{R}$  &   point   & .95-interval & $\hat{R}$  &   point   & .95-interval & $\hat{R}$  \\ \hline
+  \mc{5}{l}{~\textbf{Model 1: 1997--2017 all municipalities pre-reform}} \\ %% model1
+$\alpha_0$&  $-0.503$ &    $(-0.70, -0.31)$ & 1.001 & $ 0.107$ &          $(-0.07, 0.28)$ & 1.001 & $ 0.338$ &           $(0.19, 0.47)$ & 1.002 \\
+%%$\alpha_1$&  $ 0.159$ & $(-198.05, 201.16)$ & 1.001 & $-1.566$ &      $(-200.94, 183.33)$ & 1.002 & $ 3.109$ &      $(-193.92, 202.62)$ & 1.003 \\
+$\alpha_2$&  $ 4.215$ &      $(0.45, 7.88)$ & 1.002 & $ 6.509$ &           $(3.24, 9.82)$ & 1.003 & $ 2.058$ &          $(-0.60, 4.82)$ & 1.003 \\
+%%$\alpha_3$&  $-1.908$ & $(-196.29, 193.49)$ & 1.003 & $-0.233$ &      $(-191.44, 194.40)$ & 1.004 & $-0.519$ &      $(-199.78, 196.34)$ & 1.000 \\
+ $\beta_0$&  $-1.241$ &    $(-1.47, -1.01)$ & 1.003 & $-0.939$ &         $(-1.13, -0.74)$ & 1.000 & $-0.605$ &         $(-0.74, -0.46)$ & 1.000 \\
+%% $\beta_1$&  $ 0.042$ & $(-198.29, 195.77)$ & 1.001 & $-3.166$ &      $(-191.44, 191.29)$ & 1.001 & $-1.575$ &      $(-210.59, 188.00)$ & 1.000 \\
+ $\beta_2$&  $ 4.314$ &     $(-0.01, 8.35)$ & 1.001 & $ 2.895$ &          $(-0.47, 6.50)$ & 1.001 & $ 7.566$ &          $(5.19, 10.05)$ & 1.000 \\
+%% $\beta_3$&  $ 0.213$ & $(-188.78, 197.53)$ & 1.002 & $-1.035$ &      $(-205.07, 195.70)$ & 1.002 & $ 3.274$ &      $(-199.57, 186.14)$ & 1.002 \\
+deviance  &  $3475.1$ &    $(3471.6, 3482.6)$ & 1.002 & $4763.3$ &         $(4759.8, 4770.3)$ & 1.007 & $8029.9$ &         $(8026.5, 8036.6)$ & 1.001 \\
+  \mc{5}{l}{~\textbf{Model 2: 2018--2025 pre-kick-in municipalities}} \\ %% model2
+$\alpha_0$&  $-0.463$ &     $(-1.61, 0.63)$ & 1.001 & $-0.860$ &          $(-1.75, 0.07)$ & 1.002 & $-0.138$ &          $(-1.02, 0.76)$ & 1.001 \\
+%%$\alpha_1$&  $ 1.308$ & $(-192.12, 197.28)$ & 1.000 & $ 1.988$ &      $(-202.22, 206.28)$ & 1.000 & $-2.593$ &      $(-184.70, 196.64)$ & 1.003 \\
+$\alpha_2$&  $29.878$ &     $(1.13, 62.15)$ & 1.000 & $ 0.845$ &        $(-15.85, 18.60)$ & 1.001 & $16.373$ &         $(-1.49, 36.84)$ & 1.003 \\
+%%$\alpha_3$&  $-1.379$ & $(-209.16, 185.75)$ & 1.001 & $ 2.358$ &      $(-196.09, 207.43)$ & 1.000 & $-0.428$ &      $(-192.96, 188.68)$ & 1.000 \\
+ $\beta_0$&  $-1.517$ &    $(-2.57, -0.53)$ & 1.001 & $-1.721$ &         $(-2.81, -0.77)$ & 1.001 & $-0.882$ &          $(-1.83, 0.06)$ & 1.001 \\
+%% $\beta_1$&  $-1.584$ & $(-190.64, 196.94)$ & 1.001 & $-4.191$ &      $(-199.20, 192.73)$ & 1.001 & $ 2.317$ &      $(-188.12, 190.76)$ & 1.001 \\
+ $\beta_2$&  $16.726$ &    $(-2.27, 36.46)$ & 1.001 & $ 6.668$ &        $(-13.00, 27.31)$ & 1.001 & $ 1.436$ &        $(-17.30, 19.56)$ & 1.002 \\
+%% $\beta_3$&  $ 2.621$ & $(-190.53, 209.16)$ & 1.001 & $ 4.496$ &      $(-188.64, 200.48)$ & 1.000 & $-3.773$ &      $(-201.35, 183.81)$ & 1.000 \\
+deviance  &  $ 132.1$ &      $(128.5, 139.0)$ & 1.002 & $ 169.7$ &           $(166.1, 176.3)$ & 1.001 & $ 188.4$ &           $(184.8, 195.7)$ & 1.003 \\
+  \mc{5}{l}{~\textbf{Model 3: 2018--2025 post-kick-in municipalities}} \\ %% model3
+$\alpha_0$&  $-0.202$ &     $(-0.56, 0.15)$ & 1.001 & $-0.920$ &         $(-1.24, -0.63)$ & 1.001 & $-0.435$ &         $(-0.73, -0.14)$ & 1.000 \\
+$\alpha_1$&  $-1.130$ &     $(-2.45, 0.06)$ & 1.001 & $ 0.731$ &           $(0.12, 1.30)$ & 1.001 & $-0.358$ &          $(-0.98, 0.23)$ & 1.001 \\
+$\alpha_2$&  $-1.448$ &     $(-8.70, 5.73)$ & 1.001 & $-2.693$ &          $(-8.36, 2.94)$ & 1.001 & $ 6.948$ &          $(0.89, 13.09)$ & 1.000 \\
+$\alpha_3$&  $ 5.041$ &   $(-19.33, 29.06)$ & 1.000 & $ 5.557$ &         $(-5.70, 16.49)$ & 1.001 & $ 0.965$ &        $(-10.98, 13.05)$ & 1.001 \\
+ $\beta_0$&  $-0.783$ &    $(-1.18, -0.38)$ & 1.004 & $-1.029$ &         $(-1.36, -0.71)$ & 1.001 & $-1.094$ &         $(-1.43, -0.78)$ & 1.005 \\
+ $\beta_1$&  $ 0.028$ &     $(-0.95, 0.95)$ & 1.002 & $ 0.849$ &           $(0.19, 1.47)$ & 1.000 & $ 0.656$ &           $(0.01, 1.30)$ & 1.003 \\
+ $\beta_2$&  $12.350$ &     $(5.03, 19.75)$ & 1.002 & $ 4.730$ &         $(-0.89, 10.67)$ & 1.003 & $ 2.794$ &          $(-2.60, 8.55)$ & 1.004 \\
+ $\beta_3$&  $-6.231$ &   $(-23.32, 10.70)$ & 1.001 & $ 0.890$ &        $(-10.37, 12.08)$ & 1.001 & $-0.561$ &        $(-12.81, 11.22)$ & 1.005 \\
+deviance  &  $1221.2$ &    $(1215.6, 1229.9)$ & 1.001 & $2307.0$ &         $(2300.8, 2316.7)$ & 1.000 & $2240.9$ &         $(2235.0, 2250.7)$ & 1.002 \\
+  \mc{5}{l}{~\textbf{Model 4: 1997--2025 all municipalities}} \\ %% model4
+$\alpha_0$&  $-0.429$ &    $(-0.60, -0.25)$ & 1.003 & $-0.197$ &         $(-0.34, -0.04)$ & 1.000 & $  0.190$ &           $(0.06, 0.31)$ & 1.002 \\
+$\alpha_1$&  $-0.868$ &     $(-2.09, 0.27)$ & 1.000 & $ 0.025$ &          $(-0.54, 0.56)$ & 1.001 & $ -0.982$ &         $(-1.56, -0.45)$ & 1.003 \\
+$\alpha_2$&  $ 3.657$ &      $(0.47, 6.90)$ & 1.003 & $ 3.841$ &           $(1.16, 6.55)$ & 1.000 & $  3.274$ &           $(0.92, 5.63)$ & 1.002 \\
+$\alpha_3$&  $ 0.094$ &   $(-20.66, 22.80)$ & 1.004 & $-0.677$ &         $(-11.27, 9.83)$ & 1.001 & $  4.539$ &         $(-5.84, 15.80)$ & 1.003 \\
+ $\beta_0$&  $-1.141$ &    $(-1.34, -0.95)$ & 1.001 & $-0.986$ &         $(-1.15, -0.82)$ & 1.000 & $ -0.707$ &         $(-0.83, -0.57)$ & 1.001 \\
+ $\beta_1$&  $ 0.392$ &     $(-0.49, 1.21)$ & 1.002 & $ 0.817$ &           $(0.22, 1.37)$ & 1.003 & $  0.265$ &          $(-0.31, 0.84)$ & 1.003 \\
+ $\beta_2$&  $ 6.541$ &     $(2.92, 10.27)$ & 1.004 & $ 3.540$ &           $(0.74, 6.42)$ & 1.000 & $  6.880$ &           $(4.72, 9.16)$ & 1.001 \\
+ $\beta_3$&  $-0.376$ &   $(-15.97, 15.63)$ & 1.003 & $ 2.007$ &         $(-7.67, 12.18)$ & 1.001 & $ -4.515$ &         $(-14.92, 6.15)$ & 1.002 \\
+deviance  &  $4906.7$ & $(4901.1, 4916.8)$ & 1.003 & $7291.3$ &       $(7285.6, 7301.0)$ & 1.003 & $10664.7$ &     $(10658.9, 10673.4)$ & 1.000 \\
+  \mc{5}{l}{~\textbf{Model 6: 2018--2025 non-reform municipalities}} \\ %% model6
+$\alpha_0$& $ -0.153$ &     $(-1.11, 0.77)$ & 1.002 & $ -2.068$ &         $(-3.24, -1.04)$ & 1.003 & $-1.252$ &         $(-2.30, -0.28)$ & 1.003 \\
+%%$\alpha_1$& $  3.454$ & $(-184.31, 200.27)$ & 1.003 & $ -0.608$ &      $(-184.88, 196.08)$ & 1.001 & $ 3.717$ &      $(-192.13, 194.51)$ & 1.000 \\
+$\alpha_2$& $ -3.291$ &   $(-24.42, 18.09)$ & 1.001 & $-13.679$ &         $(-33.43, 4.76)$ & 1.002 & $-0.811$ &        $(-19.62, 18.22)$ & 1.003 \\
+%%$\alpha_3$& $  4.430$ & $(-203.94, 202.06)$ & 1.000 & $  0.293$ &      $(-186.79, 200.98)$ & 1.000 & $-2.822$ &      $(-198.60, 196.10)$ & 1.001 \\
+ $\beta_0$& $ -1.009$ &     $(-2.09, 0.06)$ & 1.001 & $ -1.031$ &         $(-1.91, -0.20)$ & 1.001 & $-1.434$ &         $(-2.48, -0.49)$ & 1.001 \\
+%% $\beta_1$& $ -0.349$ & $(-190.96, 197.41)$ & 1.003 & $ -4.757$ &      $(-192.46, 187.61)$ & 1.000 & $ 0.751$ &      $(-213.05, 193.24)$ & 1.002 \\
+ $\beta_2$& $ 18.052$ &    $(-3.12, 40.03)$ & 1.003 & $ -2.396$ &        $(-19.02, 14.60)$ & 1.001 & $ 6.165$ &        $(-10.93, 23.71)$ & 1.000 \\
+%% $\beta_3$& $ -0.335$ & $(-196.75, 189.54)$ & 1.000 & $  0.700$ &      $(-195.91, 195.44)$ & 1.001 & $-2.657$ &      $(-202.93, 194.24)$ & 1.001 \\
+deviance  & $  154.5$ &   $(150.9, 161.5)$ & 1.004 & $  214.1$ &         $(210.5, 221.0)$ & 1.000 & $ 190.7$ &         $(187.2, 197.8)$ & 1.000 \\ \hline
+\end{tabular}
+}
+\caption{MCMC estimates for equation 1 with different subsets of marginal races. See text for details.}
+\end{sidewaystable}
+
+
+\subsection{LPM}
+
+\begin{figure}
+  \centering
+  %\resizebox{.8\textwidth}{!}{
+    \begin{tabular}{c}
+      \includegraphics[width=.45\columnwidth]{../plots/leftREPLICAlpm.pdf} \\
+      \includegraphics[width=.45\columnwidth]{../plots/panREPLICAlpm.pdf} \\
+      \includegraphics[width=.45\columnwidth]{../plots/priREPLICAlpm.pdf} \\
+    \end{tabular}
+  % }
+  \caption{Modelos para el periodo 1997--2017: réplica de Lucardi--Rosas}\label{F:replica}
+\end{figure}  
+
+\singlespacing
+
+\bibliographystyle{apsr}
+%\bibliographystyle{apsrInitials}
+\bibliography{/home/eric/Dropbox/mydocs/magar}
+
+\end{document}

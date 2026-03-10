@@ -982,6 +982,8 @@ waldtest(res.pan, res.pan.r)
 x
 
 ## summarize
+tmp <- ids[ids$yr>=2024  & ids$yr<=2026  &(ids$edon==13 | ids$edon==30),]
+nrow(tmp)
 tmp <- luro[luro$dselpan==1 & luro$yr>2017,]
 nrow(tmp)
 table(tmp$dincballotpan) / nrow(tmp)
